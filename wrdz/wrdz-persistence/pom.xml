@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<name>WRDZ-PERSISTENCE</name>
+	<groupId>pl.psnc.synat</groupId>
+	<artifactId>wrdz-persistence</artifactId>
+	<version>0.0.12-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<parent>
+		<groupId>pl.psnc.synat</groupId>
+		<artifactId>wrdz</artifactId>
+		<version>0.0.12-SNAPSHOT</version>
+	</parent>
+	<properties>
+		<persistence.common><![CDATA[<jar-file>wrdz-common-entity-${project.version}.jar</jar-file>]]></persistence.common>
+		<persistence.mdz><![CDATA[<jar-file>wrdz-mdz-entity-${project.version}.jar</jar-file>]]></persistence.mdz>
+		<persistence.ms><![CDATA[<jar-file>wrdz-ms-entity-${project.version}.jar</jar-file>]]></persistence.ms>
+		<persistence.ru><![CDATA[<jar-file>wrdz-ru-entity-${project.version}.jar</jar-file>]]></persistence.ru>
+		<persistence.zmd><![CDATA[<jar-file>wrdz-zmd-entity-${project.version}.jar</jar-file>]]></persistence.zmd>
+		<persistence.zmkd><![CDATA[<jar-file>wrdz-zmkd-entity-${project.version}.jar</jar-file>]]></persistence.zmkd>
+		<persistence.zu><![CDATA[<jar-file>wrdz-zu-entity-${project.version}.jar</jar-file>]]></persistence.zu>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<executions>
+					<execution>
+						<phase>initialize</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/src/main/resources/META-INF</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${basedir}/src/main/config</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<profile>
+			<id>exclude-mdz</id>
+			<properties>
+				<persistence.mdz />
+			</properties>
+		</profile>
+		<profile>
+			<id>exclude-ms</id>
+			<properties>
+				<persistence.ms />
+			</properties>
+		</profile>
+		<profile>
+			<id>exclude-ru</id>
+			<properties>
+				<persistence.ru />
+			</properties>
+		</profile>
+		<profile>
+			<id>exclude-zmd</id>
+			<properties>
+				<persistence.zmd />
+			</properties>
+		</profile>
+		<profile>
+			<id>exclude-zmkd</id>
+			<properties>
+				<persistence.zmkd />
+			</properties>
+		</profile>
+		<profile>
+			<id>exclude-zu</id>
+			<properties>
+				<persistence.zu />
+			</properties>
+		</profile>
+	</profiles>
+</project>
+

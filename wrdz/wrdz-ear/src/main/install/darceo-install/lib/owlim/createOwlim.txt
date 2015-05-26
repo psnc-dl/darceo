@@ -1,0 +1,9 @@
+create darceo-owlim-lite.
+open dArceo.
+close.
+create darceo-working-owlim-lite.
+open working.
+close.
+exit.
+
+

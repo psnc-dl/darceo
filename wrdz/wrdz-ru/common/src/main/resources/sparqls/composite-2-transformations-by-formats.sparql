@@ -1,0 +1,21 @@
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX service:<http://www.daml.org/services/owl-s/1.2/Service.owl#>
+PREFIX profile:<http://www.daml.org/services/owl-s/1.2/Profile.owl#>
+PREFIX dArceoService:<http://darceo.psnc.pl/ontologies/dArceoService.owl#>
+PREFIX dArceoProfile:<http://darceo.psnc.pl/ontologies/dArceoProfile.owl#>
+SELECT DISTINCT ?service1 ?inpuid1 ?outpuid1 ?service2 ?inpuid2 ?outpuid2
+WHERE {
+  ?transformation rdf:type dArceoService:FileTransformation;
+      dArceoService:fileIn <%s>;
+	  dArceoService:fileOut <%s>;
+	  dArceoService:performedBy ?service;
+	  dArceoService:previousTransformation ?previous;
+	  dArceoService:subsequentTransformation ?subsequent.
+  ?previous dArceoService:performedBy ?service1;
+      dArceoService:fileIn ?inpuid1;
+	  dArceoService:fileOut ?outpuid1.
+  ?subsequent dArceoService:performedBy ?service2;
+      dArceoService:fileIn ?inpuid2;
+	  dArceoService:fileOut ?outpuid2.
+  FILTER (!isBlank(?previous) && !isBlank(?subsequent) && <%s> = ?inpuid1 && ?outpuid1 = ?inpuid2 && ?outpuid2 = <%s>)
+}

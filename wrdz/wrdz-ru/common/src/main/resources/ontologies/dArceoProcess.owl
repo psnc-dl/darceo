@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY udfrs "http://www.udfr.org/onto#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY process "http://www.daml.org/services/owl-s/1.2/Process.owl#" >
+    <!ENTITY dArceoFile "http://darceo.psnc.pl/ontologies/dArceoFile.owl#" >
+    <!ENTITY expression "http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#"
+     xml:base="http://darceo.psnc.pl/ontologies/dArceoProcess.owl"
+     xmlns:expression="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#"
+     xmlns:process="http://www.daml.org/services/owl-s/1.2/Process.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:udfrs="http://www.udfr.org/onto#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dArceoFile="http://darceo.psnc.pl/ontologies/dArceoFile.owl#">
+    <owl:Ontology rdf:about="http://darceo.psnc.pl/ontologies/dArceoProcess.owl">
+        <owl:imports rdf:resource="http://darceo.psnc.pl/ontologies/dArceoFile.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl"/>
+    </owl:Ontology>
+    
+
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#inputFileCondition">
+        <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#DArceo-Condition"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#InputFileCondition"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#inputFileFormat">
+        <rdfs:range rdf:resource="&udfrs;FileFormat"/>
+        <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#InputFileCondition"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#inputOutputFormatCondition">
+        <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#DArceo-Condition"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#InputOutputFormatCondition"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#inputParam">
+        <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#InputParamCondition"/>
+        <rdfs:range rdf:resource="&process;Input"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#inputParamFileFormat">
+        <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#InputFileCondition"/>
+        <rdfs:range rdf:resource="&process;Input"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#outputFormat">
+        <rdfs:range rdf:resource="&udfrs;FileFormat"/>
+        <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#InputOutputFormatCondition"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#toLocalParam">
+        <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#InputFileCondition"/>
+        <rdfs:range rdf:resource="&process;Local"/>
+    </owl:ObjectProperty>
+    
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#DArceo-Condition">
+        <rdfs:subClassOf rdf:resource="&expression;Condition"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#inputFileCondition"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#InputFileCondition"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#inputOutputFormatCondition"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#InputOutputFormatCondition"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&expression;expressionLanguage"/>
+                <owl:hasValue rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#DArceoInCondition"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#InputFileCondition">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#InputParamCondition"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#inputParamFileFormat"/>
+                <owl:onClass rdf:resource="&process;Input"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#inputFileFormat"/>
+                <owl:onClass rdf:resource="&udfrs;FileFormat"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#toLocalParam"/>
+                <owl:onClass rdf:resource="&process;Local"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#InputOutputFormatCondition">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#InputParamCondition"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#outputFormat"/>
+                <owl:onClass rdf:resource="&udfrs;FileFormat"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#InputParamCondition">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#inputParam"/>
+                <owl:onClass rdf:resource="&process;Input"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProcess.owl#DArceoInCondition">
+        <rdf:type rdf:resource="&expression;LogicLanguage"/>
+    </owl:NamedIndividual>
+</rdf:RDF>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://wrdz.synat.psnc.pl/zmd/object"
+	xmlns="http://wrdz.synat.psnc.pl/zmd/object" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.0.1">
+
+	<xs:include schemaLocation="metadata-file.xsd" />
+
+	<xs:complexType name="MetadataFiles">
+		<xs:sequence>
+			<xs:element name="metadataFile" type="MetadataFile" maxOccurs="unbounded" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>

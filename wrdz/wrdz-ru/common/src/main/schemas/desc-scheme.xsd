@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://wrdz.synat.psnc.pl/ru/services" xmlns="http://wrdz.synat.psnc.pl/ru/services"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="0.0.1">
+
+	<xs:complexType name="Scheme">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" maxOccurs="1"
+				minOccurs="1" />
+			<xs:element name="version" type="xs:string" maxOccurs="1"
+				minOccurs="0" />
+			<xs:element name="namespace" type="xs:string" maxOccurs="1"
+				minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

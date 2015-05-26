@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY dArceoUnit "http://darceo.psnc.pl/ontologies/dArceoUnit.owl#" >
+    <!ENTITY dArceoAudio "http://darceo.psnc.pl/ontologies/dArceoAudio.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#"
+     xml:base="http://darceo.psnc.pl/ontologies/dArceoVideo.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:dArceoUnit="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#"
+     xmlns:dArceoAudio="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl">
+        <owl:imports rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl"/>
+        <owl:imports rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl"/>
+    </owl:Ontology>
+
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#AspectRatio"/>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#AspectRatioBundle">
+    	<dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#AspectRatio"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#FrameRate"/>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#FrameRateBundle">
+    	<dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#FrameRate"/>
+    </owl:Class>
+        
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#SignalFormat"/>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#SignalFormatBundle">
+    	<dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#SignalFormat"/>
+    </owl:Class>
+
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#DurationFrm">
+        <rdfs:subClassOf rdf:resource="&dArceoAudio;Duration"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&dArceoAudio;timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;frame"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#DurationFrmBundle">
+   		<rdfs:subClassOf rdf:resource="&dArceoAudio;DurationBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#DurationFrm"/>
+    </owl:Class>
+    
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#StartFrm">
+        <rdfs:subClassOf rdf:resource="&dArceoAudio;Start"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&dArceoAudio;timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;frame"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+  
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#StartFrmBundle">
+   		<rdfs:subClassOf rdf:resource="&dArceoAudio;StartBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#StartFrm"/>
+    </owl:Class>
+
+      
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#EndFrm">
+        <rdfs:subClassOf rdf:resource="&dArceoAudio;End"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&dArceoAudio;timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;frame"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#EndFrmBundle">
+   		<rdfs:subClassOf rdf:resource="&dArceoAudio;EndBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#EndFrm"/>
+    </owl:Class>
+    
+    
+	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#DurationCoordinatesFrm">
+        <rdfs:subClassOf rdf:resource="&dArceoAudio;DurationCoordinates"/>    
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&dArceoAudio;start"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#StartFrm"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&dArceoAudio;end"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#EndFrm"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&dArceoAudio;duration"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#DurationFrm"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#DurationCoordinatesFrmBundle">
+        <rdfs:subClassOf rdf:resource="&dArceoAudio;DurationCoordinatesBundle"/>       
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#DurationCoordinatesFrm"/>
+    </owl:Class> 
+        
+</rdf:RDF>
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wrdz-config>
+	<locale>pl</locale>
+	<async>
+		<cache-home>E:\ARP_cache</cache-home>
+		<cleaning-period>7</cleaning-period>		
+	</async>
+	<https>
+		<verify-hostname>false</verify-hostname>
+		<modules-password>tDbXFF91hrbnx2UZJLNRcQ==</modules-password>		
+	</https>	
+	<profiler>
+		<enabled>true</enabled>
+	</profiler>
+</wrdz-config>

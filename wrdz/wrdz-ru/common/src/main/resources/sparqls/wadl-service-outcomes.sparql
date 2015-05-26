@@ -1,0 +1,14 @@
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX service:<http://www.daml.org/services/owl-s/1.2/Service.owl#>
+PREFIX grounding:<http://www.daml.org/services/owl-s/1.2/Grounding.owl#>
+PREFIX restfulGrounding:<http://www.fullsemanticweb.com/ontology/RESTfulGrounding/v1.0/RESTfulGrounding.owl#>
+SELECT ?outcomename ?wadloutcome
+WHERE {
+  <%s> rdf:type service:Service;
+      service:supports ?grounding.
+  ?grounding grounding:hasAtomicProcessGrounding ?atomicgrounding.
+  ?atomicgrounding restfulGrounding:wadlResponseParam ?responseparam.
+  ?responseparam grounding:owlsParameter ?outcomename;
+      restfulGrounding:wadlMessageParam ?wadloutcome.
+}
+

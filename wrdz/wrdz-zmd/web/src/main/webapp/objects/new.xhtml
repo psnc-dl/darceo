@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title>
+			<h:outputText rendered="#{objectBean.identifier != null}" value="#{msg['new.version']}" />
+			<h:outputText rendered="#{objectBean.identifier == null}" value="#{msg['new.object']}" />
+		</title>
+	</h:head>
+	<h:body>
+		<f:metadata>
+			<f:viewParam id="object_identifier" name="id" value="#{objectBean.identifier}" />
+			<f:event type="preRenderView" listener="#{objectBean.init}" />
+		</f:metadata>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+				<h:form id="objectForm">
+					<h:panelGrid columns="3"
+						headerClass="list-header"
+						columnClasses="form-labels"
+						styleClass="form-background"
+						title="user">
+
+						<f:facet name="header">
+							<h:outputText rendered="#{objectBean.identifier != null}" value="#{msg['new.version']} (#{objectBean.identifier})" />
+							<h:outputText rendered="#{objectBean.identifier == null}" value="#{msg['new.object']}" />
+						</f:facet>
+
+						<h:outputLabel for="name" styleClass="form-label" rendered="#{objectBean.identifier == null}">#{msg['new.name']}:</h:outputLabel>
+						<h:inputText id="name" value="#{objectBean.name}" required="false" rendered="#{objectBean.identifier == null}" />
+						<h:message styleClass="validationMessage" for="name" rendered="#{objectBean.identifier == null}"/>
+
+						<h:outputLabel for="file" styleClass="form-label">
+							<h:outputText id="file" value="#{msg['new.file']}:" />
+						</h:outputLabel>
+							<rich:fileUpload
+								fileUploadListener="#{objectBean.uploadFile}"
+								id="upload" 
+								addLabel="#{msg['new.file.choose']}" uploadLabel="#{msg['new.file.upload']}"
+								clearAllLabel="#{msg['new.file.clear']}" listHeight="40px" acceptedTypes="zip"
+								ontyperejected="alert('#{msg['new.file.alert']}');"
+								maxFilesQuantity="1" 
+								required="true" />
+						<h:message styleClass="validationMessage" for="file" />
+
+						<h:link value="#{msg['back']}" outcome="objects.xhtml" />
+						<h:panelGroup>
+							<h:commandButton type="submit" value="#{objectBean.identifier != null ? msg['new.save.version'] : msg['new.save.object'] }" action="#{objectBean.save()}" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</h:form>
+
+				<rich:popupPanel id="popup" modal="true" autosized="true" resizeable="false" show="#{objectBean.inProgress or objectBean.status != null}">				
+					<h:panelGroup id="statusMessage">
+						<h:outputText rendered="#{objectBean.inProgress}" value="#{msg['new.save.wait']}"/>
+						<h:outputText rendered="#{objectBean.status == 200}" value="#{msg['new.save.success']}"/>
+						<h:outputText rendered="#{objectBean.status == 400}" value="#{msg['new.save.incorrect']}"/>
+						<h:outputText rendered="#{objectBean.status == 403}" value="#{msg['new.save.unauthorized']}"/>
+						<h:outputText rendered="#{objectBean.status == 500}" value="#{msg['new.save.error']}"/>
+						<p>
+							<h:commandButton value="#{msg['close']}" rendered="#{objectBean.status == 400 or objectBean.status == 403 or objectBean.status == 500}">
+								<rich:componentControl target="popup" operation="hide" />
+							</h:commandButton>
+							<h:button outcome="/objects/objects.xhtml" value="#{msg['ok']}" rendered="#{objectBean.status == 200}"/>
+						</p>
+					</h:panelGroup>
+				</rich:popupPanel>
+
+				<h:form>
+					<a4j:poll id="poll" interval="10000" enabled="#{objectBean.inProgress}" render="poll,statusMessage" action="#{objectBean.checkStatus}"/>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

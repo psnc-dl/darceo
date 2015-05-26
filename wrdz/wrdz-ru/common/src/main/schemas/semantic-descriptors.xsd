@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://wrdz.synat.psnc.pl/ru/services"
+	xmlns="http://wrdz.synat.psnc.pl/ru/services"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="0.0.1">
+
+	<xs:include schemaLocation="semantic-descriptor.xsd" />
+
+	<xs:complexType name="SemanticDescs">
+		<xs:sequence>
+			<xs:element name="semanticDescriptor" type="SemanticDesc"
+				maxOccurs="unbounded" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

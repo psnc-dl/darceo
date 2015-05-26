@@ -1,0 +1,45 @@
+<!DOCTYPE glassfish-ejb-jar PUBLIC "-//GlassFish.org//
+DTD GlassFish Application Server 3.1 EJB 3.1//EN" 
+"http://glassfish.org/dtds/glassfish-ejb-jar_3_1-1.dtd">
+<glassfish-ejb-jar>
+
+	<enterprise-beans>
+		<ejb>
+			<ejb-name>StatisticsCalculator</ejb-name>
+			<ejb-ref>
+				<ejb-ref-name>StatisticsBrowser</ejb-ref-name>
+				<jndi-name>java:global/wrdz/wrdz-zmd-business-0_0_12-SNAPSHOT/StatisticsBrowserBean</jndi-name>
+			</ejb-ref>
+			<ejb-ref>
+				<ejb-ref-name>UserBrowser</ejb-ref-name>
+				<jndi-name>java:global/wrdz/wrdz-zu-business-0_0_12-SNAPSHOT/UserBrowserBean</jndi-name>
+			</ejb-ref>
+		</ejb>
+		<ejb>
+			<ejb-name>CertificateMessageBean</ejb-name>
+			<jndi-name>queue/info/zu-certificate</jndi-name>
+			<ejb-ref>
+				<ejb-ref-name>UserBrowser</ejb-ref-name>
+				<jndi-name>java:global/wrdz/wrdz-zu-business-0_0_12-SNAPSHOT/UserBrowserBean</jndi-name>
+			</ejb-ref>
+			<mdb-connection-factory>
+				<jndi-name>jms/info</jndi-name>
+			</mdb-connection-factory>
+		</ejb>
+		<ejb>
+			<ejb-name>FormatMessageBean</ejb-name>
+			<jndi-name>queue/info/mdz-format</jndi-name>
+			<mdb-connection-factory>
+				<jndi-name>jms/info</jndi-name>
+			</mdb-connection-factory>
+		</ejb>
+		<ejb>
+			<ejb-name>ObjectMessageBean</ejb-name>
+			<jndi-name>queue/info/mdz-object</jndi-name>
+			<mdb-connection-factory>
+				<jndi-name>jms/info</jndi-name>
+			</mdb-connection-factory>
+		</ejb>
+	</enterprise-beans>
+
+</glassfish-ejb-jar>

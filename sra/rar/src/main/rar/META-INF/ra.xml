@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connector xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/connector_1_6.xsd"
+	version="1.6">
+
+	<description>OWLIM-style Semantic Repositorye Resource Adapter</description>
+	<display-name>OWLIM JCA Adapter</display-name>
+	<vendor-name>Poznan Supercomputing and Networking Center</vendor-name>
+	<eis-type></eis-type>
+	<resourceadapter-version>1.0</resourceadapter-version>
+
+	<resourceadapter>
+		<resourceadapter-class>pl.psnc.synat.sra.owlim.OwlimSemanticRepositoryResourceAdapter</resourceadapter-class>
+		<config-property>
+				<description>OWLIM Repository name</description>
+				<config-property-name>repositoryName</config-property-name>
+				<config-property-type>java.lang.String</config-property-type>
+				<config-property-value>dArceo</config-property-value>
+		</config-property>
+		
+		<outbound-resourceadapter>
+			<connection-definition>
+				<managedconnectionfactory-class>
+					pl.psnc.synat.sra.owlim.OwlimSemanticRepositoryManagedConnectionFactory</managedconnectionfactory-class>
+				<connectionfactory-interface>
+					pl.psnc.synat.sra.SemanticRepositoryConnectionFactory</connectionfactory-interface>
+				<connectionfactory-impl-class>
+					pl.psnc.synat.sra.owlim.OwlimSemanticRepositoryConnectionFactory</connectionfactory-impl-class>
+				<connection-interface>pl.psnc.synat.sra.SemanticRepositoryConnection</connection-interface>
+				<connection-impl-class>pl.psnc.synat.sra.owlim.OwlimSemanticRepositoryConnection</connection-impl-class>
+			</connection-definition>
+
+			<transaction-support>XATransaction</transaction-support>
+			<reauthentication-support>false</reauthentication-support>
+		</outbound-resourceadapter>
+
+		<inbound-resourceadapter />
+
+	</resourceadapter>
+</connector>

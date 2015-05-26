@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This is the template of the MS configuration module -->
+<!-- Copy this file as "ms-wrdz-config.xml" and remove this header !!! -->
+
+<ms-wrdz-config>
+	<statistics>
+		<calculation-schedule>
+			<hour>1</hour>
+			<minute>25</minute>
+		</calculation-schedule>
+	</statistics>
+</ms-wrdz-config>

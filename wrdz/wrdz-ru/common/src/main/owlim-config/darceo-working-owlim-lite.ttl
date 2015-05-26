@@ -1,0 +1,27 @@
+#
+# Sesame configuration template for an OWLIM-Lite repository for dArceo working.
+#
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rep: <http://www.openrdf.org/config/repository#>.
+@prefix sr: <http://www.openrdf.org/config/repository/sail#>.
+@prefix sail: <http://www.openrdf.org/config/sail#>.
+@prefix owlim: <http://www.ontotext.com/trree/owlim#>.
+
+[] a rep:Repository ;
+    rep:repositoryID "working" ;
+    rdfs:label "dArceo working repository" ;
+    rep:repositoryImpl [
+        rep:repositoryType "openrdf:SailRepository" ;
+        sr:sailImpl [
+            sail:sailType "swiftowlim:Sail" ;
+            owlim:storage-folder "storage" ;
+            owlim:ruleset "owl-horst" ;
+            owlim:base-URL "http://darceo.psnc.pl/ontologies/dArceoService.owl#" ;
+            owlim:repository-type "in-memory-repository" ;
+            owlim:entity-index-size "20000" ;
+            owlim:noPersist "true" ;
+            owlim:imports "http://darceo.psnc.pl/ontologies/dArceoUnit.owl;http://darceo.psnc.pl/ontologies/dArceoDelivery.owl;http://darceo.psnc.pl/ontologies/dArceoFile.owl;http://darceo.psnc.pl/ontologies/dArceoText.owl;http://darceo.psnc.pl/ontologies/dArceoDocument.owl;http://darceo.psnc.pl/ontologies/dArceoImage.owl;http://darceo.psnc.pl/ontologies/dArceoAudio.owl;http://darceo.psnc.pl/ontologies/dArceoVideo.owl;http://darceo.psnc.pl/ontologies/dArceoService.owl;http://darceo.psnc.pl/ontologies/dArceoProcess.owl;http://darceo.psnc.pl/ontologies/dArceoProfile.owl" ;
+            owlim:defaultNS "http://darceo.psnc.pl/ontologies/dArceoUnit.owl#;http://darceo.psnc.pl/ontologies/dArceoDelivery.owl#;http://darceo.psnc.pl/ontologies/dArceoFile.owl#;http://darceo.psnc.pl/ontologies/dArceoText.owl#;http://darceo.psnc.pl/ontologies/dArceoDocument.owl#;http://darceo.psnc.pl/ontologies/dArceoImage.owl#;http://darceo.psnc.pl/ontologies/dArceoAudio.owl#;http://darceo.psnc.pl/ontologies/dArceoVideo.owl#;http://darceo.psnc.pl/ontologies/dArceoService.owl#;http://darceo.psnc.pl/ontologies/dArceoProcess.owl#;http://darceo.psnc.pl/ontologies/dArceoProfile.owl#" ;
+            owlim:jobsize "1000"
+      ]
+   ].

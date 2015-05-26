@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+	<h:head>
+		<title>Unexpected error</title>
+	</h:head>
+	<h:body>
+		<f:metadata>
+			<f:event type="preRenderView"
+				listener="#{exceptionBean.initializeException()}" />
+		</f:metadata>
+		<h:panelGrid columns="1" headerClass="list-header"
+			rowClasses="list-row-even, list-row-odd" styleClass="list-background"
+			title="System has encountered unexpected error." id="error-page">
+			<h:outputText value="System has encountered unexpected error." />
+			<h:outputText value="#{exceptionBean.message}" />
+		</h:panelGrid>
+	</h:body>
+</f:view>
+</html>

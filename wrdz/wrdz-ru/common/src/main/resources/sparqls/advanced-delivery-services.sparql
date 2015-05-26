@@ -1,0 +1,12 @@
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX service:<http://www.daml.org/services/owl-s/1.2/Service.owl#>
+PREFIX profile:<http://www.daml.org/services/owl-s/1.2/Profile.owl#>
+PREFIX dArceoProfile:<http://darceo.psnc.pl/ontologies/dArceoProfile.owl#>
+PREFIX dArceoProcess:<http://darceo.psnc.pl/ontologies/dArceoProcess.owl#>
+SELECT ?service
+WHERE {
+  ?service rdf:type service:Service;
+      service:presents ?profile.
+  ?profile profile:serviceClassification
+          "http://darceo.psnc.pl/ontologies/dArceoProfile.owl#AdvancedDataDeliveryService"^^<http://www.w3.org/2001/XMLSchema#anyURI>.
+}

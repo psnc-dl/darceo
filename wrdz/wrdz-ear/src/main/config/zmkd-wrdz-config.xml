@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zmkd-wrdz-config>
+	<cache>
+		<home>E:\ZMKD_cache_test</home>
+	</cache>
+	<migration-plan>
+		<zmd-object-url>https://localhost:8181/zmd/object</zmd-object-url>
+	</migration-plan>
+</zmkd-wrdz-config>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title>#{msg['users']}</title>
+	</h:head>
+	<h:body>
+		<f:metadata>
+			<f:event type="preRenderView" listener="#{usersBean.init}" />
+		</f:metadata>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+				<h:form id="usersList">
+					<h:link id="add" outcome="user.xhtml" value="#{msg['users.add']}" class="actionLink" />
+					<rich:dataTable id="users" rowKeyVar="index" var="user"
+						value="#{usersBean.users}" captionClass="list-caption"
+						columnClasses="list-column list-column-odd, list-column list-column-even"
+						footerClass="list-footer" headerClass="list-header"
+						rowClasses="list-row list-row-even, list-row list-row-odd"
+						styleClass="list-background">
+
+						<rich:column>
+							<f:facet name="header">#{msg['users.table.username']}</f:facet>
+							#{user.username}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['users.table.displayname']}</f:facet>
+							#{user.userData.displayName}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['users.table.organization']}</f:facet>
+							#{user.organization.name}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['users.table.active']}</f:facet>
+							#{user.userData.active}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['users.table.action']}</f:facet>
+							<h:link outcome="user.xhtml" includeViewParams="true" value="#{msg['users.table.action.modify']}" class="actionLink">
+								<f:param name="id" value="#{user.id}" />
+							</h:link>
+						</rich:column>
+
+					</rich:dataTable>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

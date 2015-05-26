@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://wrdz.synat.psnc.pl/zmd/object"
+	xmlns="http://wrdz.synat.psnc.pl/zmd/object" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.0.1">
+
+	<xs:simpleType name="FileType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="text" />
+			<xs:enumeration value="document" />
+			<xs:enumeration value="image" />
+			<xs:enumeration value="audio" />
+			<xs:enumeration value="video" />
+			<xs:enumeration value="unknown" />
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

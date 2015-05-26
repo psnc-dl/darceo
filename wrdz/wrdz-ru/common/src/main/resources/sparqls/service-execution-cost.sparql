@@ -1,0 +1,15 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX service:<http://www.daml.org/services/owl-s/1.2/Service.owl#>
+PREFIX profile:<http://www.daml.org/services/owl-s/1.2/Profile.owl#>
+PREFIX dArceoProfile:<http://darceo.psnc.pl/ontologies/dArceoProfile.owl#>
+SELECT ?cost
+WHERE {
+  <%s> rdf:type service:Service;
+      service:presents ?profile.
+  ?profile profile:serviceParameter ?execcost.
+  ?execcost rdf:type dArceoProfile:ExecutionCost;
+      profile:sParameter ?sparam.
+  ?sparam dArceoProfile:value ?cost
+  FILTER (datatype(?cost) = xsd:positiveInteger).  
+}

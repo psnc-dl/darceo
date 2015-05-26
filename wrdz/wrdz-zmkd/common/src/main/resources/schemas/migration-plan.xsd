@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" targetNamespace="http://darceo.psnc.pl/migration"
+	xmlns:dmp="http://darceo.psnc.pl/migration" version="1.0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="migrationPlan">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="fileFormats" type="dmp:FileFormats" />
+				<xs:element name="digitalObjects" type="dmp:DigitalObjects" />
+				<xs:choice>
+					<xs:element minOccurs="1" name="migrationPath" type="dmp:MigrationPath" />
+					<xs:sequence>
+						<xs:element minOccurs="0" name="type" type="dmp:MigrationType" />
+						<xs:element minOccurs="0" name="parameters" type="dmp:MigrationParameters" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="FileFormats">
+		<xs:sequence>
+			<xs:element name="inputPUID" type="xs:string" />
+			<xs:element name="outputPUID" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DigitalObjects">
+		<xs:choice minOccurs="0">
+			<xs:element maxOccurs="unbounded" name="identifier" type="xs:string" />
+			<xs:element name="owner" type="xs:string" />
+		</xs:choice>
+		<xs:attribute name="condition" type="dmp:DigitalObjectsCondition"
+			use="required" />
+	</xs:complexType>
+	<xs:simpleType name="DigitalObjectsCondition">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="byIdentifiers" />
+			<xs:enumeration value="byOwner" />
+			<xs:enumeration value="allObjects" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="MigrationPath">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="service" type="dmp:Service" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Service">
+		<xs:sequence>
+			<xs:element name="ontologyIRI" type="xs:anyURI" />
+			<xs:choice>
+				<xs:element name="serviceIRI" type="xs:anyURI" />
+				<xs:element name="serviceName" type="xs:string" />
+			</xs:choice>
+			<xs:element name="inputPUID" type="xs:string" />
+			<xs:element name="outputPUID" type="xs:string" />
+			<xs:element name="type" type="dmp:MigrationType" />
+			<xs:element minOccurs="0" name="parameters" type="dmp:MigrationParameters" />
+		</xs:sequence>
+		<xs:attribute name="no" type="xs:int" use="required" />
+	</xs:complexType>
+	<xs:simpleType name="MigrationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="oneToOne" />
+			<xs:enumeration value="manyToOne" />
+			<xs:enumeration value="oneToMany" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="MigrationParameters">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="parameter"
+				type="dmp:MigrationParameter" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MigrationParameter">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="type" type="dmp:MigrationParameterURI" use="required" />
+				<xs:attribute name="name" type="xs:anyURI" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="MigrationParameterURI">
+		<xs:restriction base="xs:anyURI">
+			<xs:enumeration
+				value="http://www.udfr.org/onto#FileFormat" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoFile.owl#File" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoFile.owl#FileBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#Length" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#Time" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoText.owl#Linebreak" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoText.owl#LinebreakBundle" />				
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoText.owl#Charset" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoText.owl#CharsetBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoText.owl#Language" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoText.owl#LanguageBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#PageNumber" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#PageNumberBundle" />				
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#InitialPageNumber" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#InitialPageNumberBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#FinalPageNumber" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#FinalPageNumberBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#PageRange" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#PageRangeBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BitsPerSample" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BitsPerSampleBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorProfile" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorProfileBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorSpace" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorSpaceBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Color" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionRatio" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionRatioBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionScheme" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionSchemeBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Compression" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Orientation" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#OrientationBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthResolution" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthResolutionBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPPCm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPPCmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPPI" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPPIBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightResolution" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightResolutionBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPPCm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPPCmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPPI" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPPIBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Resolution" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ResolutionBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#PPCm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#PPCmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#PPI" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#PPIBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Bottom" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomCm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomCmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomIn" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomInBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomPx" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomPxBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Top" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopCm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopCmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopIn" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopInBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopPx" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopPxBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Left" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftCm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftCmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftIn" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftInBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftPx" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftPxBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Right" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightCm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightCmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightIn" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightInBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightPx" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightPxBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Width" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthIn" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthInBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPx" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPxBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Height" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightIn" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightInBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPx" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPxBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinates" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesCm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesCmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesIn" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesInBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesPx" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesPxBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinates" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesCm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesCmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesIn" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesInBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesPx" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesPxBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinates" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesCm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesCmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesIn" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesInBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesPx" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesPxBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#BitDepth" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#BitDepthBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#ChannelLocations" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#ChannelLocationsBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#SampleRate" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#SampleRateBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Duration" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationHr" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationHrBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationMin" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationMinBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationSec" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationSecBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationMilSec" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationMilSecBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationIso" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationIsoBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationSmp" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationSmpBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Start" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartHr" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartHrBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartMin" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartMinBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartSec" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartSecBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartMilSec" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartMilSecBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartIso" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartIsoBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartSmp" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartSmpBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#End" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndHr" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndHrBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndMin" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndMinBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndSec" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndSecBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndMilSec" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndMilSecBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndIso" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndIsoBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndSmp" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndSmpBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinates" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesHr" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesHrBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesMin" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesMinBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesSec" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesSecBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesMilSec" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesMilSecBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesIso" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesIsoBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesSmp" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesSmpBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#AspectRatio" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#AspectRatioBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#FrameRate" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#FrameRateBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#SignalFormat" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#SignalFormatBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#DurationFrm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#DurationFrmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#StartFrm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#StartFrmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#EndFrm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#EndFrmBundle" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#DurationCoordinatesFrm" />
+			<xs:enumeration
+				value="http://darceo.psnc.pl/ontologies/dArceoVideo.owl#DurationCoordinatesFrmBundle" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

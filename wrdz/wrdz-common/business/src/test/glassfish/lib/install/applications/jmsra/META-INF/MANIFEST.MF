@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Specification-Title: Open Message Queue / Oracle GlassFish(tm) Server 
+ Message Queue J2EE Resource Adapter for JMS
+Class-Path: imqbroker.jar
+Created-By: 1.5.0_14 (Sun Microsystems Inc.)
+Main-Class: com.sun.messaging.jmq.Version
+Implementation-Title: Open Message Queue / Oracle GlassFish(tm) Server
+  Message Queue
+Specification-Vendor: Oracle
+Specification-Version: 1.5
+Implementation-Version: 4.5.2 (Build 2-d)
+Implementation-Vendor: Oracle
+
+Name: com/sun/messaging/jms/ra
+

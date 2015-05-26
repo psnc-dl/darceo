@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title>#{msg['members']}</title>
+	</h:head>
+	<h:body>
+		<f:metadata>
+			<f:viewParam id="group_id" name="id" value="#{groupMembershipBean.id}" />
+			<f:event type="preRenderView" listener="#{groupMembershipBean.init}" />
+		</f:metadata>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+				<h:form id="userForm">
+				
+					<h:outputLabel for="username" styleClass="form-label">#{msg['members.username']}:</h:outputLabel>
+					<h:inputText id="username" value="#{groupMembershipBean.username}" required="true" />
+					<h:message styleClass="validationMessage" for="username" />
+					<h:commandButton type="submit" value="#{msg['members.add']}" action="#{groupMembershipBean.addUser()}" />
+					
+				</h:form>
+
+				<h:form id="membershipForm">
+					<rich:dataTable id="users" rowKeyVar="index" var="user"
+						value="#{groupMembershipBean.users}" captionClass="list-caption"
+						columnClasses="list-column list-column-odd, list-column list-column-even"
+						footerClass="list-footer" headerClass="list-header"
+						rowClasses="list-row list-row-even, list-row list-row-odd"
+						styleClass="list-background">
+
+						<rich:column>
+							<f:facet name="header">#{msg['members.table.username']}</f:facet>
+							#{user.user.username}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['members.table.action']}</f:facet>
+							<h:commandLink id="remove" value="#{msg['members.table.action.remove']}" class="actionLink" action="#{groupMembershipBean.removeUser(user.user.username)}" />
+						</rich:column>
+
+					</rich:dataTable>
+
+				</h:form>
+
+				<h:link value="#{msg['back']}" outcome="groups.xhtml" />
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

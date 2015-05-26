@@ -1,0 +1,8 @@
+# Extra properties that assist during the build. Used only when the "read-properties" Maven profile is active.
+# Copy this file as "build.properties" and adjust the values as needed.
+
+# Remote EJB addresses (hostname:port). Leave empty if the called EJBs are located in the same Glassfish domain as the caller.
+mdz.remote.address=
+ru.remote.address=
+zmd.remote.address=
+zu.remote.address=

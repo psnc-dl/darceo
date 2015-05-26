@@ -1,0 +1,597 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY dArceoUnit "http://darceo.psnc.pl/ontologies/dArceoUnit.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#"
+     xml:base="http://darceo.psnc.pl/ontologies/dArceoAudio.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:dArceoUnit="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl">
+        <owl:imports rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl"/>
+    </owl:Ontology>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#BitDepth"/>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#BitDepthBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#BitDepth"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#ChannelLocations"/>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#ChannelLocationsBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#ChannelLocations"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#SampleRate"/>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#SampleRateBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#SampleRate"/>
+    </owl:Class>
+    
+    
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Duration"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#End"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Start"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="&dArceoUnit;Time"/>
+    </owl:ObjectProperty>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Duration">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:onClass rdf:resource="&dArceoUnit;Time"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Duration"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationHr">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Duration"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;hour"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationHrBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationBundle"/>       
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationHr"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationMin">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Duration"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;minute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationMinBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationBundle"/>       
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationMin"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationSec">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Duration"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;second"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationSecBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationBundle"/>       
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationSec"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationMilSec">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Duration"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;millisecond"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationMilSecBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationBundle"/>       
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationMilSec"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationIso">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Duration"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;iso8601"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationIsoBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationBundle"/>       
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationIso"/>
+    </owl:Class>
+        
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationSmp">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Duration"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;sample"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationSmpBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationSmp"/>
+    </owl:Class>
+    
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Start">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:onClass rdf:resource="&dArceoUnit;Time"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Start"/>
+    </owl:Class>
+        
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartHr">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Start"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;hour"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartHrBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartHr"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartMin">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Start"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;minute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartMinBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartMin"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartSec">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Start"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;second"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartSecBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartSec"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartMilSec">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Start"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;millisecond"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartMilSecBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartMilSec"/>
+    </owl:Class>
+        
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartIso">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Start"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;iso8601"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartIsoBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartIso"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartSmp">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Start"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;sample"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartSmpBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartSmp"/>
+    </owl:Class>
+        
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#End">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:onClass rdf:resource="&dArceoUnit;Time"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#End"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndHr">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#End"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;hour"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndHrBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndHr"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndMin">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#End"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;minute"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndMinBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndMin"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndSec">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#End"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;second"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndSecBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndSec"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndMilSec">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#End"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;millisecond"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>    
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndMilSecBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndMilSec"/>
+    </owl:Class>    
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndIso">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#End"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;iso8601"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndIsoBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndIso"/>
+    </owl:Class> 
+        
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndSmp">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#End"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#timeUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;sample"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndSmpBundle">
+   		<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndBundle"/>
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndSmp"/>
+    </owl:Class> 
+    
+    
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#start">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinates"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Start"/>
+    </owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#end">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinates"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#End"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#duration">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinates"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Duration"/>
+    </owl:ObjectProperty>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinates">
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#start"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Start"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#end"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#End"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#duration"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#Duration"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinates"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesHr">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinates"/>    
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#start"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartHr"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#end"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndHr"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#duration"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationHr"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesHrBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesBundle"/>       
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesHr"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesMin">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinates"/>    
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#start"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartMin"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#end"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndMin"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#duration"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationMin"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesMinBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesBundle"/>       
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesMin"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesSec">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinates"/>    
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#start"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartSec"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#end"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndSec"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#duration"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationSec"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesSecBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesBundle"/>       
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesSec"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesMilSec">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinates"/>    
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#start"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartMilSec"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#end"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndMilSec"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#duration"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationMilSec"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesMilSecBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesBundle"/>       
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesMilSec"/>
+    </owl:Class> 
+    
+	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesIso">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinates"/>    
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#start"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartIso"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#end"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndIso"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#duration"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationIso"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesIsoBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesBundle"/>       
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesIso"/>
+    </owl:Class> 
+    
+	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesSmp">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinates"/>    
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#start"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#StartSmp"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#end"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#EndSmp"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#duration"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationSmp"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesSmpBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesBundle"/>       
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoAudio.owl#DurationCoordinatesSmp"/>
+    </owl:Class> 
+    
+</rdf:RDF>
+

@@ -1,0 +1,13 @@
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX service:<http://www.daml.org/services/owl-s/1.2/Service.owl#>
+PREFIX profile:<http://www.daml.org/services/owl-s/1.2/Profile.owl#>
+PREFIX dArceoService:<http://darceo.psnc.pl/ontologies/dArceoService.owl#>
+PREFIX dArceoProfile:<http://darceo.psnc.pl/ontologies/dArceoProfile.owl#>
+SELECT DISTINCT ?transformation ?service 
+WHERE {
+  ?transformation rdf:type dArceoService:FileTransformation;
+      dArceoService:fileIn <%s>;
+      dArceoService:fileOut <%s>;
+      dArceoService:performedBy ?service
+      FILTER (!isBlank(?transformation)).
+}

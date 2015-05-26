@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title><h:outputText value="#{msg['plan.migration_plans_items']}" />
+		</title>
+	</h:head>
+	<h:body>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+				<h:form id="plans-items">
+				<h:panelGroup>
+					<h:commandLink action="plans" value="&#60;&#60;-#{msg['plans.return_to_plans']}" style="margin-bottom:10px;"/>
+				</h:panelGroup>
+				<h:panelGroup id="plans-items-panel">
+				<ui:fragment rendered="#{migrationItemsLogBean.migrationItemsLog.size() == 0}">
+					<div style="padding:10px;width:300px;border:1px solid #999;border-radius:5px;">
+						#{msg['plans.column.migration_items.no_items_found']}
+					</div>
+				</ui:fragment>
+				<rich:dataTable style="margin-top:10px;" id="plans-items-tabel" width="100%" value="#{migrationItemsLogBean.migrationItemsLog}"
+					var="migrationItem" rows="25" rendered="#{migrationItemsLogBean.migrationItemsLog.size() > 0}">
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText
+								value="#{msg['plans.column.migration_items.object_identifier']}" />
+						</f:facet>
+						<h:outputText value="#{migrationItem.objectIdentifier}" />
+					</rich:column>
+					<rich:column filter="#{migrationItemsLogBean.statusFilter}">
+						
+						<f:facet name="header">
+							<h:outputText
+								value="#{msg['plans.column.migration_items.status']}" />
+							<h:selectOneMenu value="#{migrationItemsLogBean.selectedStatus}">
+								<f:selectItems value="#{migrationItemsLogBean.statuses}" var="status" itemValue="#{status}" 
+									itemLabel="#{msg['plans.column.migration_items.status.'.concat(status)]}"/>
+								<a4j:ajax event="change" render="plans-items-tabel" />
+							</h:selectOneMenu>
+						</f:facet>
+						
+						<h:outputText
+							value="#{msg['plans.column.migration_items.status.'.concat(migrationItem.status)]}"
+							rendered="#{migrationItem.status != 'ERROR'}" />
+						<h:outputText style="color:#ff0000;"
+							value="#{msg['plans.column.migration_items.status.'.concat(migrationItem.status)]}"
+							rendered="#{migrationItem.status == 'ERROR'}" />
+
+						<h:commandLink id="errorIcon"
+							rendered="#{migrationItem.status == 'ERROR'}">
+							<h:graphicImage value="/resources/images/exclamation.png" />
+							<rich:tooltip layout="block">
+								<!-- TODO komunikat w zaleznosci od statusu bledu z wykorzystaniem ponizszych parametrow -->
+								<h:outputText value="#{migrationItem.errorMessageParams}" />
+							</rich:tooltip>
+						</h:commandLink>
+
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText
+								value="#{msg['plans.column.migration_items.started_on']}" />
+						</f:facet>
+						<h:outputText value="#{migrationItem.startedOn}">
+							<f:convertDateTime dateStyle="short" type="both"
+								pattern="yyyy-MM-dd HH:mm" />
+						</h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText
+								value="#{msg['plans.column.migration_items.ended_on']}" />
+						</f:facet>
+						<h:outputText value="#{migrationItem.endedOn}">
+							<f:convertDateTime dateStyle="short" type="both"
+								pattern="yyyy-MM-dd HH:mm" />
+						</h:outputText>
+					</rich:column>
+					<f:facet name="footer">
+                		<rich:dataScroller page="#{migrationItemsLogBean.page}" />
+            		</f:facet>
+				</rich:dataTable>
+				</h:panelGroup>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

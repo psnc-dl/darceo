@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This is the template of the ZU configuration module -->
+<!-- Copy this file as "zu-wrdz-config.xml" and remove this header !!! -->
+
+<zu-wrdz-config>
+	<password-hashing>
+		<digest-algorithm>SHA-256</digest-algorithm>
+		<encoding>Base64</encoding>
+		<charset>utf-8</charset>
+	</password-hashing>
+	<certificate-check>
+		<threshold>30</threshold>
+		<schedule>
+			<hour>1</hour>
+			<minute>45</minute>
+			<day-of-month>1\,15</day-of-month>
+		</schedule>
+	</certificate-check>
+</zu-wrdz-config>

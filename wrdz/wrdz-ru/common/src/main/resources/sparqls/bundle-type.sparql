@@ -1,0 +1,5 @@
+PREFIX dArceoUnit:<http://darceo.psnc.pl/ontologies/dArceoUnit.owl#>
+SELECT ?bundletype
+WHERE {
+  <%s> dArceoUnit:typeOfBundle ?bundletype.
+}

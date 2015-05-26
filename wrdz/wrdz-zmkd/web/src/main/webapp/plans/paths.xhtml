@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title><h:outputText value="#{msg['plans.paths']}" /></title>
+	</h:head>
+	<h:body>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+				<h:form id="paths-form">
+					<script type="text/javascript">
+						function showTick(el){
+							$(el).find(".tick-icon").toggle();
+						}
+					</script>
+					<h:panelGroup>
+						<h:commandLink action="plans" value="&#60;&#60;-#{msg['plans.return_to_plans']}" style="margin-bottom:10px;" />
+					</h:panelGroup>
+					<rich:dataTable styleClass="paths-table" value="#{migrationPathsBean.migrationPaths}" var="migrationPath">
+						<f:facet name="header">
+							<rich:columnGroup>
+								<rich:column colspan="7">
+									<h:outputText value="#{msg['plans.paths']}" />
+								</rich:column>
+								<rich:column breakRowBefore="true">
+									<h:outputText value="#{msg['plans.column.migration_hops.order_no']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['plans.column.migration_hops.type']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['plans.column.migration_hops.ontology_iri']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['plans.column.migration_hops.service_iri']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['plans.column.migration_hops.service_name']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['plans.column.migration_hops.input_output_format']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['plans.column.migration_hops.parameters']}" />
+								</rich:column>
+							</rich:columnGroup>
+						</f:facet>
+						<rich:column colspan="7" styleClass="paths-toggle-column">
+							<rich:collapsibleSubTableToggler for="sbtbl" />
+
+							<ui:fragment rendered="#{migrationPath.id.equals(migrationPathsBean.activePath) != true}">
+
+								<h:commandLink styleClass="path-name" onmouseover="showTick(this);" onmouseout="showTick(this);">
+									<rich:componentControl target="activatePathPopup" operation="show" />
+									<h:outputText value="#{msg['plans.paths.migration_path']}: #{migrationPath.executionCost}" />
+
+									<h:graphicImage styleClass="tick-icon" style="display:none;" value="/resources/images/tick.png" />
+
+								</h:commandLink>
+
+							</ui:fragment>
+
+							<ui:fragment rendered="#{migrationPath.id.equals(migrationPathsBean.activePath) == true}">
+								<h:outputText styleClass="path-name"
+									value="#{msg['plans.paths.migration_path']}: #{migrationPath.executionCost}" />
+								<h:graphicImage styleClass="tick-icon" value="/resources/images/tick.png" />
+							</ui:fragment>
+
+							<!-- finish question popup -->
+							<rich:popupPanel id="activatePathPopup" modal="true" domElementAttachment="form" autosized="true">
+
+								<f:facet name="header">
+									<h:outputText value="#{msg['plans.paths.activate_path']}" />
+								</f:facet>
+
+								<f:facet name="controls">
+									<h:outputLink value="#" onclick="#{rich:component('activatePathPopup')}.hide(); return false;">
+										<h:graphicImage value="/resources/images/close_icon.png" />
+									</h:outputLink>
+								</f:facet>
+
+								<p>#{msg['plans.paths.activate_path.are_you_sure']}</p>
+
+								<h:commandButton action="#{migrationPathsBean.pathSelectAction(migrationPath.id)}" value="#{msg['yes']}"
+									type="submit" immediate="true">
+									<f:param name="planId" value="#{migrationPathsBean.migrationPlanId}" />
+								</h:commandButton>
+
+								<h:commandButton value="#{msg['cancel']}" onclick="#{rich:component('activatePathPopup')}.hide(); return false;"
+									type="button" />
+
+							</rich:popupPanel>
+
+
+						</rich:column>
+						<rich:collapsibleSubTable value="#{migrationPath.transformations}" var="migrationHop" id="sbtbl" expandMode="client"
+							expanded="false" iterationStatusVar="status">
+							<rich:column>
+								<h:outputText value="#{status.index + 1}" />
+							</rich:column>
+							<rich:column>
+								<rich:inplaceSelect showControls="true" controlsHorizontalPosition="left" controlsVerticalPosition="center" saveOnSelect="false" value="migrationHop.type"
+									defaultLabel="#{msg['plans.column.migration_hops.type.'.concat(migrationHop.type)]}">
+									<f:selectItems 
+										value="#{migrationPathsBean.getPossibleTransformationTypes(migrationHop.parameters, migrationHop.outcomes)}"
+										var="transformationType" itemValue="#{transformationType}"
+										itemLabel="#{msg['plans.column.migration_hops.type.'.concat(transformationType)]}" />
+								</rich:inplaceSelect>
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{migrationHop.ontologyIri}" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{migrationHop.serviceIri}" />
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{migrationHop.serviceName}" />
+							</rich:column>
+							<rich:column>
+								<p>
+									<h:outputText value="#{msg['plans.column.migration_hops.input_output_format.input']}: " />
+									<h:outputLink value="#{migrationHop.inputFileFormat.udfrIri}" target="_blank">
+										<h:outputText value="#{migrationHop.inputFileFormat.udfrIri}" />
+									</h:outputLink>
+								</p>
+								<p>
+									<h:outputText value="#{msg['plans.column.migration_hops.input_output_format.output']}: " />
+									<h:outputLink value="#{migrationHop.outputFileFormat.udfrIri}" target="_blank">
+										<h:outputText value="#{migrationHop.outputFileFormat.udfrIri}" />
+									</h:outputLink>
+								</p>
+							</rich:column>
+							<rich:column>
+								<rich:list var="parameter" value="#{migrationHop.parameters}" type="definitions">
+									<f:facet name="term">
+										<h:outputText style="font-weight:bold;" value="#{parameter.name}:" />
+									</f:facet>
+									<h:outputText value="#{parameter.value}" />
+								</rich:list>
+							</rich:column>
+						</rich:collapsibleSubTable>
+					</rich:dataTable>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

@@ -1,0 +1,10 @@
+# JPA properties for the persitence.xml file.
+# Copy this file as "jpa.properties" and adjust the values as needed.
+
+javax.persistence.jdbc.driver=org.postgresql.Driver
+javax.persistence.jdbc.url=jdbc:postgresql://localhost:5432/wrdz-db
+javax.persistence.jdbc.user=wrdz-postgres
+javax.persistence.jdbc.password=wrdz-postgres
+eclipselink.logging.logger=ServerLogger
+eclipselink.logging.level=ALL
+eclipselink.logging.parameters=true

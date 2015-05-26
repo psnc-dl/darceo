@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#"
+     xml:base="http://darceo.psnc.pl/ontologies/dArceoUnit.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://darceo.psnc.pl/ontologies/dArceoUnit.owl"/>
+    
+    <owl:AnnotationProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#typeOfBundle">
+        <rdfs:domain rdf:resource="&owl;Class"/>
+        <rdfs:range rdf:resource="&owl;Class"/>
+    </owl:AnnotationProperty>
+    
+    <!-- conditions for the below units in dArceoProcess.owl - similar to those for dArceoFile#fileFormat --> 
+       	
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#Length"/>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#centimeter">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#Length"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#inch">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#Length"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#pixel">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#Length"/>
+    </owl:NamedIndividual>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#Time"/>
+
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#hour">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#Time"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#minute">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#Time"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#second">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#Time"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#millisecond">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#Time"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#frame">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#Time"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#sample">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#Time"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#iso8601">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#Time"/>
+    </owl:NamedIndividual>
+    
+</rdf:RDF>
+

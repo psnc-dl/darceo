@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title>#{msg['info.user']}</title>
+	</h:head>
+	<h:body>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+
+				<h:form id="form">
+
+					<h:selectOneMenu value="#{userBean.currentUser}">
+						<f:selectItems value="#{userBean.users}" />
+						<f:ajax event="change" execute="@this" render="mainPanels" />
+					</h:selectOneMenu>
+
+					<h:panelGrid columns="2" columnClasses="cols,cols" id="mainPanels">
+						<rich:panelMenu style="width:200px" itemMode="ajax" itemLeftIcon="disc" itemChangeListener="#{userBean.switchView}" selectedChild="#{userBean.currentItem}">
+							<ui:repeat value="#{userBean.items}" var="item">
+								<rich:panelMenuItem label="#{msg['user.'.concat(item.name())]}" name="#{item.name()}" />
+							</ui:repeat>
+						</rich:panelMenu>
+						<a4j:outputPanel ajaxRendered="true">
+
+							<rich:panel rendered="#{userBean.currentItem == 'BASIC'}">
+								<rich:dataTable value="#{userBasicStatisticsBean.statisticsList}" var="stat" style="width: 400px;">
+									<rich:column style="width: 230px;">
+										<f:facet name="header">#{msg['basic.description']}</f:facet>
+										#{stat}:
+									</rich:column>
+									<rich:column style="text-align: right;">
+										<f:facet name="header">#{msg['basic.value']}</f:facet>
+										<h:outputText value="#{userBasicStatisticsBean.statistics[stat]}">
+											<f:convertNumber maxFractionDigits="2"/>
+										</h:outputText>
+									</rich:column>
+								</rich:dataTable>
+								<h:outputText value="#{userBasicStatisticsBean.computedOn}" rendered="#{userBasicStatisticsBean.computedOn != null}" class="computedOn">
+									<f:convertDateTime dateStyle="short" type="both" pattern="yyyy-MM-dd HH:mm" />
+								</h:outputText>
+							</rich:panel>
+
+							<rich:panel rendered="#{userBean.currentItem == 'DATAFILE'}">
+								<rich:dataTable value="#{userDataFileFormatBean.statistics}" var="stat" style="width: 700px;">
+									<rich:column>
+										<f:facet name="header">#{msg['data.puid']}</f:facet>
+										<h:outputText value="#{stat.formatPuid}" />
+									</rich:column>
+									<rich:column style="width: 350px;">
+										<f:facet name="header">#{msg['data.format']}</f:facet>
+										<ui:repeat value="#{userDataFileFormatBean.formats[stat.formatPuid].names}" var="name" varStatus="status">
+											#{name}<h:outputText rendered="#{!status.last}" value=", "/>
+										</ui:repeat>
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">#{msg['data.version']}</f:facet>
+										<h:outputText value="#{userDataFileFormatBean.formats[stat.formatPuid].version}" />
+									</rich:column>
+									<rich:column style="text-align: right;">
+										<f:facet name="header">#{msg['data.objects']}</f:facet>
+										<h:outputText value="#{stat.objects}" />
+									</rich:column>
+									<rich:column style="text-align: right;">
+										<f:facet name="header">#{msg['data.files']}</f:facet>
+										<h:outputText value="#{stat.dataFiles}" />
+									</rich:column>
+									<rich:column style="text-align: right;">
+										<f:facet name="header">#{msg['data.size']}</f:facet>
+										<h:outputText value="#{stat.dataSize}" />
+									</rich:column>
+								</rich:dataTable>
+								
+								<h:outputText value="#{userDataFileFormatBean.computedOn}" rendered="#{userDataFileFormatBean.computedOn != null}" class="computedOn">
+									<f:convertDateTime dateStyle="short" type="both" pattern="yyyy-MM-dd HH:mm" />
+								</h:outputText>
+							</rich:panel>
+
+						</a4j:outputPanel>
+					</h:panelGrid>
+				</h:form>
+
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

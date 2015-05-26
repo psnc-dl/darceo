@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jxb:bindings version="2.0" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:oai="http://www.openarchives.org/OAI/2.0/"
+	jxb:extensionBindingPrefixes="xjc">
+	<jxb:globalBindings>
+		<jxb:javaType name="java.util.Date" xmlType="xs:dateTime"
+			parseMethod="pl.psnc.synat.wrdz.common.jaxb.XsDateTimeConverter.parseDateTime"
+			printMethod="pl.psnc.synat.wrdz.common.jaxb.XsDateTimeConverter.printDateTime" />
+	</jxb:globalBindings>
+
+</jxb:bindings>

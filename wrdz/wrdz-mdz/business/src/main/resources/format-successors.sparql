@@ -1,0 +1,17 @@
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX udfrs:<http://udfr.org/onto#>
+SELECT ?fileFormatPuid ?fileFormat ?subsequentFileFormat ?subsequentFileFormatPuid
+{
+  ?subsequentFileFormat rdf:type udfrs:FileFormat;
+      udfrs:previousVersion ?fileFormat;
+      udfrs:aliasIdentifier ?subsequentFileFormatIdentifier.
+  ?subsequentFileFormatIdentifier rdf:type udfrs:Identifier;
+      udfrs:identifierNamespaceType udfrs:PUID;
+      udfrs:identifierValue ?subsequentFileFormatPuid.
+  ?fileFormat rdf:type udfrs:FileFormat;
+      udfrs:aliasIdentifier ?fileFormatIdentifier.
+  ?fileFormatIdentifier rdf:type udfrs:Identifier;
+      udfrs:identifierNamespaceType udfrs:PUID;
+      udfrs:identifierValue ?fileFormatPuid
+      FILTER (?fileFormatPuid = "%s")
+}

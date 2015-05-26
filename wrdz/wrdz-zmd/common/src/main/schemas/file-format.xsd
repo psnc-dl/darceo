@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://wrdz.synat.psnc.pl/zmd/object"
+	xmlns="http://wrdz.synat.psnc.pl/zmd/object" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.0.1">
+
+	<xs:include schemaLocation="file-type.xsd"></xs:include>
+
+	<xs:complexType name="FileFormat">
+		<xs:sequence>
+			<xs:element name="mimeType" type="xs:string" maxOccurs="1" minOccurs="1" />
+			<xs:element name="puid" type="xs:string" maxOccurs="1" minOccurs="0" />
+			<xs:element name="version" type="xs:string" maxOccurs="1" minOccurs="0" />
+			<xs:element name="type" type="FileType" maxOccurs="1" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>

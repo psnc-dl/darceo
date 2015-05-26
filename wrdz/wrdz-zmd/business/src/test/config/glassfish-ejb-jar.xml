@@ -1,0 +1,55 @@
+<!DOCTYPE glassfish-ejb-jar PUBLIC "-//GlassFish.org//
+DTD GlassFish Application Server 3.1 EJB 3.1//EN" 
+"http://glassfish.org/dtds/glassfish-ejb-jar_3_1-1.dtd">
+<glassfish-ejb-jar>
+
+	<enterprise-beans>
+		<ejb>
+			<ejb-name>DigitalObjectBuilder</ejb-name>
+			<ejb-ref>
+				<ejb-ref-name>UserBrowser</ejb-ref-name>
+				<jndi-name>${ejb.address.zu}java:global/wrdz/wrdz-zu-business-${testable.wrdz.version}/UserBrowserBean</jndi-name>
+			</ejb-ref>
+			<ejb-ref>
+				<ejb-ref-name>ObjectPermissionManager</ejb-ref-name>
+				<jndi-name>${ejb.address.zu}java:global/wrdz/wrdz-zu-business-${testable.wrdz.version}/ObjectPermissionManagerBean</jndi-name>
+			</ejb-ref>
+		</ejb>
+		<ejb>
+			<ejb-name>IdentifierBrowserBean</ejb-name>
+			<ejb-ref>
+				<ejb-ref-name>UserBrowser</ejb-ref-name>
+				<jndi-name>${ejb.address.zu}java:global/wrdz/wrdz-zu-business-${testable.wrdz.version}/UserBrowserBean</jndi-name>
+			</ejb-ref>
+		</ejb>
+		<ejb>
+			<ejb-name>DataStorageAccessBean</ejb-name>
+			<ejb-ref>
+				<ejb-ref-name>UserBrowser</ejb-ref-name>
+				<jndi-name>${ejb.address.zu}java:global/wrdz/wrdz-zu-business-${testable.wrdz.version}/UserBrowserBean</jndi-name>
+			</ejb-ref>
+		</ejb>
+		<ejb>
+			<ejb-name>ObjectDeleterBean</ejb-name>
+			<ejb-ref>
+				<ejb-ref-name>ObjectPermissionManager</ejb-ref-name>
+				<jndi-name>${ejb.address.zu}java:global/wrdz/wrdz-zu-business-${testable.wrdz.version}/ObjectPermissionManagerBean</jndi-name>
+			</ejb-ref>
+		</ejb>
+		<ejb>
+			<ejb-name>ObjectRequestDispatcherBean</ejb-name>
+			<jndi-name>queue/arp/zmd-object</jndi-name>
+			<mdb-connection-factory>
+				<jndi-name>jms/arp</jndi-name>
+			</mdb-connection-factory>
+		</ejb>
+		<ejb>
+			<ejb-name>ObjectRequestProcessorBean</ejb-name>
+			<ejb-ref>
+				<ejb-ref-name>ObjectPermissionManager</ejb-ref-name>
+				<jndi-name>${ejb.address.zu}java:global/wrdz/wrdz-zu-business-${testable.wrdz.version}/ObjectPermissionManagerBean</jndi-name>
+			</ejb-ref>
+		</ejb>
+	</enterprise-beans>
+
+</glassfish-ejb-jar>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://wrdz.synat.psnc.pl/zmd/object"
+	xmlns="http://wrdz.synat.psnc.pl/zmd/object" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.0.1">
+
+	<xs:simpleType name="MigrationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="transformation" />
+			<xs:enumeration value="optimization" />
+			<xs:enumeration value="conversion" />
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

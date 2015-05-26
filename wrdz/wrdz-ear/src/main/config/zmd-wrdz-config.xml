@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zmd-wrdz-config>
+	<cache>
+		<home>E:\ZMD_cache</home>
+		<stale-after>10</stale-after>
+	</cache>
+	<identifier>
+		<default-type>oai</default-type>
+		<oi-domain>zmd.wrdz.synat.psnc.pl</oi-domain>
+	</identifier>
+	<metadata>
+		<mets>
+			<construction>true</construction>		
+		</mets>
+		<administrative>
+			<type>PREMIS</type>
+			<hashing-algorithm>SHA512</hashing-algorithm>
+			<max-validation-messages>100</max-validation-messages>
+		</administrative>
+		<technical>
+			<extraction>true</extraction>
+		</technical>
+	</metadata>
+	<oai-pmh>
+		<repository-name>WRDZ-ZMD</repository-name>
+		<earliest-datestamp>2011-10-01T00:00:01UTC</earliest-datestamp>
+		<admin-email>admin@wrdz.psnc.pl</admin-email>
+		<token-longetivity>2</token-longetivity>
+		<identifiers-page-size>100</identifiers-page-size>
+		<records-page-size>10</records-page-size>
+	</oai-pmh>
+</zmd-wrdz-config>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This is the template of the ZMKD configuration module -->
+<!-- Copy this file as "zmkd-wrdz-config.xml" and remove this header !!! -->
+
+<zmkd-wrdz-config>
+	<cache>
+		<home>${java.io.tmpdir}/zmkd-cache</home>
+	</cache>
+	<migration-plan>
+		<zmd-object-url>https://localhost:8181/zmd/object</zmd-object-url>
+	</migration-plan>
+</zmkd-wrdz-config>

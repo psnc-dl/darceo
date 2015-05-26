@@ -1,0 +1,7 @@
+PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:<http://www.w3.org/2002/07/owl#>
+PREFIX dArceoFile:<http://darceo.psnc.pl/ontologies/dArceoFile.owl#>
+SELECT ?format
+WHERE {
+  <%s> rdfs:subClassOf [ owl:onProperty dArceoFile:fileFormat ; owl:hasValue ?format ].
+}

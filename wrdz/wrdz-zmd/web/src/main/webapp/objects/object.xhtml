@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title>#{msg['permissions']}</title>
+	</h:head>
+	<h:body>
+		<f:metadata>
+			<f:viewParam id="object_id" name="id" value="#{objectPermissionsBean.id}" />
+			<f:event type="preRenderView" listener="#{objectPermissionsBean.init}" />
+		</f:metadata>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+				<h:form>
+					<a4j:commandButton value="#{msg['permissions.add.group']}" action="#{objectPermissionsBean.prepareGroupForm(null)}" render="popup" oncomplete="#{rich:component('popup')}.show()" />
+					<a4j:commandButton value="#{msg['permissions.add.user']}" action="#{objectPermissionsBean.prepareUserForm(null)}" render="popup" oncomplete="#{rich:component('popup')}.show()" />
+				</h:form>
+
+				<h:form id="groupForm">
+
+					<rich:dataTable id="group" rowKeyVar="index" var="group"
+						value="#{objectPermissionsBean.groups}" captionClass="list-caption"
+						columnClasses="list-column list-column-odd, list-column list-column-even"
+						footerClass="list-footer" headerClass="list-header"
+						rowClasses="list-row list-row-even, list-row list-row-odd"
+						styleClass="list-background">
+
+						<f:facet name="header">#{msg['permissions.groups']}</f:facet>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.name']}</f:facet>
+							#{group}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.read']}</f:facet>
+							#{objectPermissionsBean.hasGroupPermission(group, "READ")}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.update']}</f:facet>
+							#{objectPermissionsBean.hasGroupPermission(group, "UPDATE")}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.delete']}</f:facet>
+							#{objectPermissionsBean.hasGroupPermission(group, "DELETE")}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.grant']}</f:facet>
+							#{objectPermissionsBean.hasGroupPermission(group, "GRANT")}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.oai_pmh_read']}</f:facet>
+							#{objectPermissionsBean.hasGroupPermission(group, "OAI_PMH_READ")}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.metadata_update']}</f:facet>
+							#{objectPermissionsBean.hasGroupPermission(group, "METADATA_UPDATE")}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.action']}</f:facet>
+							<a4j:commandButton value="#{msg['permissions.action.edit']}" action="#{objectPermissionsBean.prepareGroupForm(group)}" render="popup" oncomplete="#{rich:component('popup')}.show()" />
+						</rich:column>
+
+					</rich:dataTable>
+
+				</h:form>
+
+				<h:form id="userForm">
+
+					<rich:dataTable id="users" rowKeyVar="index" var="user"
+						value="#{objectPermissionsBean.users}" captionClass="list-caption"
+						columnClasses="list-column list-column-odd, list-column list-column-even"
+						footerClass="list-footer" headerClass="list-header"
+						rowClasses="list-row list-row-even, list-row list-row-odd"
+						styleClass="list-background">
+
+						<f:facet name="header">#{msg['permissions.users']}</f:facet>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.name']}</f:facet>
+							#{user}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.read']}</f:facet>
+							#{objectPermissionsBean.hasUserPermission(user, "READ")}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.update']}</f:facet>
+							#{objectPermissionsBean.hasUserPermission(user, "UPDATE")}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.delete']}</f:facet>
+							#{objectPermissionsBean.hasUserPermission(user, "DELETE")}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.grant']}</f:facet>
+							#{objectPermissionsBean.hasUserPermission(user, "GRANT")}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.oai_pmh_read']}</f:facet>
+							#{objectPermissionsBean.hasUserPermission(user, "OAI_PMH_READ")}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.metadata_update']}</f:facet>
+							#{objectPermissionsBean.hasUserPermission(user, "METADATA_UPDATE")}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['permissions.action']}</f:facet>
+							<a4j:commandButton value="#{msg['permissions.action.edit']}" action="#{objectPermissionsBean.prepareUserForm(user)}" render="popup" oncomplete="#{rich:component('popup')}.show()" />
+						</rich:column>
+
+					</rich:dataTable>
+
+				</h:form>
+
+				<h:form id="permissions">
+
+					<rich:popupPanel domElementAttachment="form" id="popup" modal="true" resizeable="false" onmaskclick="#{rich:component('popup')}.hide()">
+						<f:facet name="header">
+							<h:outputText value="#{msg['permissions.dialog']}" />
+						</f:facet>
+						<f:facet name="controls">
+							<h:outputLink value="#" onclick="#{rich:component('popup')}.hide(); return false;">X</h:outputLink>
+						</f:facet>
+
+						<h:outputLabel for="name" styleClass="form-label">#{msg['permissions.name']}:</h:outputLabel>
+						<h:inputText id="name" value="#{objectPermissionsBean.name}" required="true" rendered="#{!objectPermissionsBean.modification}" />
+						<h:outputText value="#{objectPermissionsBean.name}" rendered="#{objectPermissionsBean.modification}" />
+						<h:message styleClass="validationMessage" for="name" />
+
+						<h:selectManyCheckbox id="permissionItems" value="#{objectPermissionsBean.permissions}" converter="objectPermissionTypeConverter">
+							<f:selectItems value="#{objectPermissionsBean.permissionItems}" />
+							<a4j:ajax render="permissions:permissionItems"/>
+						</h:selectManyCheckbox>
+
+						<h:panelGroup>
+						<h:commandButton execute="@form" type="submit" value="#{msg['save']}" action="#{objectPermissionsBean.save()}" />
+						</h:panelGroup>
+
+					</rich:popupPanel>
+
+				</h:form>
+
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

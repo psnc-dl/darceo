@@ -1,0 +1,111 @@
+#repositories
+GITHUB_LOC	github repository location	TODO
+REPO_LOC	artifacts repository	https://maven.man.poznan.pl/repository/synat-a11-releases-public
+
+#postgres
+PG_HOST	postgres database host	localhost
+PG_PORT	postgres database port	5432
+PG_ADMIN_USER	postgres admin user name	postgres
+PG_ADMIN_PASS	postgres admin user pass	postgres
+PG_DARCEO_USER	postgres dArceo user	wrdzuser
+PG_DARCEO_PASS	postgres dArceo password	wrdzuser
+PG_DARCEO_DBNAME	postgres dArceo database name	wrdzdb
+
+#dsaconf
+USE_DSA_SFTP	if dsa sftp shoud be used (if false then dsa-fs)	false
+
+#dsafs
+DSA_FS_NAME	name of dsa (artifact id)	dsa-fs-rar
+DSA_FS_ROOTS	path to zmd-store	/home/darceo/archive
+DSA_FS_REDUNDANCY	set redundancy	1
+DSA_FS_NAMESPC	namespace for dsa-fs project (location in repository - group id)	pl/psnc/synat
+DSA_FS_VERSION	version number of dsa-fs	0.0.3
+DSA_FS_FILENAME	filename of dsa-fs rar	dsa-fs-rar-0.0.3.rar
+
+#dsasftp
+DSA_SFTP_NAME	name of dsa sftp (artifact id)	dsa-sftp-rar
+DSA_HOST	dsa host name	an1-pz1.storage.pionier.net.pl
+DSA_PORT	dsa port	22
+DSA_PUBLICKEYTYPE	dsa public key type	ssh-rsa
+DSA_KEYUSER	user name (private key owner)	michalk
+DSA_PUBLICKEYFILE	dsa public key file name (located in DARCEO_INSTALL/lib/dsa/)	userpubkey-putty.pem
+DSA_PRIVATEKEYFILE	dsa public key file name (located in DARCEO_INSTALL/lib/dsa/)	userkey.pem
+DSA_SFTP_NAMESPC	namespace for dsa-sftp project (location in repository - group id)	pl/psnc/synat
+DSA_SFTP_VERSION	version number of dsa-sftp	0.0.3
+DSA_SFTP_FILENAME	filename of dsa-sftp rar	dsa-sftp-rar-0.0.3.rar
+DSA_PUBKEYFILEPOOL	dsa public key for pool file name (located in DARCEO_INSTALL/lib/dsa/)	dsasftp.key
+
+#sra
+SRA_OWLIM_NAME	name of sra-owlim (artifact id)	sra-owlim-rar
+SRA_NAMESPC	namespace for sra project (location in repository - group id)	pl/psnc/synat
+SRA_VERSION	version of sra	0.0.3
+
+#wrdzear
+DARCEO_EAR_NAME	name of dArceo ear file (artifact id)	wrdz-ear
+DARCEO_EAR_NAMESPC	namespace for dArceo project (location in repository - group id)	pl/psnc/synat
+DARCEO_EAR_VERSION	version of dArceo	0.0.10
+
+#fits
+FITS_NAME	fits name	rmi-fits.jar
+FITS_NAMESPC	fits namespace (location in repository)	pl/psnc/synat/rmi-fits
+FITS_VERSION	fits version	0.0.1
+DARCEO_COMMON_JAR	dArceo common jar (artifact id)	wrdz-common-common
+DARCEO_COMMON_NAMESPC	namespace for dArceo common jar (location in repository - group id)	pl/psnc/synat
+DARCEO_COMMON_VERSION	version of dArceo	0.0.10
+
+#glassfish
+DOMAIN	glassfish wrdz domain name	wrdz-domain
+ADMIN	glassfish wrdz domain admin	admin
+ADMIN_PASS	glassfish wrdz domain admin password	passwd
+
+#mailing
+MAIL_HOST	mailing smtp host	smtp.example.com
+MAIL_USER	email account user	darceo
+MAIL_PASS	email account pass	password
+MAIL_AUTH	mail SMTP authentication	true
+MAIL_FROM_ADDRESS	sender address	dArceo@example.com
+MAIL_FROM_NAME	sender name	dArceo
+
+#metadatastore
+PG_WRDZ_METASTORELOC	tablespace for metadatastore	/var/lib/postgresql/9.3/main/pg_tblspc
+
+#realm
+REALM_NAME	realm jar file name	user-realm
+REALM_NAMESPC	realm namespace (location in repository)	pl/psnc/synat/wrdz
+REALM_VERSION	realm version number	0.0.3
+
+#wrdzconf	wrdz-config.xml.template
+WRDZ_CONF_LOCALE	wrdz locale node	pl	locale
+WRDZ_CONF_ASYNCH_CACHE_HOME	wrdz asynch cache	/home/darceo/arp-cache	async/cache-home
+WRDZ_CONF_ASYNCH_CLEAN_PERIOD	wrdz asynch cleaning period	77	async/cleaning-period
+WRDZ_CONF_HTTPS_VERIFY_HOSTNAME	wrdz https verify host name	false	https/verify-hostname
+WRDZ_CONF_MODULES_PASS	password of dArceo modules	passmod	https/modules-password
+WRDZ_CONF_PROFILER	wrdz profiler enabled	false	profiler/enabled
+
+#wrdzadmin
+WRDZ_ADMIN_PASS	password of dArceo administrator	passwd
+
+#mdzconf	mdz-wrdz-config.xml.template
+MDZ_CONF_FORMATS_ENABLED	mdz formats enabled	true	formats/enabled
+MDZ_CONF_INTEGRITY_ZMDOBJURL	mdz integity zmd object url	https://localhost:8181/zmd/object	integrity/zmd-object-url
+
+#zmdconf	zmd-wrdz-config.xml.template
+ZMD_CONF_CACHE_HOME	zmd cache home	/home/darceo/zmd-cache	cache/home
+ZMD_CONF_CACHE_STALE	zmd cache stale after	10	cache/stale-after
+ZMD_CONF_META_METS_CONSTR	zmd metadata mets construction	true	metadata/mets/construction
+ZMD_CONF_OAIPMH_REPONAME	zmd oai-pmh repository name	darceo-repo	oai-pmh/repository-name
+ZMD_CONF_OAIPMH_ADMINMAIL	zmd oai-pmh admin email	admin@wrdz.psnc.pl	oai-pmh/admin-email
+ZMD_CONF_IDENT_DEFAULT	identifier default type	oai	identifier/default-type
+ZMD_CONF_IDENT_DOMAIN	identifier domain	example.com	identifier/oi-domain
+
+#zmkdconf	zmkd-wrdz-config.xml.template
+ZMKD_CONF_CACHE_HOME	zmkd cache home	/home/darceo/zmkd-cache	cache/home
+ZMKD_CONF_MIGRATION_ZMDOBJ	zmkd migration plan zmd-object	https://localhost:8181/zmd/object	migration-plan/zmd-object-url
+
+#log4jconf	log4j.xml.template
+
+#zdtconf	zdt-wrdz-config.xml.template
+
+#msconf	ms-wrdz-config.xml.template
+
+#zuconf	zu-wrdz-config.xml.template

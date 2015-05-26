@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://wrdz.synat.psnc.pl/zmd/object"
+	xmlns="http://wrdz.synat.psnc.pl/zmd/object" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.0.1">
+
+	<xs:include schemaLocation="file-hashes.xsd"></xs:include>
+	<xs:include schemaLocation="file-hashes.xsd"></xs:include>
+
+	<xs:complexType name="MetadataFile">
+		<xs:sequence>
+			<xs:element name="path" type="xs:string" maxOccurs="1" minOccurs="1" />
+			<xs:element name="fullpath" type="xs:string" maxOccurs="1" minOccurs="0" />
+			<xs:element name="size" type="xs:long" maxOccurs="1" minOccurs="1" />
+			<xs:element name="hashes" type="FileHashes" maxOccurs="1" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+</xs:schema>

@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title>
+			<h:outputText rendered="#{userBean.id != null}" value="#{msg['user.modify']}" />
+			<h:outputText rendered="#{userBean.id == null}" value="#{msg['user.add']}" />
+		</title>
+	</h:head>
+	<h:body>
+		<f:metadata>
+			<f:viewParam id="user_id" name="id" value="#{userBean.id}" />
+			<f:event type="preRenderView" listener="#{userBean.initUser}" />
+		</f:metadata>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+				<h:form id="userForm">
+					<h:panelGrid columns="3"
+						headerClass="list-header"
+						columnClasses="form-labels"
+						styleClass="form-background"
+						title="user">
+
+						<f:facet name="header">
+							<h:outputText rendered="#{userBean.id != null}" value="#{msg['user.modify']}" />
+							<h:outputText rendered="#{userBean.id == null}" value="#{msg['user.add']}" />
+						</f:facet>
+
+						<h:outputLabel for="username" styleClass="form-label">#{msg['user.username']}:</h:outputLabel>
+						<h:inputText id="username" value="#{userBean.username}" required="true" />
+						<h:message styleClass="validationMessage" for="username" />
+
+						<h:outputLabel for="creategroups" styleClass="form-label">#{msg['user.create.groups']}:</h:outputLabel>
+						<h:selectBooleanCheckbox id="creategroups" value="#{userBean.groupsCreatable}" required="true" />
+						<h:message styleClass="validationMessage" for="creategroups" />
+						
+						<h:outputLabel for="createobjects" styleClass="form-label">#{msg['user.create.objects']}:</h:outputLabel>
+						<h:selectBooleanCheckbox id="createobjects" value="#{userBean.objectsCreatable}" required="true" />
+						<h:message styleClass="validationMessage" for="createobjects" />
+						
+						<h:outputLabel for="homeDir" styleClass="form-label">#{msg['user.homedir']}:</h:outputLabel>
+						<h:inputText id="homeDir" value="#{userBean.homeDir}" required="true" />
+						<h:message styleClass="validationMessage" for="homeDir" />
+
+						<h:outputLabel for="organization" styleClass="form-label">#{msg['user.organization']}:</h:outputLabel>
+						<h:selectOneMenu value="#{userBean.organizationId}" id="organization" required="true">
+							<f:selectItems value="#{userBean.organizations}" var="org" itemLabel="#{org.name}" itemValue="#{org.id}" />
+						</h:selectOneMenu>
+						<h:message styleClass="validationMessage" for="organization" />
+
+						<h:outputLabel for="active" styleClass="form-label">#{msg['user.active']}:</h:outputLabel>
+						<h:selectBooleanCheckbox id="active" value="#{userBean.active}" />
+						<h:message styleClass="validationMessage" for="active" />
+
+						<h:outputLabel for="firstName" styleClass="form-label">#{msg['user.name.first']}:</h:outputLabel>
+						<h:inputText id="firstName" value="#{userBean.firstName}" />
+						<h:message styleClass="validationMessage" for="firstName" />
+
+						<h:outputLabel for="middleInitial" styleClass="form-label">#{msg['user.name.middle']}:</h:outputLabel>
+						<h:inputText id="middleInitial" value="#{userBean.middleInitial}" />
+						<h:message styleClass="validationMessage" for="middleInitial" />
+
+						<h:outputLabel for="lastName" styleClass="form-label">#{msg['user.name.last']}:</h:outputLabel>
+						<h:inputText id="lastName" value="#{userBean.lastName}" />
+						<h:message styleClass="validationMessage" for="lastName" />
+
+						<h:outputLabel for="displayName" styleClass="form-label">#{msg['user.name.display']}:</h:outputLabel>
+						<h:inputText id="displayName" value="#{userBean.displayName}" />
+						<h:message styleClass="validationMessage" for="displayName" />
+
+						<h:outputLabel for="email" styleClass="form-label">#{msg['user.email']}:</h:outputLabel>
+						<h:inputText id="email" value="#{userBean.email}" />
+						<h:message styleClass="validationMessage" for="email" />
+
+						<h:outputLabel for="password" styleClass="form-label">#{msg['user.password']}:</h:outputLabel>
+						<h:inputSecret id="password" value="#{userBean.password}" required="#{!userBean.passwordSet and !userBean.certificateSet}" >
+							<f:ajax event="blur" render="userForm:upload" />
+						</h:inputSecret>
+						<h:message styleClass="validationMessage" for="password" />
+
+						<h:outputLabel for="certificate" styleClass="form-label">
+							<h:outputText id="certificateLabel" value="#{msg['user.certificate']}:" />
+						</h:outputLabel>
+						<h:panelGroup>
+
+							<h:commandLink action="#{userBean.downloadCertificate}">
+								<h:graphicImage id="certificate" alt="certificate"
+									library="images" name="certificate.png"
+									rendered="#{userBean.certificateSet}" />
+							</h:commandLink>
+
+							<rich:fileUpload
+								fileUploadListener="#{userBean.uploadCertificate}"
+								id="upload" onclear="clearFile();"
+								addLabel="#{msg['user.certificate.choose']}" uploadLabel="#{msg['user.certificate.upload']}"
+								clearAllLabel="#{msg['user.certificate.clear']}" listHeight="40px" acceptedTypes="der"
+								ontyperejected="alert('#{msg['user.certificate.alert']}');"
+								maxFilesQuantity="1" 
+								required="#{!userBean.passwordSet and !userBean.certificateSet}" />
+							<a4j:jsFunction name="clearFile" action="#{userBean.clearCertificate}" />
+						</h:panelGroup>
+						<h:message styleClass="validationMessage" for="certificate" />
+
+						<h:outputLabel for="admin" styleClass="form-label">#{msg['user.admin']}:</h:outputLabel>
+						<h:selectBooleanCheckbox id="admin" value="#{userBean.admin}" />
+						<h:message styleClass="validationMessage" for="admin" />
+
+						<h:link value="#{msg['back']}" outcome="users.xhtml" />
+						<h:panelGroup>
+							<h:commandButton type="submit" value="#{msg['save']}" action="#{userBean.modifyUser()}" rendered="#{userBean.id != null}" />
+							<h:commandButton type="submit" value="#{msg['save']}" action="#{userBean.createUser()}" rendered="#{userBean.id == null}" />
+							<h:commandButton type="reset" value="#{msg['reset']}" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

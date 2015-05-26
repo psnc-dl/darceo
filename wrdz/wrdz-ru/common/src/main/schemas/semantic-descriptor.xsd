@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://wrdz.synat.psnc.pl/ru/services"
+	xmlns="http://wrdz.synat.psnc.pl/ru/services"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="0.0.1">
+
+	<xs:include schemaLocation="desc-scheme.xsd" />
+	<xs:include schemaLocation="technical-descriptors.xsd" />
+
+	<xs:complexType name="SemanticDesc">
+		<xs:sequence>
+			<xs:element name="location" type="xs:string" maxOccurs="1"
+				minOccurs="1" />
+			<xs:element name="scheme" type="Scheme" maxOccurs="1"
+				minOccurs="1" />
+			<xs:element name="public" type="xs:boolean" maxOccurs="1"
+				minOccurs="1" />
+			<xs:element name="origin" type="xs:string" maxOccurs="1"
+				minOccurs="0" />
+			<xs:element name="technicalDescriptors" type="TechnicalDescs"
+				maxOccurs="1" minOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

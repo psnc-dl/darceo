@@ -1,0 +1,76 @@
+<!DOCTYPE glassfish-ejb-jar PUBLIC "-//GlassFish.org//
+DTD GlassFish Application Server 3.1 EJB 3.1//EN" 
+"http://glassfish.org/dtds/glassfish-ejb-jar_3_1-1.dtd">
+<glassfish-ejb-jar>
+
+	<enterprise-beans>
+		<ejb>
+			<ejb-name>DeliveryPlanManagerBean</ejb-name>
+			<ejb-ref>
+				<ejb-ref-name>ServiceComposer</ejb-ref-name>
+				<jndi-name>${ejb.address.ru}java:global/wrdz/wrdz-ru-business-${wrdz.version}/ServiceComposerBean</jndi-name>
+			</ejb-ref>
+			<ejb-ref>
+				<ejb-ref-name>DataFileFormatBrowser</ejb-ref-name>
+				<jndi-name>${ejb.address.zmd}java:global/wrdz/wrdz-zmd-business-${wrdz.version}/DataFileFormatBrowserBean</jndi-name>
+			</ejb-ref>
+		</ejb>
+		<ejb>
+			<ejb-name>MigrationPlanManagerBean</ejb-name>
+			<ejb-ref>
+				<ejb-ref-name>ServiceComposer</ejb-ref-name>
+				<jndi-name>${ejb.address.ru}java:global/wrdz/wrdz-ru-business-${wrdz.version}/ServiceComposerBean</jndi-name>
+			</ejb-ref>
+			<ejb-ref>
+				<ejb-ref-name>IdentifierBrowser</ejb-ref-name>
+				<jndi-name>${ejb.address.zmd}java:global/wrdz/wrdz-zmd-business-${wrdz.version}/IdentifierBrowserBean</jndi-name>
+			</ejb-ref>
+			<ejb-ref>
+				<ejb-ref-name>ObjectChecker</ejb-ref-name>
+				<jndi-name>${ejb.address.zmd}java:global/wrdz/wrdz-zmd-business-${wrdz.version}/ObjectCheckerBean</jndi-name>
+			</ejb-ref>
+			<ejb-ref>
+				<ejb-ref-name>UserBrowser</ejb-ref-name>
+				<jndi-name>${ejb.address.zu}java:global/wrdz/wrdz-zu-business-${wrdz.version}/UserBrowserBean</jndi-name>
+			</ejb-ref>
+			<ejb-ref>
+				<ejb-ref-name>ObjectPermissionManager</ejb-ref-name>
+				<jndi-name>${ejb.address.zu}java:global/wrdz/wrdz-zu-business-${wrdz.version}/ObjectPermissionManagerBean</jndi-name>
+			</ejb-ref>
+		</ejb>
+		<ejb>
+			<ejb-name>MigrationPlanProcessorBean</ejb-name>
+			<ejb-ref>
+				<ejb-ref-name>IdentifierBrowser</ejb-ref-name>
+				<jndi-name>${ejb.address.zmd}java:global/wrdz/wrdz-zmd-business-${wrdz.version}/IdentifierBrowserBean</jndi-name>
+			</ejb-ref>
+			<ejb-ref>
+				<ejb-ref-name>UserBrowser</ejb-ref-name>
+				<jndi-name>${ejb.address.zu}java:global/wrdz/wrdz-zu-business-${wrdz.version}/UserBrowserBean</jndi-name>
+			</ejb-ref>
+			<ejb-ref>
+				<ejb-ref-name>ObjectPermissionManager</ejb-ref-name>
+				<jndi-name>${ejb.address.zu}java:global/wrdz/wrdz-zu-business-${wrdz.version}/ObjectPermissionManagerBean</jndi-name>
+			</ejb-ref>
+		</ejb>
+		<ejb>
+			<ejb-name>PlanExecutionParserBean</ejb-name>
+			<ejb-ref>
+				<ejb-ref-name>TechnicalDescriptorBrowser</ejb-ref-name>
+				<jndi-name>${ejb.address.ru}java:global/wrdz/wrdz-ru-business-${wrdz.version}/TechnicalDescriptorBrowserBean</jndi-name>
+			</ejb-ref>
+			<ejb-ref>
+				<ejb-ref-name>ServiceGrounder</ejb-ref-name>
+				<jndi-name>${ejb.address.ru}java:global/wrdz/wrdz-ru-business-${wrdz.version}/ServiceGrounderBean</jndi-name>
+			</ejb-ref>
+		</ejb>
+		<ejb>
+			<ejb-name>ObjectRequestListener</ejb-name>
+			<jndi-name>topic/info/zmd-object</jndi-name>
+			<mdb-connection-factory>
+				<jndi-name>jms/info</jndi-name>
+			</mdb-connection-factory>
+		</ejb>
+	</enterprise-beans>
+
+</glassfish-ejb-jar>

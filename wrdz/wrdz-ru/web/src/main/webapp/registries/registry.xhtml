@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title>
+			<h:outputText rendered="#{registryBean.isObjectPresent()}" value="#{msg['registry.modify']}" />
+			<h:outputText rendered="#{!registryBean.isObjectPresent()}"	value="#{msg['registry.add']}" /></title>
+	</h:head>
+	<h:body>
+		<f:metadata>
+			<f:viewParam id="registry_id" name="id" value="#{registryBean.id}" />
+			<f:event type="preRenderView" listener="#{registryBean.checkRights()}" />
+			<f:event type="preRenderView"
+				listener="#{registryBean.checkValidity()}" />
+			<f:event type="preRenderView"
+				listener="#{registryBean.initSession()}" />
+		</f:metadata>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+				<h:form>
+					<h:panelGrid columns="3" headerClass="list-header"
+						columnClasses="form-labels" styleClass="form-background"
+						title="registry" id="registry-form">
+
+						<f:facet name="header">
+							<h:outputText rendered="#{registryBean.isObjectPresent()}"
+								value="#{msg['registry.modify']}" />
+							<h:outputText rendered="#{!registryBean.isObjectPresent()}"
+								value="#{msg['registry.add']}" />
+						</f:facet>
+
+						<h:outputLabel for="name" styleClass="form-label">
+							<h:outputText id="nameLabel" value="#{msg['registry.name']}:" />
+						</h:outputLabel>
+						<h:inputText id="name" value="#{registryBean.name}"
+							required="true" />
+						<h:message styleClass="validationMessage" for="name" />
+
+						<h:outputLabel for="location" styleClass="form-label">
+							<h:outputText id="locationLabel" value="#{msg['registry.location']}:" />
+						</h:outputLabel>
+						<h:inputText id="location" value="#{registryBean.location}"
+							required="true" />
+						<h:message styleClass="validationMessage" for="location" />
+
+						<h:outputLabel for="certificate" styleClass="form-label">
+							<h:outputText id="certificateLabel" value="#{msg['registry.certificate']}:" />
+						</h:outputLabel>
+						<h:panelGroup>
+							<h:commandLink
+								action="#{registryBean.downloadCurrentCertificate}">
+								<h:graphicImage id="certificate" alt="certificate"
+									library="images" name="certificate.png"
+									rendered="#{registryBean.isObjectPresent()}" />
+							</h:commandLink>
+							<rich:fileUpload
+								fileUploadListener="#{registryBean.uploadCertificate}"
+								id="upload" onclear="clearOneFile();"
+								addLabel="#{msg['registry.certificate.choose']}" uploadLabel="#{msg['registry.certificate.upload']}"
+								clearAllLabel="#{msg['registry.certificate.clear']}" listHeight="40px" acceptedTypes="der"
+								ontyperejected="alert('#{msg['registry.certificate.alert']}');"
+								maxFilesQuantity="1"
+								required="#{!registryBean.isObjectPresent()}" />
+							<a4j:jsFunction name="clearOneFile"
+								action="#{registryBean.clearFile}" />
+						</h:panelGroup>
+						<h:message styleClass="validationMessage" for="certificate" />
+
+						<h:outputLabel for="description" styleClass="form-label">
+							<h:outputText id="descriptionLabel" value="#{msg['registry.description']}:" />
+						</h:outputLabel>
+						<h:inputText id="description" value="#{registryBean.description}" />
+						<h:message styleClass="validationMessage" for="description" />
+
+						<h:outputLabel for="readEnabled" styleClass="form-label">
+							<h:outputText id="readEnabledLabel" value="#{msg['registry.read']}:" />
+						</h:outputLabel>
+						<h:selectBooleanCheckbox id="readEnabled"
+							value="#{registryBean.readEnabled}" required="true" />
+						<h:message styleClass="validationMessage" for="readEnabled" />
+
+						<h:outputLabel for="harvested" styleClass="form-label">
+							<h:outputText id="harvestedLabel" value="#{msg['registry.harvested']}:" />
+						</h:outputLabel>
+						<h:selectBooleanCheckbox id="harvested"
+							value="#{registryBean.harvested}" required="true" />
+						<h:message styleClass="validationMessage" for="harvested" />
+
+						<h:outputLabel for="lastHarvest" styleClass="form-label"
+							rendered="#{registryBean.isObjectPresent()}">
+							<h:outputText id="lastHarvestLabel" value="#{msg['registry.lastharvest']}:" />
+						</h:outputLabel>
+						<h:outputText id="lastHarvest" value="#{registryBean.lastHarvest}"
+							rendered="#{registryBean.isObjectPresent()}">
+							<f:convertDateTime pattern="dd-MM-yyyy hh:mm:ss" />
+						</h:outputText>
+						<h:message styleClass="validationMessage" for="lastHarvest"
+							rendered="#{registryBean.isObjectPresent()}" />
+
+						<h:link value="#{msg['back']}" outcome="registries.xhtml" />
+						<h:panelGroup>
+							<h:commandButton type="submit" value="#{msg['save']}"
+								action="#{registryBean.modifyEntity()}"
+								rendered="#{registryBean.isObjectPresent()}" />
+							<h:commandButton type="submit" value="#{msg['save']}"
+								action="#{registryBean.addEntity()}"
+								rendered="#{!registryBean.isObjectPresent()}" />
+							<h:commandButton type="reset" value="#{msg['reset']}" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

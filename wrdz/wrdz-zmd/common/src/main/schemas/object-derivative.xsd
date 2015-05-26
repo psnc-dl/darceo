@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://wrdz.synat.psnc.pl/zmd/object"
+	xmlns="http://wrdz.synat.psnc.pl/zmd/object" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.0.1">
+
+	<xs:include schemaLocation="migration-type.xsd"></xs:include>
+
+	<xs:complexType name="ObjectDerivative">
+		<xs:sequence>
+			<xs:element name="identifier" type="xs:string" maxOccurs="1" minOccurs="1" />
+			<xs:element name="identifierResolver" type="xs:string" maxOccurs="1" minOccurs="0" />
+			<xs:element name="migrationType" type="MigrationType" maxOccurs="1" minOccurs="1" />
+			<xs:element name="migrationDate" type="xs:dateTime" maxOccurs="1" minOccurs="0" />
+			<xs:element name="migrationInfo" type="xs:string" maxOccurs="1" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

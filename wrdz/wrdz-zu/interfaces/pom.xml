@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<name>WRDZ-ZU-INTERFACES</name>
+	<groupId>pl.psnc.synat</groupId>
+	<artifactId>wrdz-zu-interfaces</artifactId>
+	<version>0.0.12-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<parent>
+		<groupId>pl.psnc.synat</groupId>
+		<artifactId>wrdz-zu</artifactId>
+		<version>0.0.12-SNAPSHOT</version>
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>org.glassfish.main.extras</groupId>
+			<artifactId>glassfish-embedded-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>pl.psnc.synat</groupId>
+			<artifactId>wrdz-common-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>pl.psnc.synat</groupId>
+			<artifactId>wrdz-zu-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>pl.psnc.synat</groupId>
+			<artifactId>wrdz-zu-entity</artifactId>
+		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glassfish-web-app PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN" "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd">
+<glassfish-web-app>
+
+	<ejb-ref>
+		<ejb-ref-name>MdzConfigurationBrowser</ejb-ref-name>
+		<jndi-name>${ejb.address.mdz}java:global/wrdz/wrdz-mdz-business-${wrdz.version}/MdzConfigurationBrowserBean</jndi-name>
+	</ejb-ref>
+	<ejb-ref>
+		<ejb-ref-name>UserBrowser</ejb-ref-name>
+		<jndi-name>${ejb.address.zu}java:global/wrdz/wrdz-zu-business-${wrdz.version}/UserBrowserBean</jndi-name>
+	</ejb-ref>
+	<ejb-ref>
+		<ejb-ref-name>DataFileFormatBrowser</ejb-ref-name>
+		<jndi-name>${ejb.address.zmd}java:global/wrdz/wrdz-zmd-business-${wrdz.version}/DataFileFormatBrowserBean</jndi-name>
+	</ejb-ref>
+	<ejb-ref>
+		<ejb-ref-name>DataManipulationServiceBrowser</ejb-ref-name>
+		<jndi-name>${ejb.address.ru}java:global/wrdz/wrdz-ru-business-${wrdz.version}/DataManipulationServiceBrowserBean</jndi-name>
+	</ejb-ref>
+
+</glassfish-web-app>

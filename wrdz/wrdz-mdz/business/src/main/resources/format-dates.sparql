@@ -1,0 +1,13 @@
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX udfrs:<http://udfr.org/onto#>
+SELECT ?fileFormatPuid ?fileFormat ?releaseDate ?withdrawalDate
+{
+  ?fileFormat rdf:type udfrs:FileFormat;
+      udfrs:aliasIdentifier ?fileFormatIdentifier.
+  OPTIONAL { ?fileFormat  udfrs:releaseDate ?releaseDate }.
+  OPTIONAL { ?fileFormat udfrs:withdrawalDate ?withdrawalDate }.
+  ?fileFormatIdentifier rdf:type udfrs:Identifier;
+      udfrs:identifierNamespaceType udfrs:PUID;
+      udfrs:identifierValue ?fileFormatPuid
+      FILTER (?fileFormatPuid = "%s")
+}

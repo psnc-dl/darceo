@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title>#{msg['registries']}</title>
+	</h:head>
+	<h:body>
+		<f:metadata>
+			<f:event type="preRenderView" listener="#{registriesBean.checkRights()}" />
+			<f:event type="preRenderView" listener="#{registriesBean.init()}" />
+			<f:event type="preRenderView"
+				listener="#{registriesBean.initSession()}" />
+		</f:metadata>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+				<h:form>
+					<h:link id="add" outcome="registry.xhtml" value="#{msg['registries.add']}"
+						class="actionLink" />
+					<rich:dataTable id="registries" rowKeyVar="index" var="registry"
+						value="#{registriesBean.registries}" captionClass="list-caption"
+						columnClasses="list-column list-column-odd, list-column list-column-even"
+						footerClass="list-footer" headerClass="list-header"
+						rowClasses="list-row list-row-even, list-row list-row-odd"
+						styleClass="list-background"
+						rendered="#{!registriesBean.listEmpty}">
+						<f:facet name="header">
+							<rich:columnGroup>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.number']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.name']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.location']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.description']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.certificate']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.read']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.harvested']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.lastharvest']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.action']}" />
+								</rich:column>
+							</rich:columnGroup>
+						</f:facet>
+						<rich:column id="noCol">
+							<h:outputText id="no" value="#{index+1}" />
+						</rich:column>
+						<rich:column id="nameCol">
+							<h:outputText id="name" value="#{registry.name}" />
+						</rich:column>
+						<rich:column id="locCol">
+							<h:outputLink id="location" value="#{registry.locationUrl}">
+								<h:outputText value="#{registry.locationUrl}" />
+							</h:outputLink>
+						</rich:column>
+						<rich:column id="descCol">
+							<h:outputText id="description" value="#{registry.description}" />
+						</rich:column>
+						<rich:column id="certCol">
+							<h:commandLink
+								action="#{registriesBean.downloadCertificate(registry.id)}">
+								<h:graphicImage id="certificate" alt="certificate"
+									library="images" name="certificate.png" />
+							</h:commandLink>
+						</rich:column>
+						<rich:column id="readEnabledCol">
+							<h:selectBooleanCheckbox id="readEnabled"
+								value="#{registry.readEnabled}" disabled="true" />
+						</rich:column>
+						<rich:column id="harvestedCol">
+							<h:selectBooleanCheckbox id="harvested"
+								value="#{registry.harvested}" disabled="true" />
+						</rich:column>
+						<rich:column id="lastHarvestCol">
+							<h:outputText id="lastHarvest"
+								value="#{registry.latestHarvestDate}">
+								<f:convertDateTime dateStyle="long" />
+							</h:outputText>
+						</rich:column>
+						<rich:column id="action">
+							<h:link id="#{msg['registries.table.action.modify']}" outcome="registry.xhtml"
+								includeViewParams="true" value="#{msg['registries.table.action.modify']}" class="actionLink">
+								<f:param name="id" value="#{registry.id}" />
+							</h:link>
+							<h:commandLink id="#{msg['registries.table.action.delete']}" value="#{msg['registries.table.action.delete']}" class="actionLink">
+								<rich:componentControl target="delete-popup" operation="show" />
+							</h:commandLink>
+							<rich:popupPanel id="delete-popup" modal="false" autosized="true"
+								resizeable="false">
+								<f:facet name="header">
+									<h:outputText value="#{msg['confirm']}" />
+								</f:facet>
+								<f:facet name="controls">
+									<h:outputLink value="#"
+										onclick="#{rich:component('delete-popup')}.hide(); return false;">X</h:outputLink>
+								</f:facet>
+								<h:outputText
+									value="#{msg['registries.table.action.delete.confirm']}" />
+								<p>
+									<h:commandButton value="#{msg['yes']}"
+										action="#{registriesBean.deleteEntity(registry.id)}"
+										onclick="#{rich:component('delete-popup')}.hide()" />
+									<h:commandButton value="#{msg['no']}"
+										onclick="#{rich:component('delete-popup')}.hide()" />
+								</p>
+							</rich:popupPanel>
+						</rich:column>
+						<f:facet name="footer">
+							<rich:columnGroup>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.number']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.name']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.location']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.description']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.certificate']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.read']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.harvested']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.lastharvest']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['registries.table.action']}" />
+								</rich:column>
+							</rich:columnGroup>
+						</f:facet>
+					</rich:dataTable>
+					<h:messages id="messages" for="registries" />
+					<h:outputText styleClass="no-found" value="#{msg['registries.table.empty']}"
+						rendered="#{registriesBean.listEmpty}" />
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This is the template of the WRDZ application's common configuration -->
+<!-- Copy this file as "wrdz-config.xml" and remove this header !!! -->
+
+<wrdz-config>
+	<locale>pl</locale>
+	<async>
+		<cache-home>${java.io.tmpdir}/async-cache</cache-home>
+		<cleaning-period>7</cleaning-period>
+	</async>
+	<https>
+		<verify-hostname>false</verify-hostname>
+		<modules-password>tDbXFF91hrbnx2UZJLNRcQ==</modules-password>
+	</https>
+	<profiler>
+		<enabled>false</enabled>
+	</profiler>
+</wrdz-config>

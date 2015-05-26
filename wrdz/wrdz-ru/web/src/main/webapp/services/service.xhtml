@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title><h:outputText
+				rendered="#{descriptorBean.isObjectPresent()}" value="#{msg['service.modify']}" /> <h:outputText
+				rendered="#{!descriptorBean.isObjectPresent()}" value="#{msg['service.add']}" /></title>
+	</h:head>
+	<h:body>
+		<f:metadata>
+			<f:viewParam id="descriptor_id" name="id"
+				value="#{descriptorBean.id}" />
+			<f:event type="preRenderView" listener="#{descriptorBean.checkRights()}" />
+			<f:event type="preRenderView"
+				listener="#{descriptorBean.checkValidity()}" />
+		</f:metadata>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+				<h:form id="descriptor">
+					<h:panelGrid columns="3" headerClass="list-header"
+						columnClasses="form-labels" styleClass="form-background"
+						id="modify-form">
+
+						<f:facet name="header">
+							<h:outputText rendered="#{descriptorBean.isObjectPresent()}" value="#{msg['service.modify']}" />
+							<h:outputText rendered="#{!descriptorBean.isObjectPresent()}" value="#{msg['service.add']}" />
+						</f:facet>
+
+						<h:outputLabel for="currentlocation"
+							rendered="#{descriptorBean.isObjectPresent()}"
+							styleClass="form-label">
+							<h:outputText id="currentlocationLabel" value="#{msg['service.location.current']}:" />
+						</h:outputLabel>
+						<h:outputLink id="currentlocation"
+							value="#{descriptorBean.locationUrl}"
+							rendered="#{descriptorBean.isObjectPresent()}">
+							<h:outputText value="#{descriptorBean.locationUrl}" />
+						</h:outputLink>
+						<h:message styleClass="validationMessage" for="currentlocation"
+							rendered="#{descriptorBean.isObjectPresent()}" />
+
+						<h:outputLabel for="location" styleClass="form-label">
+							<h:outputText id="locationLabel" value="#{msg['service.location.new']}:" />
+						</h:outputLabel>
+						<h:inputText id="location" value="#{descriptorBean.owlsLocation}"
+							required="#{!descriptorBean.isObjectPresent()}" />
+						<h:message styleClass="validationMessage" id="locationMessage" for="location" />
+
+						<h:outputLabel for="exposed" styleClass="form-label">
+							<h:outputText id="exposedLabel" value="#{msg['service.exposed']}:" />
+						</h:outputLabel>
+						<h:selectBooleanCheckbox id="exposed"
+							value="#{descriptorBean.exposed}" required="true" />
+						<h:message styleClass="validationMessage" for="exposed" />
+
+						<h:link value="#{msg['back']}" outcome="services.xhtml" />
+						<h:panelGroup>
+							<h:commandButton type="submit" value="#{msg['save']}"
+								action="#{descriptorBean.modifyEntity()}"
+								rendered="#{descriptorBean.isObjectPresent()}" />
+							<h:commandButton type="submit" value="#{msg['save']}"
+								action="#{descriptorBean.addEntity()}"
+								rendered="#{!descriptorBean.isObjectPresent()}" />
+							<h:commandButton type="reset" value="#{msg['reset']}" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

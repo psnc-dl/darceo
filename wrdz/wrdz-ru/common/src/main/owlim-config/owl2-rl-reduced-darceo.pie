@@ -1,0 +1,1395 @@
+/*
+ *  OWLIM rules and axioms for the TRREE engine for dArceo repository.
+ */
+
+
+Prefices
+{
+     rdf      :  http://www.w3.org/1999/02/22-rdf-syntax-ns#
+     rdfs     :  http://www.w3.org/2000/01/rdf-schema#
+     owl      :  http://www.w3.org/2002/07/owl#
+     xsd      :  http://www.w3.org/2001/XMLSchema#
+     onto     :  http://www.ontotext.com/
+	 process  :  http://www.daml.org/services/owl-s/1.2/Process.owl#
+	 service  :  http://www.daml.org/services/owl-s/1.2/Service.owl#
+	 dArceoService	:	http://darceo.psnc.pl/ontologies/dArceoService.owl#
+}
+
+Axioms
+{
+	// ========================================================================
+	// RDF axiomatic triples
+	// ========================================================================
+	// The following RDF axiomatic triples were taken from here:
+	// http://www.w3.org/TR/rdf-mt/#RDFINTERP
+	// ========================================================================
+	
+	<rdf:type> <rdf:type> <rdf:Property>
+	<rdf:subject> <rdf:type> <rdf:Property>
+	<rdf:predicate> <rdf:type> <rdf:Property>
+	<rdf:object> <rdf:type> <rdf:Property>
+	<rdf:first> <rdf:type> <rdf:Property>
+	<rdf:rest> <rdf:type> <rdf:Property>
+	<rdf:value> <rdf:type> <rdf:Property>
+
+	// ========================================================================
+	// RDFS axiomatic triples
+	// ========================================================================
+	// The following RDFS axiomatic triples were taken from here:
+	// http://www.w3.org/TR/rdf-mt/#RDFSINTERP
+	// ========================================================================
+	
+	<rdf:type> <rdfs:domain> <rdfs:Resource>
+	<rdfs:domain> <rdfs:domain> <rdf:Property>
+	<rdfs:range> <rdfs:domain> <rdf:Property>
+	<rdfs:subPropertyOf> <rdfs:domain> <rdf:Property>
+	<rdfs:subClassOf> <rdfs:domain> <rdfs:Class>
+	<rdf:subject> <rdfs:domain> <rdf:Statement>
+	<rdf:predicate> <rdfs:domain> <rdf:Statement>
+	<rdf:object> <rdfs:domain> <rdf:Statement>
+	<rdf:first> <rdfs:domain> <rdf:List>
+	<rdf:rest> <rdfs:domain> <rdf:List>
+	<rdf:type> <rdfs:range> <rdfs:Class>
+	<rdfs:domain> <rdfs:range> <rdfs:Class>
+	<rdfs:range> <rdfs:range> <rdfs:Class>
+	<rdfs:subClassOf> <rdfs:range> <rdfs:Class>
+	<rdf:rest> <rdfs:range> <rdf:List>
+	<rdf:XMLLiteral> <rdf:type> <rdfs:Datatype>
+	<rdf:XMLLiteral> <rdfs:subClassOf> <rdfs:Literal>
+	<rdfs:Datatype> <rdfs:subClassOf> <rdfs:Class>
+
+	
+	// ========================================================================
+	// OWL Vocabulary
+	// ========================================================================
+	// The following 'axiomatic triples for the OWL vocabulary were taken from here:
+	// http://www.w3.org/TR/2009/REC-owl2-rdf-based-semantics-20091027/#A_Set_of_Axiomatic_Triples
+	// ========================================================================
+	
+	// Table 6.1: Axiomatic Triples for the Classes of the OWL 2 RDF-Based Vocabulary
+	
+	<owl:AllDifferent> <rdf:type> <rdfs:Class>
+	<owl:AllDisjointClasses> <rdf:type> <rdfs:Class>
+	<owl:AllDisjointProperties> <rdf:type> <rdfs:Class>
+	<owl:Annotation> <rdf:type> <rdfs:Class>
+	<owl:AnnotationProperty> <rdf:type> <rdfs:Class>
+	<owl:AnnotationProperty> <rdfs:subClassOf> <rdf:Property>
+	<owl:AsymmetricProperty> <rdf:type> <rdfs:Class>
+	<owl:AsymmetricProperty> <rdfs:subClassOf> <owl:ObjectProperty>
+	<owl:Axiom> <rdf:type> <rdfs:Class>
+	<owl:Class> <rdf:type> <rdfs:Class>
+	<owl:Class> <rdfs:subClassOf> <rdfs:Class>
+	<owl:DataRange> <rdf:type> <rdfs:Class>
+	<owl:DataRange> <rdfs:subClassOf> <rdfs:Datatype>
+	<owl:DatatypeProperty> <rdf:type> <rdfs:Class>
+	<owl:DatatypeProperty> <rdfs:subClassOf> <rdf:Property>
+	<owl:DeprecatedClass> <rdf:type> <rdfs:Class>
+	<owl:DeprecatedClass> <rdfs:subClassOf> <rdfs:Class>
+	<owl:DeprecatedProperty> <rdf:type> <rdfs:Class>
+	<owl:DeprecatedProperty> <rdfs:subClassOf> <rdf:Property>
+	<owl:FunctionalProperty> <rdf:type> <rdfs:Class>
+	<owl:FunctionalProperty> <rdfs:subClassOf> <rdf:Property>
+	<owl:InverseFunctionalProperty> <rdf:type> <rdfs:Class>
+	<owl:InverseFunctionalProperty> <rdfs:subClassOf> <owl:ObjectProperty>
+	<owl:IrreflexiveProperty> <rdf:type> <rdfs:Class>
+	<owl:IrreflexiveProperty> <rdfs:subClassOf> <owl:ObjectProperty>
+	<owl:NamedIndividual> <rdf:type> <rdfs:Class>
+	<owl:NamedIndividual> <rdfs:subClassOf> <owl:Thing>
+	<owl:NegativePropertyAssertion> <rdf:type> <rdfs:Class>
+	<owl:Nothing> <rdf:type> <owl:Class>
+	<owl:Nothing> <rdfs:subClassOf> <owl:Thing>
+	<owl:ObjectProperty> <rdf:type> <rdfs:Class>
+	<owl:ObjectProperty> <rdfs:subClassOf> <rdf:Property>
+	<owl:Ontology> <rdf:type> <rdfs:Class>
+	<owl:OntologyProperty> <rdf:type> <rdfs:Class>
+	<owl:OntologyProperty> <rdfs:subClassOf> <rdf:Property>
+	<owl:ReflexiveProperty> <rdf:type> <rdfs:Class>
+	<owl:ReflexiveProperty> <rdfs:subClassOf> <owl:ObjectProperty>
+	<owl:Restriction> <rdf:type> <rdfs:Class>
+	<owl:Restriction> <rdfs:subClassOf> <owl:Class>
+	<owl:SymmetricProperty> <rdf:type> <rdfs:Class>
+	<owl:SymmetricProperty> <rdfs:subClassOf> <owl:ObjectProperty>
+	<owl:Thing> <rdf:type> <owl:Class>
+	<owl:TransitiveProperty> <rdf:type> <rdfs:Class>
+	<owl:TransitiveProperty> <rdfs:subClassOf> <owl:ObjectProperty>
+
+	// Table 6.2: Axiomatic Triples for the Properties of the OWL 2 RDF-Based Vocabulary
+	
+	<owl:allValuesFrom> <rdf:type> <rdf:Property>
+	<owl:allValuesFrom> <rdfs:domain> <owl:Restriction>
+	<owl:allValuesFrom> <rdfs:range> <rdfs:Class>
+	<owl:annotatedProperty> <rdf:type> <rdf:Property>
+	<owl:annotatedSource> <rdf:type> <rdf:Property>
+	<owl:annotatedTarget> <rdf:type> <rdf:Property>
+	<owl:assertionProperty> <rdf:type> <rdf:Property>
+	<owl:assertionProperty> <rdfs:domain> <owl:NegativePropertyAssertion>
+	<owl:backwardCompatibleWith> <rdf:type> <owl:AnnotationProperty>
+	<owl:backwardCompatibleWith> <rdf:type> <owl:OntologyProperty>
+	<owl:backwardCompatibleWith> <rdfs:domain> <owl:Ontology>
+	<owl:backwardCompatibleWith> <rdfs:range> <owl:Ontology>
+	<owl:bottomDataProperty> <rdf:type> <owl:DatatypeProperty>
+	<owl:bottomDataProperty> <rdfs:domain> <owl:Thing>
+	<owl:bottomDataProperty> <rdfs:range> <rdfs:Literal>
+	<owl:bottomObjectProperty> <rdf:type> <owl:ObjectProperty>
+	<owl:bottomObjectProperty> <rdfs:domain> <owl:Thing>
+	<owl:bottomObjectProperty> <rdfs:range> <owl:Thing>
+	<owl:cardinality> <rdf:type> <rdf:Property>
+	<owl:cardinality> <rdfs:domain> <owl:Restriction>
+	<owl:cardinality> <rdfs:range> <xsd:nonNegativeInteger>
+	<owl:complementOf> <rdf:type> <rdf:Property>
+	<owl:complementOf> <rdfs:domain> <owl:Class>
+	<owl:complementOf> <rdfs:range> <owl:Class>
+	<owl:datatypeComplementOf> <rdf:type> <rdf:Property>
+	<owl:datatypeComplementOf> <rdfs:domain> <rdfs:Datatype>
+	<owl:datatypeComplementOf> <rdfs:range> <rdfs:Datatype>
+	<owl:deprecated> <rdf:type> <owl:AnnotationProperty>
+	<owl:differentFrom> <rdf:type> <rdf:Property>
+	<owl:differentFrom> <rdfs:domain> <owl:Thing>
+	<owl:differentFrom> <rdfs:range> <owl:Thing>
+	<owl:disjointUnionOf> <rdf:type> <rdf:Property>
+	<owl:disjointUnionOf> <rdfs:domain> <owl:Class>
+	<owl:disjointUnionOf> <rdfs:range> <rdf:List>
+	<owl:disjointWith> <rdf:type> <rdf:Property>
+	<owl:disjointWith> <rdfs:domain> <owl:Class>
+	<owl:disjointWith> <rdfs:range> <owl:Class>
+	<owl:distinctMembers> <rdf:type> <rdf:Property>
+	<owl:distinctMembers> <rdfs:domain> <owl:AllDifferent>
+	<owl:distinctMembers> <rdfs:range> <rdf:List>
+	<owl:equivalentClass> <rdf:type> <rdf:Property>
+	<owl:equivalentClass> <rdfs:domain> <rdfs:Class>
+	<owl:equivalentClass> <rdfs:range> <rdfs:Class>
+	<owl:equivalentProperty> <rdf:type> <rdf:Property>
+	<owl:equivalentProperty> <rdfs:domain> <rdf:Property>
+	<owl:equivalentProperty> <rdfs:range> <rdf:Property>
+	<owl:hasKey> <rdf:type> <rdf:Property>
+	<owl:hasKey> <rdfs:domain> <owl:Class>
+	<owl:hasKey> <rdfs:range> <rdf:List>
+	<owl:hasSelf> <rdf:type> <rdf:Property>
+	<owl:hasSelf> <rdfs:domain> <owl:Restriction>
+	<owl:hasSelf> <rdfs:range> <rdfs:Resource>
+	<owl:hasValue> <rdf:type> <rdf:Property>
+	<owl:hasValue> <rdfs:domain> <owl:Restriction>
+	<owl:hasValue> <rdfs:range> <rdfs:Resource>
+	<owl:imports> <rdf:type> <owl:OntologyProperty>
+	<owl:imports> <rdfs:domain> <owl:Ontology>
+	<owl:imports> <rdfs:range> <owl:Ontology>
+	<owl:incompatibleWith> <rdf:type> <owl:AnnotationProperty>
+	<owl:incompatibleWith> <rdf:type> <owl:OntologyProperty>
+	<owl:incompatibleWith> <rdfs:domain> <owl:Ontology>
+	<owl:incompatibleWith> <rdfs:range> <owl:Ontology>
+	<owl:intersectionOf> <rdf:type> <rdf:Property>
+	<owl:intersectionOf> <rdfs:domain> <rdfs:Class>
+	<owl:intersectionOf> <rdfs:range> <rdf:List>
+	<owl:inverseOf> <rdf:type> <rdf:Property>
+	<owl:inverseOf> <rdfs:domain> <owl:ObjectProperty>
+	<owl:inverseOf> <rdfs:range> <owl:ObjectProperty>
+	<owl:maxCardinality> <rdf:type> <rdf:Property>
+	<owl:maxCardinality> <rdfs:domain> <owl:Restriction>
+	<owl:maxCardinality> <rdfs:range> <xsd:nonNegativeInteger>
+	<owl:maxQualifiedCardinality> <rdf:type> <rdf:Property>
+	<owl:maxQualifiedCardinality> <rdfs:domain> <owl:Restriction>
+	<owl:maxQualifiedCardinality> <rdfs:range> <xsd:nonNegativeInteger>
+	<owl:members> <rdf:type> <rdf:Property>
+	<owl:members> <rdfs:range> <rdf:List>
+	<owl:minCardinality> <rdf:type> <rdf:Property>
+	<owl:minCardinality> <rdfs:domain> <owl:Restriction>
+	<owl:minCardinality> <rdfs:range> <xsd:nonNegativeInteger>
+	<owl:minQualifiedCardinality> <rdf:type> <rdf:Property>
+	<owl:minQualifiedCardinality> <rdfs:domain> <owl:Restriction>
+	<owl:minQualifiedCardinality> <rdfs:range> <xsd:nonNegativeInteger>
+	<owl:onClass> <rdf:type> <rdf:Property>
+	<owl:onClass> <rdfs:domain> <owl:Restriction>
+	<owl:onClass> <rdfs:range> <owl:Class>
+	<owl:onDataRange> <rdf:type> <rdf:Property>
+	<owl:onDataRange> <rdfs:domain> <owl:Restriction>
+	<owl:onDataRange> <rdfs:range> <rdfs:Datatype>
+	<owl:onDatatype> <rdf:type> <rdf:Property>
+	<owl:onDatatype> <rdfs:domain> <rdfs:Datatype>
+	<owl:onDatatype> <rdfs:range> <rdfs:Datatype>
+	<owl:oneOf> <rdf:type> <rdf:Property>
+	<owl:oneOf> <rdfs:domain> <rdfs:Class>
+	<owl:oneOf> <rdfs:range> <rdf:List>
+	<owl:onProperty> <rdf:type> <rdf:Property>
+	<owl:onProperty> <rdfs:domain> <owl:Restriction>
+	<owl:onProperty> <rdfs:range> <rdf:Property>
+	<owl:onProperties> <rdf:type> <rdf:Property>
+	<owl:onProperties> <rdfs:domain> <owl:Restriction>
+	<owl:onProperties> <rdfs:range> <rdf:List>
+	<owl:priorVersion> <rdf:type> <owl:AnnotationProperty>
+	<owl:priorVersion> <rdf:type> <owl:OntologyProperty>
+	<owl:priorVersion> <rdfs:domain> <owl:Ontology>
+	<owl:priorVersion> <rdfs:range> <owl:Ontology>
+	<owl:propertyChainAxiom> <rdf:type> <rdf:Property>
+	<owl:propertyChainAxiom> <rdfs:domain> <owl:ObjectProperty>
+	<owl:propertyChainAxiom> <rdfs:range> <rdf:List>
+	<owl:propertyDisjointWith> <rdf:type> <rdf:Property>
+	<owl:qualifiedCardinality> <rdf:type> <rdf:Property>
+	<owl:qualifiedCardinality> <rdfs:domain> <owl:Restriction>
+	<owl:qualifiedCardinality> <rdfs:range> <xsd:nonNegativeInteger>
+	<owl:sameAs> <rdf:type> <rdf:Property>
+	<owl:sameAs> <rdfs:domain> <owl:Thing>
+	<owl:sameAs> <rdfs:range> <owl:Thing>
+	<owl:someValuesFrom> <rdf:type> <rdf:Property>
+	<owl:someValuesFrom> <rdfs:domain> <owl:Restriction>
+	<owl:someValuesFrom> <rdfs:range> <rdfs:Class>
+	<owl:sourceIndividual> <rdf:type> <rdf:Property>
+	<owl:sourceIndividual> <rdfs:domain> <owl:NegativePropertyAssertion>
+	<owl:sourceIndividual> <rdfs:range> <owl:Thing>
+	<owl:targetIndividual> <rdf:type> <rdf:Property>
+	<owl:targetIndividual> <rdfs:domain> <owl:NegativePropertyAssertion>
+	<owl:targetIndividual> <rdfs:range> <owl:Thing>
+	<owl:targetValue> <rdf:type> <rdf:Property>
+	<owl:targetValue> <rdfs:domain> <owl:NegativePropertyAssertion>
+	<owl:targetValue> <rdfs:range> <rdfs:Literal>
+	<owl:topDataProperty> <rdf:type> <owl:DatatypeProperty>
+	<owl:topDataProperty> <rdfs:domain> <owl:Thing>
+	<owl:topDataProperty> <rdfs:range> <rdfs:Literal>
+	<owl:topObjectProperty> <rdf:type> <rdf:ObjectProperty>
+	<owl:topObjectProperty> <rdfs:domain> <owl:Thing>
+	<owl:topObjectProperty> <rdfs:range> <owl:Thing>
+	<owl:unionOf> <rdf:type> <rdf:Property>
+	<owl:unionOf> <rdfs:domain> <rdfs:Class>
+	<owl:unionOf> <rdfs:range> <rdf:List>
+	<owl:versionInfo> <rdf:type> <owl:AnnotationProperty>
+	<owl:versionIRI> <rdf:type> <owl:OntologyProperty>
+	<owl:versionIRI> <rdfs:domain> <owl:Ontology>
+	<owl:versionIRI> <rdfs:range> <owl:Ontology>
+	<owl:withRestrictions> <rdf:type> <rdf:Property>
+	<owl:withRestrictions> <rdfs:domain> <rdfs:Datatype>
+	<owl:withRestrictions> <rdfs:range> <rdf:List>
+
+	// Table 6.3: Axiomatic Triples for the Datatypes of the OWL 2 RDF-Based Semantics
+	
+	<xsd:anyURI> <rdf:type> <rdfs:Datatype>
+	<xsd:anyURI> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:base64Binary> <rdf:type> <rdfs:Datatype>
+	<xsd:base64Binary> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:boolean> <rdf:type> <rdfs:Datatype>
+	<xsd:boolean> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:byte> <rdf:type> <rdfs:Datatype>
+	<xsd:byte> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:dateTime> <rdf:type> <rdfs:Datatype>
+	<xsd:dateTime> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:dateTimeStamp> <rdf:type> <rdfs:Datatype>
+	<xsd:dateTimeStamp> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:decimal> <rdf:type> <rdfs:Datatype>
+	<xsd:decimal> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:double> <rdf:type> <rdfs:Datatype>
+	<xsd:double> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:float> <rdf:type> <rdfs:Datatype>
+	<xsd:float> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:hexBinary> <rdf:type> <rdfs:Datatype>
+	<xsd:hexBinary> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:int> <rdf:type> <rdfs:Datatype>
+	<xsd:int> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:integer> <rdf:type> <rdfs:Datatype>
+	<xsd:integer> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:language> <rdf:type> <rdfs:Datatype>
+	<xsd:language> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:long> <rdf:type> <rdfs:Datatype>
+	<xsd:long> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:Name> <rdf:type> <rdfs:Datatype>
+	<xsd:Name> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:NCName> <rdf:type> <rdfs:Datatype>
+	<xsd:NCName> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:negativeInteger> <rdf:type> <rdfs:Datatype>
+	<xsd:negativeInteger> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:NMTOKEN> <rdf:type> <rdfs:Datatype>
+	<xsd:NMTOKEN> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:nonNegativeInteger> <rdf:type> <rdfs:Datatype>
+	<xsd:nonNegativeInteger> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:nonPositiveInteger> <rdf:type> <rdfs:Datatype>
+	<xsd:nonPositiveInteger> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:normalizedString> <rdf:type> <rdfs:Datatype>
+	<xsd:normalizedString> <rdfs:subClassOf> <rdfs:Literal>
+	<rdf:PlainLiteral> <rdf:type> <rdfs:Datatype>
+	<rdf:PlainLiteral> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:positiveInteger> <rdf:type> <rdfs:Datatype>
+	<xsd:positiveInteger> <rdfs:subClassOf> <rdfs:Literal>
+	<owl:rational> <rdf:type> <rdfs:Datatype>
+	<owl:rational> <rdfs:subClassOf> <rdfs:Literal>
+	<owl:real> <rdf:type> <rdfs:Datatype>
+	<owl:real> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:short> <rdf:type> <rdfs:Datatype>
+	<xsd:short> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:string> <rdf:type> <rdfs:Datatype>
+	<xsd:string> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:token> <rdf:type> <rdfs:Datatype>
+	<xsd:token> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:unsignedByte> <rdf:type> <rdfs:Datatype>
+	<xsd:unsignedByte> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:unsignedInt> <rdf:type> <rdfs:Datatype>
+	<xsd:unsignedInt> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:unsignedLong> <rdf:type> <rdfs:Datatype>
+	<xsd:unsignedLong> <rdfs:subClassOf> <rdfs:Literal>
+	<xsd:unsignedShort> <rdf:type> <rdfs:Datatype>
+	<xsd:unsignedShort> <rdfs:subClassOf> <rdfs:Literal>
+	<rdf:XMLLiteral> <rdf:type> <rdfs:Datatype>
+	<rdf:XMLLiteral> <rdfs:subClassOf> <rdfs:Literal>
+
+	// Table 6.4: Axiomatic Triples for the Facets of the OWL 2 RDF-Based Semantics
+	
+	<rdf:langRange> <rdf:type> <owl:DatatypeProperty>
+	<rdf:langRange> <rdfs:range> <rdfs:Literal>
+	<xsd:length> <rdf:type> <owl:DatatypeProperty>
+	<xsd:length> <rdfs:range> <rdfs:Literal>
+	<xsd:maxExclusive> <rdf:type> <owl:DatatypeProperty>
+	<xsd:maxExclusive> <rdfs:range> <rdfs:Literal>
+	<xsd:maxInclusive> <rdf:type> <owl:DatatypeProperty>
+	<xsd:maxInclusive> <rdfs:range> <rdfs:Literal>
+	<xsd:maxLength> <rdf:type> <owl:DatatypeProperty>
+	<xsd:maxLength> <rdfs:range> <rdfs:Literal>
+	<xsd:minExclusive> <rdf:type> <owl:DatatypeProperty>
+	<xsd:minExclusive> <rdfs:range> <rdfs:Literal>
+	<xsd:minInclusive> <rdf:type> <owl:DatatypeProperty>
+	<xsd:minInclusive> <rdfs:range> <rdfs:Literal>
+	<xsd:minLength> <rdf:type> <owl:DatatypeProperty>
+	<xsd:minLength> <rdfs:range> <rdfs:Literal>
+	<xsd:pattern> <rdf:type> <owl:DatatypeProperty>
+	<xsd:pattern> <rdfs:range> <rdfs:Literal>
+
+	// Table 6.5: Additional Axiomatic Triples for Classes and Properties of the RDFS Vocabulary
+	
+	<rdfs:Class> <rdfs:subClassOf> <owl:Class>
+	<rdfs:comment> <rdf:type> <owl:AnnotationProperty>
+	<rdfs:comment> <rdfs:range> <rdfs:Literal>
+	<rdfs:Datatype> <rdfs:subClassOf> <owl:DataRange>
+	<rdfs:isDefinedBy> <rdf:type> <owl:AnnotationProperty>
+	<rdfs:label> <rdf:type> <owl:AnnotationProperty>
+	<rdfs:label> <rdfs:range> <rdfs:Literal>
+	<rdfs:Literal> <rdf:type> <rdfs:Datatype>
+	<rdf:Property> <rdfs:subClassOf> <owl:ObjectProperty>
+	<rdfs:seeAlso> <rdf:type> <owl:AnnotationProperty>
+
+
+	// ========================================================================
+	// OWL2 RL - Axioms about properties
+	// ========================================================================
+
+	// rule: prp-ap
+	// ------------
+	<rdfs:label>                   <rdf:type> <owl:AnnotationProperty>
+	<rdfs:comment>                 <rdf:type> <owl:AnnotationProperty>
+	<rdfs:seeAlso>                 <rdf:type> <owl:AnnotationProperty>
+	<rdfs:isDefinedBy>             <rdf:type> <owl:AnnotationProperty>
+	<owl:deprecated>               <rdf:type> <owl:AnnotationProperty>
+	<owl:versionInfo>              <rdf:type> <owl:AnnotationProperty>
+	<owl:priorVersion>             <rdf:type> <owl:AnnotationProperty>
+	<owl:backwardCompatibleWith>   <rdf:type> <owl:AnnotationProperty>
+	<owl:incompatibleWith>         <rdf:type> <owl:AnnotationProperty>
+	
+	
+	// ========================================================================
+	// OWL2 RL - Axioms about classes
+	// ========================================================================
+
+	// rule: cls-thing
+	// ---------------
+	<owl:Thing>   <rdf:type> <owl:Class>
+	
+	// rule: cls-nothing1
+	// ------------------
+	<owl:Nothing> <rdf:type> <owl:Class>
+
+
+	// ========================================================================
+	// OWL2 RL - Axioms about datatypes
+	// ========================================================================
+	
+	// rule: dt-type1
+	// --------------
+	<rdf:PlainLiteral>         <rdf:type> <rdfs:Datatype>
+	<rdf:XMLLiteral>           <rdf:type> <rdfs:Datatype>
+	<rdfs:Literal>             <rdf:type> <rdfs:Datatype>
+	<xsd:decimal>              <rdf:type> <rdfs:Datatype>
+	<xsd:integer>              <rdf:type> <rdfs:Datatype>
+	<xsd:nonNegativeInteger>   <rdf:type> <rdfs:Datatype>
+	<xsd:nonPositiveInteger>   <rdf:type> <rdfs:Datatype>
+	<xsd:positiveInteger>      <rdf:type> <rdfs:Datatype>
+	<xsd:negativeInteger>      <rdf:type> <rdfs:Datatype>
+	<xsd:long>                 <rdf:type> <rdfs:Datatype>
+	<xsd:int>                  <rdf:type> <rdfs:Datatype>
+	<xsd:short>                <rdf:type> <rdfs:Datatype>
+	<xsd:byte>                 <rdf:type> <rdfs:Datatype>
+	<xsd:unsignedLong>         <rdf:type> <rdfs:Datatype>
+	<xsd:unsignedInt>          <rdf:type> <rdfs:Datatype>
+	<xsd:unsignedShort>        <rdf:type> <rdfs:Datatype>
+	<xsd:unsignedByte>         <rdf:type> <rdfs:Datatype>
+	<xsd:float>                <rdf:type> <rdfs:Datatype>
+	<xsd:double>               <rdf:type> <rdfs:Datatype>
+	<xsd:string>               <rdf:type> <rdfs:Datatype>
+	<xsd:normalizedString>     <rdf:type> <rdfs:Datatype>
+	<xsd:token>                <rdf:type> <rdfs:Datatype>
+	<xsd:language>             <rdf:type> <rdfs:Datatype>
+	<xsd:Name>                 <rdf:type> <rdfs:Datatype>
+	<xsd:NCName>               <rdf:type> <rdfs:Datatype>
+	<xsd:NMTOKEN>              <rdf:type> <rdfs:Datatype>
+	<xsd:boolean>              <rdf:type> <rdfs:Datatype>
+	<xsd:hexBinary>            <rdf:type> <rdfs:Datatype>
+	<xsd:base64Binary>         <rdf:type> <rdfs:Datatype>
+	<xsd:anyURI>               <rdf:type> <rdfs:Datatype>
+	<xsd:dateTime>             <rdf:type> <rdfs:Datatype>
+	<xsd:dateTimeStamp>        <rdf:type> <rdfs:Datatype>
+}
+
+Rules
+{
+
+// ========================================================================
+// The Semantics of Axioms about Properties 
+// ========================================================================
+
+// Id: prp-ap
+// See the axiomatic triples in the Axioms section.
+	
+Id: prp-dom
+	p <rdfs:domain> c
+	x p y
+	-------------------------------
+	x <rdf:type> c
+
+Id: prp-rng
+	p <rdfs:range> c
+	x p y
+	-------------------------------
+	y <rdf:type> c
+
+Id: prp-spo1
+	p1 <rdfs:subPropertyOf> p2
+	x p1 y
+	-------------------------------
+	x p2 y
+
+Id: prp-eqp1
+	p1 <owl:equivalentProperty> p2
+	x p1 y
+	-------------------------------
+	x p2 y
+
+Id: prp-eqp2
+	p1 <owl:equivalentProperty> p2
+	x p2 y
+	-------------------------------
+	x p1 y
+
+
+Id: prp-inv1
+	p1 <owl:inverseOf> p2
+	x p1 y
+	-------------------------------
+	y p2 x
+
+Id: prp-inv2
+	p1 <owl:inverseOf> p2
+	x p2 y
+	-------------------------------
+	y p1 x
+
+
+// ========================================================================
+// The Semantics of Classes 
+// ========================================================================
+
+
+Id: cls-svf1
+	x <owl:someValuesFrom> y
+	x <owl:onProperty> p
+	u p v
+	v <rdf:type> y
+	-------------------------------
+	u <rdf:type> x
+
+Id: cls-svf2
+	x <owl:someValuesFrom> <owl:Thing>
+	x <owl:onProperty> p
+	u p v
+	-------------------------------
+	u <rdf:type> x
+
+Id: cls-avf
+	x <owl:allValuesFrom> y
+	x <owl:onProperty> p
+	u <rdf:type> x
+	u p v
+	-------------------------------
+	v <rdf:type> y
+
+Id: cls-hv1
+	x <owl:hasValue> y
+	x <owl:onProperty> p
+	u <rdf:type> x
+	-------------------------------
+	u p y
+
+Id: cls-hv2
+	x <owl:hasValue> y
+	x <owl:onProperty> p
+	u p y
+	-------------------------------
+	u <rdf:type> x
+
+
+// ========================================================================
+// The Semantics of Class Axioms
+// ========================================================================
+
+Id:cax-sco
+	c1 <rdfs:subClassOf> c2                [Constraint c1 != c2 ]
+	x <rdf:type> c1
+	-------------------------------
+	x <rdf:type> c2
+
+Id: cax-eqc1
+	c1 <owl:equivalentClass> c2            [Constraint c1 != c2 ]
+	x <rdf:type> c1
+	-------------------------------
+	x <rdf:type> c2
+
+Id: cax-eqc2
+	c1 <owl:equivalentClass> c2            [Constraint c1 != c2 ]
+	x <rdf:type> c2
+	-------------------------------
+	x <rdf:type> c1
+
+
+// ========================================================================
+// The Semantics of Schema Vocabulary
+// ========================================================================
+
+Id: scm-cls
+	c <rdf:type> <owl:Class>
+	-------------------------------
+	c <rdfs:subClassOf> c
+	c <owl:equivalentClass> c
+	c <rdfs:subClassOf> <owl:Thing>
+	<owl:Nothing> <rdfs:subClassOf> c
+
+Id: scm-sco
+	c1 <rdfs:subClassOf> c2
+	c2 <rdfs:subClassOf> c3
+	-------------------------------
+	c1 <rdfs:subClassOf> c3
+
+Id: scm-eqc1
+	c1 <owl:equivalentClass> c2            [Constraint c1 != c2 ]
+	-------------------------------
+	c1 <rdfs:subClassOf> c2
+	c2 <rdfs:subClassOf> c1
+
+Id: scm-eqc2
+	c1 <rdfs:subClassOf> c2                [Constraint c1 != c2 ]
+	c2 <rdfs:subClassOf> c1                
+	-------------------------------
+	c1 <owl:equivalentClass> c2
+
+Id: scm-op
+	p <rdf:type> <owl:ObjectProperty>
+	-------------------------------
+	p <rdfs:subPropertyOf> p
+	p <owl:equivalentProperty> p
+
+Id: scm-dp
+	p <rdf:type> <owl:DatatypeProperty>
+	-------------------------------
+	p <rdfs:subPropertyOf> p
+	p <owl:equivalentProperty> p	
+
+Id: scm-spo
+	p1 <rdfs:subPropertyOf> p2
+	p2 <rdfs:subPropertyOf> p3
+	-------------------------------
+	p1 <rdfs:subPropertyOf> p3
+
+Id: scm-eqp1
+	p1 <owl:equivalentProperty> p2            [Constraint p1 != p2 ]
+	-------------------------------
+	p1 <rdfs:subPropertyOf> p2
+	p2 <rdfs:subPropertyOf> p1
+
+Id: scm-eqp2
+	p1 <rdfs:subPropertyOf> p2                [Constraint p1 != p2 ]
+	p2 <rdfs:subPropertyOf> p1                
+	-------------------------------
+	p1 <owl:equivalentProperty> p2
+
+Id: scm-dom1
+	p  <rdfs:domain> c1
+	c1 <rdfs:subClassOf> c2
+	-------------------------------
+	p <rdfs:domain> c2
+
+Id: scm-dom2
+	p2 <rdfs:domain> c
+	p1 <rdfs:subPropertyOf> p2
+	-------------------------------
+	p1 <rdfs:domain> c
+
+Id: scm-rng1
+	p  <rdfs:range> c1
+	c1 <rdfs:subClassOf> c2 
+	-------------------------------
+	p <rdfs:range> c2
+
+Id: scm-rng2
+	p2 <rdfs:range> c
+	p1 <rdfs:subPropertyOf> p2
+	-------------------------------
+	p1 <rdfs:range> c
+
+Id: scm-hv
+	c1 <owl:hasValue> i
+	c1 <owl:onProperty> p1
+	c2 <owl:hasValue> i
+	c2 <owl:onProperty> p2
+	p1 <rdfs:subPropertyOf> p2         [Constraint p1 != p2 ]
+	-------------------------------
+	c1 <rdfs:subClassOf> c2            [Constraint c1 != c2 ]
+
+Id: scm-svf1
+	c1 <owl:someValuesFrom> y1
+	c1 <owl:onProperty> p
+	c2 <owl:someValuesFrom> y2
+	c2 <owl:onProperty> p
+	y1 <rdfs:subClassOf> y2            [Constraint y1 != y2 ]
+	-------------------------------
+	c1 <rdfs:subClassOf> c2            [Constraint c1 != c2 ]
+
+Id: scm-svf2
+	c1 <owl:someValuesFrom> y
+	c1 <owl:onProperty> p1
+	c2 <owl:someValuesFrom> y
+	c2 <owl:onProperty> p2
+	p1 <rdfs:subPropertyOf> p2         [Constraint p1 != p2 ]
+	-------------------------------
+	c1 <rdfs:subClassOf> c2            [Constraint c1 != c2 ]
+
+Id: scm-avf1
+	c1 <owl:allValuesFrom> y1
+	c1 <owl:onProperty> p
+	c2 <owl:allValuesFrom> y2
+	c2 <owl:onProperty> p
+	y1 <rdfs:subClassOf> y2            [Constraint y1 != y2 ]
+	-------------------------------
+	c1 <rdfs:subClassOf> c2            [Constraint c1 != c2 ]
+
+Id: scm-avf2
+	c1 <owl:allValuesFrom> y
+	c1 <owl:onProperty> p1
+	c2 <owl:allValuesFrom> y
+	c2 <owl:onProperty> p2
+	p1 <rdfs:subPropertyOf> p2         [Constraint p1 != p2 ]
+	-------------------------------
+	c2 <rdfs:subClassOf> c1            [Constraint c1 != c2 ]
+
+	 
+// ========================================================================
+// dArceo specific rules
+// ========================================================================
+
+// Id: darceo-file-transf-path-2
+//
+//     t1  <dArceoService:fileIn>  a
+//     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1]
+//     t1  <dArceoService:fileOut>  b                        
+//     t2  <dArceoService:fileOut>  c
+//     t1  <dArceoService:performedBy>  s1                   
+//     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1]
+//     s1  <service:describedBy>  p1                         
+//     p1  <rdf:type>  <process:AtomicProcess>               
+//     s2  <service:describedBy>  p2                         
+//     p2  <rdf:type>  <process:AtomicProcess>               
+//    -------------------------------
+//     t  <rdf:type>  <dArceoService:FileTransformation>
+//     p  <rdf:type>  <process:CompositeProcess>
+//     t  <dArceoService:performedBy>  s
+//     s  <service:describedBy>  p
+//     t  <dArceoService:fileIn>  a
+//     t  <dArceoService:fileOut>  c
+//     t  <dArceoService:previousTransformation>  t1
+//     t  <dArceoService:subsequentTransformation>  t2
+	 
+Id: darceo-file-transf-path-2a
+
+     t1  <dArceoService:fileIn>  a
+     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1] [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1  <dArceoService:performedBy>  s1                   [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1] [Cut]
+     s1  <service:describedBy>  p1                         [Cut]
+     p1  <rdf:type>  <process:AtomicProcess>               [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-2b
+
+     t2  <dArceoService:fileIn>  b
+     t1  <dArceoService:fileIn>  a                         [Constraint t1 != t2] [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Cut]
+     t1  <dArceoService:performedBy>  s1                   [Constraint s1 != s2] [Cut]
+     s1  <service:describedBy>  p1                         [Cut]
+     p1  <rdf:type>  <process:AtomicProcess>               [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-2c
+
+     t1  <dArceoService:fileOut>  b
+     t2  <dArceoService:fileOut>  c                        [Constraint t2 != t1] [Cut]
+     t2  <dArceoService:fileIn>  b                         [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t1  <dArceoService:performedBy>  s1                   [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1] [Cut]
+     s1  <service:describedBy>  p1                         [Cut]
+     p1  <rdf:type>  <process:AtomicProcess>               [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-2d
+
+     t2  <dArceoService:fileOut>  c
+     t1  <dArceoService:fileOut>  b                        [Constraint t1 != t2] [Cut]
+     t2  <dArceoService:fileIn>  b                         [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Cut]
+     t1  <dArceoService:performedBy>  s1                   [Constraint s1 != s2] [Cut]
+     s1  <service:describedBy>  p1                         [Cut]
+     p1  <rdf:type>  <process:AtomicProcess>               [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2  
+     
+Id: darceo-file-transf-path-2e
+
+     t1  <dArceoService:performedBy>  s1
+     t2  <dArceoService:performedBy>  s2                   [Constraint t2 != t1, s2 != s1] [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t2  <dArceoService:fileIn>  b                         [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     s1  <service:describedBy>  p1                         [Cut]
+     p1  <rdf:type>  <process:AtomicProcess>               [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2  
+
+Id: darceo-file-transf-path-2f
+
+     t2  <dArceoService:performedBy>  s2                   
+     t1  <dArceoService:performedBy>  s1                   [Constraint t1 != t2, s1 != s2] [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileIn>  b                         [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     s1  <service:describedBy>  p1                         [Cut]
+     p1  <rdf:type>  <process:AtomicProcess>               [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2  
+
+Id: darceo-file-transf-path-2g
+
+     s1  <service:describedBy>  p1                         
+     p1  <rdf:type>  <process:AtomicProcess>               [Cut]
+     t1  <dArceoService:performedBy>  s1                   [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1] [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1] [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-2h
+
+     p1  <rdf:type>  <process:AtomicProcess>               
+     s1  <service:describedBy>  p1                         [Cut]
+     t1  <dArceoService:performedBy>  s1                   [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1] [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1] [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-2i
+
+     s2  <service:describedBy>  p2                         
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1  <dArceoService:fileOut>  b                        [Constraint t1 != t2] [Cut]
+     t2  <dArceoService:fileIn>  b                         [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t1  <dArceoService:performedBy>  s1                   [Constraint s1 != s2] [Cut]
+     s1  <service:describedBy>  p1                         [Cut]
+     p1  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2  
+
+Id: darceo-file-transf-path-2j
+
+     p2  <rdf:type>  <process:AtomicProcess>               
+     s2  <service:describedBy>  p2                         [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1  <dArceoService:fileOut>  b                        [Constraint t1 != t2] [Cut]
+     t2  <dArceoService:fileIn>  b                         [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t1  <dArceoService:performedBy>  s1                   [Constraint s1 != s2] [Cut]
+     s1  <service:describedBy>  p1                         [Cut]
+     p1  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2  
+
+
+
+//  Id: darceo-file-transf-path-3I
+//
+//     t1  <dArceoService:fileIn>  a
+//     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1]
+//     t1  <dArceoService:fileOut>  b                        
+//     t2  <dArceoService:fileOut>  c
+//     t1  <dArceoService:previousTransformation>  t1p       [Constraint t1p != t2]
+//     t1  <dArceoService:subsequentTransformation>  t1s     [Constraint t1s != t2]
+//     t1p  <dArceoService:performedBy>  s1p
+//     s1p  <service:describedBy>  p1p
+//     p1p  <rdf:type>  <process:AtomicProcess>
+//     t1s  <dArceoService:performedBy>  s1s
+//     s1s  <service:describedBy>  p1s
+//     p1s  <rdf:type>  <process:AtomicProcess>
+//     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1p, s2 != s1s]
+//     s2  <service:describedBy>  p2
+//     p2  <rdf:type>  <process:AtomicProcess>
+//    -------------------------------
+//     t  <rdf:type>  <dArceoService:FileTransformation>
+//     p  <rdf:type>  <process:CompositeProcess>
+//     t  <dArceoService:performedBy>  s
+//     s  <service:describedBy>  p
+//     t  <dArceoService:fileIn>  a
+//     t  <dArceoService:fileOut>  c
+//     t  <dArceoService:previousTransformation>  t1
+//     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-3Ia
+
+     t1  <dArceoService:fileIn>  a
+     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1] [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1  <dArceoService:previousTransformation>  t1p       [Constraint t1p != t2] [Cut]
+     t1  <dArceoService:subsequentTransformation>  t1s     [Constraint t1s != t2] [Cut]
+     t1p  <dArceoService:performedBy>  s1p                 [Cut]
+     s1p  <service:describedBy>  p1p                       [Cut]
+     p1p  <rdf:type>  <process:AtomicProcess>              [Cut] 
+     t1s  <dArceoService:performedBy>  s1s                 [Cut]
+     s1s  <service:describedBy>  p1s                       [Cut]
+     p1s  <rdf:type>  <process:AtomicProcess>              [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1p, s2 != s1s] [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-3Ib
+
+     t2  <dArceoService:fileIn>  b
+     t1  <dArceoService:fileIn>  a                         [Constraint t1 != t2] [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1  <dArceoService:previousTransformation>  t1p       [Constraint t1p != t2] [Cut]
+     t1  <dArceoService:subsequentTransformation>  t1s     [Constraint t1s != t2] [Cut]
+     t1p  <dArceoService:performedBy>  s1p                 [Cut]
+     s1p  <service:describedBy>  p1p                       [Cut]
+     p1p  <rdf:type>  <process:AtomicProcess>              [Cut]
+     t1s  <dArceoService:performedBy>  s1s                 [Cut]
+     s1s  <service:describedBy>  p1s                       [Cut]
+     p1s  <rdf:type>  <process:AtomicProcess>              [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1p, s2 != s1s] [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-3Ic
+
+     t1  <dArceoService:fileOut>  b
+     t2  <dArceoService:fileOut>  c                        [Constraint t2 != t1] [Cut]
+     t2  <dArceoService:fileIn>  b                         [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t1  <dArceoService:previousTransformation>  t1p       [Constraint t1p != t2] [Cut]
+     t1  <dArceoService:subsequentTransformation>  t1s     [Constraint t1s != t2] [Cut]
+     t1p  <dArceoService:performedBy>  s1p                 [Cut]
+     s1p  <service:describedBy>  p1p                       [Cut]
+     p1p  <rdf:type>  <process:AtomicProcess>              [Cut] 
+     t1s  <dArceoService:performedBy>  s1s                 [Cut]
+     s1s  <service:describedBy>  p1s                       [Cut]
+     p1s  <rdf:type>  <process:AtomicProcess>              [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1p, s2 != s1s] [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-3Id
+
+     t2  <dArceoService:fileOut>  c
+     t1  <dArceoService:fileOut>  b                        [Constraint t1 != t2] [Cut]
+     t2  <dArceoService:fileIn>  b                         [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t1  <dArceoService:previousTransformation>  t1p       [Constraint t1p != t2] [Cut]
+     t1  <dArceoService:subsequentTransformation>  t1s     [Constraint t1s != t2] [Cut]
+     t1p  <dArceoService:performedBy>  s1p                 [Cut]
+     s1p  <service:describedBy>  p1p                       [Cut]
+     p1p  <rdf:type>  <process:AtomicProcess>              [Cut] 
+     t1s  <dArceoService:performedBy>  s1s                 [Cut]
+     s1s  <service:describedBy>  p1s                       [Cut]
+     p1s  <rdf:type>  <process:AtomicProcess>              [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1p, s2 != s1s] [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-3Ie
+
+     t1  <dArceoService:previousTransformation>  t1p       
+     t1  <dArceoService:subsequentTransformation>  t1s     [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1, t2 != t1p, t2 != t1s] [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1p  <dArceoService:performedBy>  s1p                 [Cut]
+     s1p  <service:describedBy>  p1p                       [Cut]
+     p1p  <rdf:type>  <process:AtomicProcess>              [Cut] 
+     t1s  <dArceoService:performedBy>  s1s                 [Cut]
+     s1s  <service:describedBy>  p1s                       [Cut]
+     p1s  <rdf:type>  <process:AtomicProcess>              [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1p, s2 != s1s] [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-3If
+
+     t1  <dArceoService:subsequentTransformation>  t1s     
+     t1  <dArceoService:previousTransformation>  t1p       [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1, t2 != t1p, t2 != t1s] [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1p  <dArceoService:performedBy>  s1p                 [Cut]
+     s1p  <service:describedBy>  p1p                       [Cut]
+     p1p  <rdf:type>  <process:AtomicProcess>              [Cut] 
+     t1s  <dArceoService:performedBy>  s1s                 [Cut]
+     s1s  <service:describedBy>  p1s                       [Cut]
+     p1s  <rdf:type>  <process:AtomicProcess>              [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1p, s2 != s1s] [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-3Ig
+
+     t1p  <dArceoService:performedBy>  s1p                 
+     t1  <dArceoService:previousTransformation>  t1p       [Cut] 
+     t1  <dArceoService:subsequentTransformation>  t1s     [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1, t2 != t1p, t2 != t1s] [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     s1p  <service:describedBy>  p1p                       [Cut]
+     p1p  <rdf:type>  <process:AtomicProcess>              [Cut] 
+     t1s  <dArceoService:performedBy>  s1s                 [Cut]
+     s1s  <service:describedBy>  p1s                       [Cut]
+     p1s  <rdf:type>  <process:AtomicProcess>              [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1p, s2 != s1s] [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-3Ih
+
+     t1s  <dArceoService:performedBy>  s1s                 
+     t1  <dArceoService:subsequentTransformation>  t1s     [Cut]
+     t1  <dArceoService:previousTransformation>  t1p       [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1, t2 != t1p, t2 != t1s] [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1p  <dArceoService:performedBy>  s1p                 [Cut]
+     s1p  <service:describedBy>  p1p                       [Cut]
+     p1p  <rdf:type>  <process:AtomicProcess>              [Cut] 
+     s1s  <service:describedBy>  p1s                       [Cut]
+     p1s  <rdf:type>  <process:AtomicProcess>              [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1p, s2 != s1s] [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-3Ii
+
+     s1p  <service:describedBy>  p1p                       
+     p1p  <rdf:type>  <process:AtomicProcess>              [Cut]
+     t1p  <dArceoService:performedBy>  s1p                 [Cut]
+     t1  <dArceoService:previousTransformation>  t1p       [Cut] 
+     t1  <dArceoService:subsequentTransformation>  t1s     [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1, t2 != t1p, t2 != t1s] [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1s  <dArceoService:performedBy>  s1s                 [Cut]
+     s1s  <service:describedBy>  p1s                       [Cut]
+     p1s  <rdf:type>  <process:AtomicProcess>              [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1p, s2 != s1s] [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-3Ij
+
+     p1p  <rdf:type>  <process:AtomicProcess>              
+     s1p  <service:describedBy>  p1p                       [Cut]
+     t1p  <dArceoService:performedBy>  s1p                 [Cut]
+     t1  <dArceoService:previousTransformation>  t1p       [Cut] 
+     t1  <dArceoService:subsequentTransformation>  t1s     [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1, t2 != t1p, t2 != t1s] [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1s  <dArceoService:performedBy>  s1s                 [Cut]
+     s1s  <service:describedBy>  p1s                       [Cut]
+     p1s  <rdf:type>  <process:AtomicProcess>              [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1p, s2 != s1s] [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-3Ik
+
+     s1s  <service:describedBy>  p1s                       
+     p1s  <rdf:type>  <process:AtomicProcess>              [Cut]
+     t1s  <dArceoService:performedBy>  s1s                 [Cut]
+     t1  <dArceoService:subsequentTransformation>  t1s     [Cut]
+     t1  <dArceoService:previousTransformation>  t1p       [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1, t2 != t1p, t2 != t1s] [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1p  <dArceoService:performedBy>  s1p                 [Cut]
+     s1p  <service:describedBy>  p1p                       [Cut]
+     p1p  <rdf:type>  <process:AtomicProcess>              [Cut] 
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1p, s2 != s1s] [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-3Il
+
+     p1s  <rdf:type>  <process:AtomicProcess>              
+     s1s  <service:describedBy>  p1s                       [Cut]
+     t1s  <dArceoService:performedBy>  s1s                 [Cut]
+     t1  <dArceoService:subsequentTransformation>  t1s     [Cut]
+     t1  <dArceoService:previousTransformation>  t1p       [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1, t2 != t1p, t2 != t1s] [Cut]
+     t1  <dArceoService:fileOut>  b                        [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1p  <dArceoService:performedBy>  s1p                 [Cut]
+     s1p  <service:describedBy>  p1p                       [Cut]
+     p1p  <rdf:type>  <process:AtomicProcess>              [Cut] 
+     t2  <dArceoService:performedBy>  s2                   [Constraint s2 != s1p, s2 != s1s] [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+     
+Id: darceo-file-transf-path-3Im
+
+     t2  <dArceoService:performedBy>  s2 
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1  <dArceoService:fileOut>  b                        [Constraint t1 != t2] [Cut]
+     t2  <dArceoService:fileIn>  b                         [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t1  <dArceoService:previousTransformation>  t1p       [Constraint t1p != t2] [Cut]
+     t1  <dArceoService:subsequentTransformation>  t1s     [Constraint t1s != t2] [Cut]
+     t1p  <dArceoService:performedBy>  s1p                 [Constraint s1p != s2] [Cut]
+     s1p  <service:describedBy>  p1p                       [Cut]
+     p1p  <rdf:type>  <process:AtomicProcess>              [Cut] 
+     t1s  <dArceoService:performedBy>  s1s                 [Constraint s1s != s2][Cut]
+     s1s  <service:describedBy>  p1s                       [Cut]
+     p1s  <rdf:type>  <process:AtomicProcess>              [Cut]
+     s2  <service:describedBy>  p2                         [Cut]
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-3In
+
+     s2  <service:describedBy>  p2                         
+     p2  <rdf:type>  <process:AtomicProcess>               [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1  <dArceoService:fileOut>  b                        [Constraint t1 != t2] [Cut]
+     t2  <dArceoService:fileIn>  b                         [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t1  <dArceoService:previousTransformation>  t1p       [Constraint t1p != t2] [Cut]
+     t1  <dArceoService:subsequentTransformation>  t1s     [Constraint t1s != t2] [Cut]
+     t1p  <dArceoService:performedBy>  s1p                 [Constraint s1p != s2] [Cut]
+     s1p  <service:describedBy>  p1p                       [Cut]
+     p1p  <rdf:type>  <process:AtomicProcess>              [Cut] 
+     t1s  <dArceoService:performedBy>  s1s                 [Constraint s1s != s2][Cut]
+     s1s  <service:describedBy>  p1s                       [Cut]
+     p1s  <rdf:type>  <process:AtomicProcess>              [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+Id: darceo-file-transf-path-3Io
+
+     p2  <rdf:type>  <process:AtomicProcess>               
+     s2  <service:describedBy>  p2                         [Cut]
+     t2  <dArceoService:performedBy>  s2                   [Cut]
+     t2  <dArceoService:fileOut>  c                        [Cut]
+     t1  <dArceoService:fileOut>  b                        [Constraint t1 != t2] [Cut]
+     t2  <dArceoService:fileIn>  b                         [Cut]
+     t1  <dArceoService:fileIn>  a                         [Cut]
+     t1  <dArceoService:previousTransformation>  t1p       [Constraint t1p != t2] [Cut]
+     t1  <dArceoService:subsequentTransformation>  t1s     [Constraint t1s != t2] [Cut]
+     t1p  <dArceoService:performedBy>  s1p                 [Constraint s1p != s2] [Cut]
+     s1p  <service:describedBy>  p1p                       [Cut]
+     p1p  <rdf:type>  <process:AtomicProcess>              [Cut] 
+     t1s  <dArceoService:performedBy>  s1s                 [Constraint s1s != s2][Cut]
+     s1s  <service:describedBy>  p1s                       [Cut]
+     p1s  <rdf:type>  <process:AtomicProcess>              [Cut]
+    -------------------------------
+     t  <rdf:type>  <dArceoService:FileTransformation>
+     p  <rdf:type>  <process:CompositeProcess>
+     t  <dArceoService:performedBy>  s
+     s  <service:describedBy>  p
+     t  <dArceoService:fileIn>  a
+     t  <dArceoService:fileOut>  c
+     t  <dArceoService:previousTransformation>  t1
+     t  <dArceoService:subsequentTransformation>  t2
+
+
+//  Id: darceo-file-transf-path-3II
+
+// This rule superfluous since darceo-file-transf-path-3I generates all cases!
+
+//     t1  <dArceoService:fileIn>  a
+//     t2  <dArceoService:fileIn>  b                         [Constraint t2 != t1]
+//     t1  <dArceoService:fileOut>  b                        
+//     t2  <dArceoService:fileOut>  c
+//     t2  <dArceoService:previousTransformation>  t2p       [Constraint t2p != t1]
+//     t2  <dArceoService:subsequentTransformation>  t2s     [Constraint t2s != t1]
+//     t1  <dArceoService:performedBy>  s1
+//     s1  <service:describedBy>  p1
+//     p1  <rdf:type>  <process:AtomicProcess>
+//     t2p  <dArceoService:performedBy>  s2p                 [Constraint s2p != s1]
+//     s2p  <service:describedBy>  p2p
+//     p2p  <rdf:type>  <process:AtomicProcess>
+//     t2s  <dArceoService:performedBy>  s2s                 [Constraint s2s != s1]
+//     s2s  <service:describedBy>  p2s
+//     p2s  <rdf:type>  <process:AtomicProcess>
+//    -------------------------------
+//     t  <rdf:type>  <dArceoService:FileTransformation>
+//     p  <rdf:type>  <process:CompositeProcess>
+//     t  <dArceoService:performedBy>  s
+//     s  <service:describedBy>  p
+//     t  <dArceoService:fileIn>  a
+//     t  <dArceoService:fileOut>  c
+//     t  <dArceoService:previousTransformation>  t1
+//     t  <dArceoService:subsequentTransformation>  t2
+
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="content-type" content="text/xhtml; charset=UTF-8" />
+</h:head>
+<h:body>
+	<ui:fragment rendered="#{requestScope.status == 'in progress'}">
+		<script type="text/javascript">
+			parent.downloadWait('#{requestScope.objectId}', '#{requestScope.version}', '#{requestScope.requestId}');
+		</script>
+	</ui:fragment>
+
+	<ui:fragment rendered="#{requestScope.status == 'error'}">
+		<script type="text/javascript">
+			parent.downloadError();
+		</script>
+	</ui:fragment>
+</h:body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title>
+			<h:outputText rendered="#{groupBean.id != null}" value="#{msg['group.modify']}" />
+			<h:outputText rendered="#{groupBean.id == null}" value="#{msg['group.add']}" />
+		</title>
+	</h:head>
+	<h:body>
+		<f:metadata>
+			<f:viewParam id="group_id" name="id" value="#{groupBean.id}" />
+			<f:event type="preRenderView" listener="#{groupBean.init}" />
+		</f:metadata>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+				<h:form id="groupForm">
+					<h:panelGrid columns="3"
+						headerClass="list-header"
+						columnClasses="form-labels"
+						styleClass="form-background"
+						title="group">
+
+						<f:facet name="header">
+							<h:outputText rendered="#{groupBean.id != null}" value="#{msg['group.modify']}" />
+							<h:outputText rendered="#{groupBean.id == null}" value="#{msg['group.add']}" />
+						</f:facet>
+
+						<h:outputLabel for="groupname" styleClass="form-label">#{msg['group.name']}:</h:outputLabel>
+						<h:inputText id="groupname" value="#{groupBean.groupname}" required="true" />
+						<h:message styleClass="validationMessage" for="groupname" />
+
+						<h:outputLabel for="creategroups" styleClass="form-label">#{msg['group.create.groups']}:</h:outputLabel>
+						<h:selectBooleanCheckbox id="creategroups" value="#{groupBean.groupsCreatable}" required="true" />
+						<h:message styleClass="validationMessage" for="creategroups" />
+						
+						<h:outputLabel for="createobjects" styleClass="form-label">#{msg['group.create.objects']}:</h:outputLabel>
+						<h:selectBooleanCheckbox id="createobjects" value="#{groupBean.objectsCreatable}" required="true" />
+						<h:message styleClass="validationMessage" for="createobjects" />
+						
+						<h:link value="#{msg['back']}" outcome="groups.xhtml" />
+						<h:panelGroup>
+							<h:commandButton type="submit" value="#{msg['save']}" action="#{groupBean.modifyGroup()}" rendered="#{groupBean.id != null}" />
+							<h:commandButton type="submit" value="#{msg['save']}" action="#{groupBean.createGroup()}" rendered="#{groupBean.id == null}" />
+							<h:commandButton type="reset" value="#{msg['reset']}" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

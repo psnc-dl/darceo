@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connector xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/connector_1_6.xsd"
+	version="1.6">
+
+	<description>SFTP Data Storage Resource Adapter</description>
+	<display-name>SFTP JCA Adapter</display-name>
+	<vendor-name>Poznan Supercomputing and Networking Center</vendor-name>
+	<eis-type></eis-type>
+	<resourceadapter-version>1.0</resourceadapter-version>
+
+	<resourceadapter>
+		<resourceadapter-class>pl.psnc.synat.dsa.sftp.SftpDataStorageResourceAdapter</resourceadapter-class>
+
+		<outbound-resourceadapter>
+			<connection-definition>
+				<managedconnectionfactory-class>
+					pl.psnc.synat.dsa.sftp.SftpDataStorageManagedConnectionFactory</managedconnectionfactory-class>
+				<config-property>
+					<description>DNS hostname or IP addres of data storage</description>
+					<config-property-name>host</config-property-name>
+					<config-property-type>java.lang.String</config-property-type>
+					<config-property-value>${config.host}</config-property-value>
+				</config-property>
+				<config-property>
+					<description>Port on which SFTP server listens</description>
+					<config-property-name>port</config-property-name>
+					<config-property-type>java.lang.Integer</config-property-type>
+					<config-property-value>${config.port}</config-property-value>
+				</config-property>
+				<config-property>
+					<description>Type of the public key of data storage</description>
+					<config-property-name>publicKeyType</config-property-name>
+					<config-property-type>java.lang.String</config-property-type>
+					<config-property-value>${config.publicKeyType}</config-property-value>
+				</config-property>
+				<config-property>
+					<description>Public key of data storage</description>
+					<config-property-name>publicKey</config-property-name>
+					<config-property-type>java.lang.String</config-property-type>
+					<config-property-value>${config.publicKey}</config-property-value>
+				</config-property>
+				<connectionfactory-interface>
+					pl.psnc.synat.dsa.DataStorageConnectionFactory</connectionfactory-interface>
+				<connectionfactory-impl-class>
+					pl.psnc.synat.dsa.sftp.SftpDataStorageConnectionFactory</connectionfactory-impl-class>
+				<connection-interface>pl.psnc.synat.dsa.DataStorageConnection</connection-interface>
+				<connection-impl-class>
+					pl.psnc.synat.dsa.sftp.SftpDataStorageConnection</connection-impl-class>
+			</connection-definition>
+
+			<transaction-support>XATransaction</transaction-support>
+			<reauthentication-support>false</reauthentication-support>
+		</outbound-resourceadapter>
+
+		<inbound-resourceadapter />
+
+	</resourceadapter>
+</connector>

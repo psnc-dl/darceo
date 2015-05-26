@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY dArceoUnit "http://darceo.psnc.pl/ontologies/dArceoUnit.owl#" >    
+]>
+
+
+<rdf:RDF xmlns="http://darceo.psnc.pl/ontologies/dArceoText.owl#"
+     xml:base="http://darceo.psnc.pl/ontologies/dArceoText.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:dArceoUnit="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://darceo.psnc.pl/ontologies/dArceoText.owl">
+    	<owl:imports rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl"/>
+    </owl:Ontology>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoText.owl#Linebreak"/>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoText.owl#LinebreakBundle">
+    	<dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoText.owl#Linebreak"/>
+    </owl:Class>
+	
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoText.owl#Charset"/>
+
+	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoText.owl#CharsetBundle">
+		<dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoText.owl#Charset"/>
+    </owl:Class>	 
+
+	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoText.owl#Language"/>
+
+	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoText.owl#LanguageBundle">
+		<dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoText.owl#Language"/>
+	</owl:Class>
+
+</rdf:RDF>

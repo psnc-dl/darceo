@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title><h:outputText value="#{msg['plan.migration_plans']}" /></title>
+	</h:head>
+	<h:body>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+				<h:form id="plans-form">
+
+					<h:panelGroup id="plans-panel">
+
+						<h:panelGroup id="delete-error-message" rendered="#{migrationPlansBean.deleteErrorMessage != 'notSet'}">
+							<script type="text/javascript">
+								
+								var hideMessage = function(){
+									$("#deleteErrorMessage").fadeOut("slow");
+								}
+							
+								$().ready(function(){
+									setTimeout(hideMessage,5000);
+								});
+								
+							</script>
+							<div id="deleteErrorMessage">
+								<h:outputText value="#{msg['plans.error.'.concat(migrationPlansBean.deleteErrorMessage)]}" />
+								<h:graphicImage value="/resources/images/exclamation.png" styleClass="errorMsgIcon" />
+							</div>
+						</h:panelGroup>
+
+						<rich:dataTable styleClass="plans-table" id="plans-table" var="migrationPlan"
+							value="#{migrationPlansBean.migrationPlans}">
+							<f:facet name="header">
+								<h:outputText value="#{msg['plans.table.title']}" />
+							</f:facet>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['plans.column.id']}" />
+								</f:facet>
+								<h:outputText value="#{migrationPlan.id}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<a4j:poll id="migrationPlanStatusPoll" interval="5000" enabled="#{migrationPlansBean.processingPlans}"
+										render="migrationPlanStatus,migrationPlanStatusPoll,migrationPlanOperations" execute="@this" />
+									<h:outputText value="#{msg['plans.column.status']}" />
+								</f:facet>
+								<a4j:outputPanel id="migrationPlanStatus">
+									<h:outputText value="#{msg['plans.column.status.'.concat(migrationPlan.status)]}"
+										rendered="#{migrationPlan.status != 'ERROR'}" />
+									<h:outputText style="color:#ff0000;" value="#{msg['plans.column.status.'.concat(migrationPlan.status)]}"
+										rendered="#{migrationPlan.status == 'ERROR'}" />
+									<h:commandLink id="errorIcon" rendered="#{migrationPlan.status == 'ERROR'}">
+										<h:graphicImage value="/resources/images/exclamation.png" />
+										<rich:tooltip layout="block">
+											<h:outputText value="#{msg['plans.column.status.error.type.'.concat(migrationPlan.errorLog.type)]}: " />
+											<!-- TODO komunikat w zaleznosci od statusu bledu z wykorzystaniem ponizszych parametrow -->
+											<h:outputText value="#{migrationPlan.errorLog.errorMessageParams}" />
+										</rich:tooltip>
+									</h:commandLink>
+								</a4j:outputPanel>
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['plans.column.xml_file']}" />
+								</f:facet>
+								<h:commandLink action="#{migrationPlansBean.downloadXML(migrationPlan)}"
+									title="#{msg['plans.column.xml_file.download']}">
+									<h:graphicImage value="/resources/images/disk.png" />
+								</h:commandLink>
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['plans.column.input_format']}" />
+								</f:facet>
+								<h:outputText value="UDFR IRI: " />
+								<a href="#{migrationPlan.inputFileFormat.udfrIri}" target="_blank"> #{migrationPlan.inputFileFormat.udfrIri}
+								</a>
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['plans.column.output_format']}" />
+								</f:facet>
+								<h:outputText value="UDFR IRI: " />
+								<a href="#{migrationPlan.outputFileFormat.udfrIri}" target="_blank">
+									#{migrationPlan.outputFileFormat.udfrIri} </a>
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['plans.column.operations']}" />
+								</f:facet>
+								<a4j:outputPanel id="migrationPlanOperations">
+
+									<!-- start action button -->
+									<h:commandLink title="#{msg['plans.column.operations.start']}"
+										rendered="#{migrationPlansBean.isStartable(migrationPlan)}">
+										<h:graphicImage value="/resources/images/control_play_blue.png" />
+										<rich:componentControl target="startPlanPopup" operation="show" />
+									</h:commandLink>
+
+									<!-- start question popup -->
+									<rich:popupPanel id="startPlanPopup" modal="true" domElementAttachment="form" autosized="true">
+
+										<f:facet name="header">
+											<h:outputText value="#{msg['plans.column.operations']}" />
+										</f:facet>
+
+										<f:facet name="controls">
+											<h:outputLink value="#" onclick="#{rich:component('startPlanPopup')}.hide(); return false;">
+												<h:graphicImage value="/resources/images/close_icon.png" />
+											</h:outputLink>
+										</f:facet>
+										<p>#{msg['plans.column.operations.sure_you_wanna_start']}</p>
+
+										<h:commandButton action="#{migrationPlansBean.startAction(migrationPlan)}" value="#{msg['yes']}" type="submit"
+											immediate="true" />
+										<h:commandButton value="#{msg['cancel']}" onclick="#{rich:component('startPlanPopup')}.hide(); return false;"
+											type="button" />
+									</rich:popupPanel>
+
+									<h:graphicImage title="#{msg['plans.column.operations.start']}" value="/resources/images/control_play.png"
+										rendered="#{migrationPlansBean.isStartable(migrationPlan) != true}" />
+
+									<!-- pause action button -->
+									<h:commandLink title="#{msg['plans.column.operations.pause']}"
+										action="#{migrationPlansBean.pauseAction(migrationPlan)}"
+										rendered="#{migrationPlansBean.isPausable(migrationPlan)}">
+										<h:graphicImage value="/resources/images/control_pause_blue.png" />
+									</h:commandLink>
+									<h:graphicImage title="#{msg['plans.column.operations.pause']}" value="/resources/images/control_pause.png"
+										rendered="#{migrationPlansBean.isPausable(migrationPlan) != true}" />
+
+									<!-- finish action button -->
+									<h:commandLink title="#{msg['plans.column.operations.finish']}"
+										rendered="#{migrationPlansBean.isFinishable(migrationPlan)}">
+										<h:graphicImage value="/resources/images/control_end_blue.png" />
+										<rich:componentControl target="finishPlanPopup" operation="show" />
+									</h:commandLink>
+
+									<!-- finish question popup -->
+									<rich:popupPanel id="finishPlanPopup" modal="true" domElementAttachment="form" autosized="true">
+
+										<f:facet name="header">
+											<h:outputText value="#{msg['plans.column.operations']}" />
+										</f:facet>
+
+										<f:facet name="controls">
+											<h:outputLink value="#" onclick="#{rich:component('finishPlanPopup')}.hide(); return false;">
+												<h:graphicImage value="/resources/images/close_icon.png" />
+											</h:outputLink>
+										</f:facet>
+										<p>#{msg['plans.column.operations.sure_you_wanna_finish']}</p>
+										<h:commandButton action="#{migrationPlansBean.finishAction(migrationPlan)}" value="#{msg['yes']}"
+											type="submit" immediate="true" />
+										<h:commandButton value="#{msg['cancel']}" onclick="#{rich:component('finishPlanPopup')}.hide(); return false;"
+											type="button" />
+									</rich:popupPanel>
+
+									<h:graphicImage title="#{msg['plans.column.operations.finish']}" value="/resources/images/control_end.png"
+										rendered="#{migrationPlansBean.isFinishable(migrationPlan) != true}" />
+
+								</a4j:outputPanel>
+							</rich:column>
+
+							<!-- column which contains panel of migration items -->
+							<rich:column>
+
+								<f:facet name="header">
+									<h:outputText value="#{msg['plans.column.migration_items']}" />
+								</f:facet>
+
+								<!-- show migration items log -->
+								<h:commandLink value="#{msg['plans.column.migration_items.show']}"
+									action="#{migrationPlansBean.viewMigrationItems(migrationPlan)}">
+								</h:commandLink>
+
+							</rich:column>
+
+							<!-- panel of migration hops -->
+							<rich:column>
+								<f:facet name="header">
+									<h:outputText value="#{msg['plans.column.migration_hops']}" />
+								</f:facet>
+
+								<!-- show migration items log -->
+								<h:link outcome="paths" value="#{msg['plans.column.migration_hops.show']}">
+									<f:param name="planId" value="#{migrationPlan.id}" />
+								</h:link>
+
+							</rich:column>
+
+							<rich:column>
+								<h:commandLink title="#{msg['plans.column.delete']}">
+									<h:graphicImage value="/resources/images/delete_icon.png" />
+									<rich:componentControl target="deleteQuestionPopup" operation="show" />
+								</h:commandLink>
+								<rich:popupPanel id="deleteQuestionPopup" modal="true" autosized="true" domElementAttachment="form">
+									<f:facet name="header">
+										<h:outputText value="#{msg['plans.column.delete.popup_title']}" />
+									</f:facet>
+									<p>#{msg['plans.column.delete.certain']}</p>
+									<h:commandButton action="#{migrationPlansBean.deleteAction(migrationPlan)}" value="#{msg['yes']}" type="submit"
+										immediate="true" />
+									<h:commandButton value="#{msg['cancel']}"
+										onclick="#{rich:component('deleteQuestionPopup')}.hide(); return false;" type="button" />
+								</rich:popupPanel>
+							</rich:column>
+
+						</rich:dataTable>
+
+						<ui:fragment rendered="#{migrationPlansBean.migrationPlans.size() == 0}">
+							<div id="plans-not-found-box">#{msg['plans.table.no_plans_found']}</div>
+						</ui:fragment>
+					</h:panelGroup>
+
+
+					<h:panelGroup id="new-plans">
+						<rich:fileUpload id="add-plans" styleClass="add-plans-upload" addLabel="#{msg['plan.add_migration_plan']}"
+							uploadLabel="#{msg['plan.upload_plans']}" clearLabel="#{msg['plan.clear']}" deleteLabel="#{msg['plan.delete']}"
+							doneLabel="#{msg['plan.done']}" clearAllLabel="#{msg['plan.clear_all']}" maxFilesQuantity="5"
+							immediateUpload="false" fileUploadListener="#{migrationPlansBean.uploadPlanListener}" noDuplicate="true"
+							acceptedTypes="xml" render="plans-panel, message">
+						</rich:fileUpload>
+						<h:message id="message" for="add-plans" styleClass="validationMessage" />
+					</h:panelGroup>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

@@ -1,0 +1,19 @@
+PREFIX profile:<http://www.daml.org/services/owl-s/1.2/Profile.owl#>
+PREFIX process:<http://www.daml.org/services/owl-s/1.2/Process.owl#>
+PREFIX dArceoProcess:<http://darceo.psnc.pl/ontologies/dArceoProcess.owl#>
+SELECT ?inFormat ?outFormat ?outClass
+FROM <%s>
+WHERE {
+  ?profile profile:serviceName ?name;
+    profile:hasResult ?result.
+  FILTER (?name = "%s").
+  ?result process:inCondition ?rules;
+    process:withOutput ?binding.
+  ?rules dArceoProcess:inputFileCondition ?inRules.
+  ?inRules dArceoProcess:inputFileFormat ?inFormat.
+  OPTIONAL {
+    ?rules dArceoProcess:inputOutputFormatCondition ?outRules.
+    ?outRules dArceoProcess:outputFormat ?outFormat.
+  }
+  ?binding process:valueType ?outClass
+}

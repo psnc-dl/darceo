@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title>#{msg['groups']}</title>
+	</h:head>
+	<h:body>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+				<h:form id="usersList">
+					<h:link id="add" outcome="group.xhtml" value="#{msg['groups.add']}" class="actionLink" rendered="#{groupsBean.hasCreatePermission()}"/>
+					<rich:dataTable id="groups" rowKeyVar="index" var="group"
+						value="#{groupsBean.groups}" captionClass="list-caption"
+						columnClasses="list-column list-column-odd, list-column list-column-even"
+						footerClass="list-footer" headerClass="list-header"
+						rowClasses="list-row list-row-even, list-row list-row-odd"
+						styleClass="list-background">
+
+						<rich:column>
+							<f:facet name="header">#{msg['groups.table.name']}</f:facet>
+							#{group.groupname}
+						</rich:column>
+
+						<rich:column>
+							<f:facet name="header">#{msg['groups.table.action']}</f:facet>
+
+							<h:link outcome="group.xhtml" includeViewParams="true" value="#{msg['groups.table.action.modify']}" class="actionLink" rendered="#{groupsBean.hasPermission(group.id, 'UPDATE')}">
+								<f:param name="id" value="#{group.id}" />
+							</h:link>
+
+							<h:commandLink id="delete" value="#{msg['groups.table.action.delete']}" class="actionLink"  rendered="#{groupsBean.hasPermission(group.id, 'UPDATE')}">
+								<rich:componentControl target="delete-popup" operation="show" />
+							</h:commandLink>
+							<rich:popupPanel id="delete-popup" modal="false" autosized="true" resizeable="false">
+								<f:facet name="header">#{msg['confirm']}</f:facet>
+								<f:facet name="controls">
+									<h:outputLink value="#" onclick="#{rich:component('delete-popup')}.hide(); return false;">X</h:outputLink>
+								</f:facet>
+								#{msg['groups.table.action.delete.confirm']}
+								<p>
+									<h:commandButton value="#{msg['yes']}" action="#{groupsBean.deleteGroup(group.id)}" onclick="#{rich:component('delete-popup')}.hide()"/>
+									<h:commandButton value="#{msg['no']}" onclick="#{rich:component('delete-popup')}.hide()"/>
+								</p>
+							</rich:popupPanel>
+
+							<h:link outcome="groupMembership.xhtml" includeViewParams="true" value="#{msg['groups.table.action.membership']}" class="actionLink" rendered="#{groupsBean.hasPermission(group.id, 'UPDATE')}">
+								<f:param name="id" value="#{group.id}" />
+							</h:link>
+
+							<h:link outcome="groupPermissions.xhtml" includeViewParams="true" value="#{msg['groups.table.action.permissions']}" class="actionLink" rendered="#{groupsBean.hasPermission(group.id, 'GRANT')}">
+								<f:param name="id" value="#{group.id}" />
+							</h:link>
+
+						</rich:column>
+
+					</rich:dataTable>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

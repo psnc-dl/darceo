@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://wrdz.synat.psnc.pl/ru/services" xmlns="http://wrdz.synat.psnc.pl/ru/services"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="0.0.1">
+
+	<xs:include schemaLocation="operation.xsd" />
+
+	<xs:element name="Operations">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="time" type="xs:dateTime" maxOccurs="1"
+					minOccurs="1" />
+				<xs:element name="operations" type="Operation" maxOccurs="unbounded"
+					minOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

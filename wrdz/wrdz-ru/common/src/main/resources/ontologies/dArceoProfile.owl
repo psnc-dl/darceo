@@ -1,0 +1,437 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY profile "http://www.daml.org/services/owl-s/1.2/Profile.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#"
+     xml:base="http://darceo.psnc.pl/ontologies/dArceoProfile.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:profile="http://www.daml.org/services/owl-s/1.2/Profile.owl#">
+    <owl:Ontology rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl">
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
+    </owl:Ontology>
+    
+   
+    <owl:DatatypeProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#value">
+        <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <rdfs:range rdf:resource="&xsd;positiveInteger"/>
+    </owl:DatatypeProperty>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#AdvancedDataDeliveryProfile">
+        <rdfs:subClassOf rdf:resource="&profile;Profile"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&profile;serviceParameter"/>
+                <owl:someValuesFrom rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#ExecutionCost"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&profile;serviceClassification"/>
+                <owl:hasValue rdf:datatype="&xsd;anyURI">http://darceo.psnc.pl/ontologies/dArceoProfile.owl#AdvancedDataDeliveryService</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost">
+		<!--
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_01"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_02"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_03"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_04"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_05"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_06"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_07"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_08"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_09"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_10"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_11"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_12"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_13"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_14"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_15"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_16"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_17"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_18"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_19"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_20"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_21"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_22"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_23"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_24"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_25"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_26"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_27"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_28"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_29"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_30"/>
+					<rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_31"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_32"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_33"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_34"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_35"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_36"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_37"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_38"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_39"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_40"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_41"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_42"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_43"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_44"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_45"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_46"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_47"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_48"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_49"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_50"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+		-->
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#value"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#DArceoService">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#DataConversionService"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#AdvancedDataDeliveryService"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#DataMigrationService"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:comment rdf:datatype="&xsd;string">Class for all types of dArceoServices. Only instances of this class can be pointed as a service classification.</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#DataConversionProfile">
+        <rdfs:subClassOf rdf:resource="&profile;Profile"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&profile;serviceClassification"/>
+                <owl:hasValue rdf:datatype="&xsd;anyURI">http://darceo.psnc.pl/ontologies/dArceoProfile.owl#DataConversionService</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&profile;serviceParameter"/>
+                <owl:someValuesFrom rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#ExecutionCost"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#DataMigrationProfile">
+        <rdfs:subClassOf rdf:resource="&profile;Profile"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&profile;serviceParameter"/>
+                <owl:someValuesFrom rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#ExecutionCost"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&profile;serviceClassification"/>
+                <owl:hasValue rdf:datatype="&xsd;anyURI">http://darceo.psnc.pl/ontologies/dArceoProfile.owl#DataMigrationService</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#ExecutionCost">
+        <rdfs:subClassOf rdf:resource="&profile;ServiceParameter"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&profile;sParameter"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&profile;serviceParameterName"/>
+                <owl:hasValue rdf:datatype="&xsd;string">execution cost</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#AdvancedDataDeliveryService">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#DArceoService"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_01">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">1</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_02">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">2</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_03">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">3</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_04">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">4</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_05">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">5</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_06">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">6</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_07">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">7</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_08">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">8</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_09">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">9</value>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_10">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">10</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_11">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">11</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_12">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">12</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_13">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">13</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_14">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">14</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_15">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">15</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_16">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">16</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_17">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">17</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_18">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">18</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_19">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">19</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_20">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">20</value>
+    </owl:NamedIndividual>	
+	
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_21">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">21</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_22">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">22</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_23">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">23</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_24">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">24</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_25">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">25</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_26">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">26</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_27">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">27</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_28">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">28</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_29">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">29</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_30">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">30</value>
+    </owl:NamedIndividual>	
+	
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_31">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">31</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_32">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">32</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_33">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">33</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_34">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">34</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_35">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">35</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_36">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">36</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_37">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">37</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_38">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">38</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_39">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">39</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_40">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">40</value>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_41">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">41</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_42">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">42</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_43">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">43</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_44">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">44</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_45">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">45</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_46">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">46</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_47">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">47</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_48">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">48</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_49">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">49</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost_50">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#Cost"/>
+        <value rdf:datatype="&xsd;positiveInteger">50</value>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#DataConversionService">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#DArceoService"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#DataMigrationService">
+        <rdf:type rdf:resource="http://darceo.psnc.pl/ontologies/dArceoProfile.owl#DArceoService"/>
+    </owl:NamedIndividual>
+</rdf:RDF>

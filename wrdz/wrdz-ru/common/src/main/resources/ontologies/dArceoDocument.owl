@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY dArceoUnit "http://darceo.psnc.pl/ontologies/dArceoUnit.owl#" >   
+]>
+
+
+<rdf:RDF xmlns="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#"
+     xml:base="http://darceo.psnc.pl/ontologies/dArceoDocument.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:dArceoUnit="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://darceo.psnc.pl/ontologies/dArceoDocument.owl">
+    	<owl:imports rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl"/>
+    </owl:Ontology>
+	
+	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#PageNumber"/>
+	
+	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#PageNumberBundle">
+		<dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#PageNumber"/>
+    </owl:Class>
+	
+	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#InitialPageNumber"/>
+	
+	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#InitialPageNumberBundle">
+		<dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#InitialPageNumber"/>
+    </owl:Class>
+	
+	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#FinalPageNumber"/>	
+   	
+   	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#FinalPageNumberBundle">	
+		<dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#FinalPageNumber"/>
+    </owl:Class>
+     	
+	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#PageRange" >
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#initialPageNumber"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#InitialPageNumber"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#finalPageNumber"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#FinalPageNumber"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+	
+	<!-- from OWL-S specification: "further work may be needed to establish conventions for serializing arbitrary OWL instances" -->
+	
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#initialPageNumber">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#PageRange"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#InitialPageNumber"/>
+    </owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#finalPageNumber">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#PageRange"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#FinalPageNumber"/>
+    </owl:ObjectProperty>
+	
+	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#PageRangeBundle">
+		<dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoDocument.owl#PageRange"/>
+    </owl:Class>		
+
+</rdf:RDF>

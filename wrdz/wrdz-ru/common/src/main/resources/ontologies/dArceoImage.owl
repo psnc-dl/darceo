@@ -1,0 +1,1077 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY dArceoUnit "http://darceo.psnc.pl/ontologies/dArceoUnit.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://darceo.psnc.pl/ontologies/dArceoImage.owl#"
+     xml:base="http://darceo.psnc.pl/ontologies/dArceoImage.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:dArceoUnit="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl">
+        <owl:imports rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl"/>
+    </owl:Ontology>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BitsPerSample"/>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BitsPerSampleBundle">
+    	<dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BitsPerSample"/>
+    </owl:Class>
+        
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorProfile"/>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorProfileBundle">
+    	<dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorProfile"/>
+    </owl:Class>    
+        
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorSpace"/>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorSpaceBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorSpace"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Color" >
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#colorProfile"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorProfile"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#colorSpace"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorSpace"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Color"/>
+    </owl:Class> 
+	
+	<!-- from OWL-S specification: "further work may be needed to establish conventions for serializing arbitrary OWL instances" -->
+	
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#colorProfile">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Color"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorProfile"/>
+    </owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#colorSpace">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Color"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ColorSpace"/>
+    </owl:ObjectProperty>
+        
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionRatio"/>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionRatioBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionRatio"/>
+    </owl:Class>     
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionScheme"/>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionSchemeBundle">
+    	<dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionScheme"/>
+    </owl:Class>  
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Compression" >
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#compressionRatio"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionRatio"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#compressionScheme"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionScheme"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Compression"/>
+    </owl:Class> 
+    
+    <!-- from OWL-S specification: "further work may be needed to establish conventions for serializing arbitrary OWL instances" -->
+	
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#compressionRatio">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Compression"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionRatio"/>
+    </owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#compressionScheme">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Compression"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#CompressionScheme"/>
+    </owl:ObjectProperty>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Orientation"/>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#OrientationBundle">
+    	<dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Orientation"/>
+    </owl:Class> 
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#resolutionPerUnit">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthResolution"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightResolution"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="&dArceoUnit;Length"/>
+    </owl:ObjectProperty>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthResolution">
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#resolutionPerUnit"/>
+                <owl:onClass rdf:resource="&dArceoUnit;Length"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    	<rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#resolutionPerUnit"/>
+                        <owl:hasValue rdf:resource="&dArceoUnit;centimeter"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#resolutionPerUnit"/>
+                        <owl:hasValue rdf:resource="&dArceoUnit;inch"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthResolutionBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthResolution"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPPCm">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthResolution"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#resolutionPerUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;centimeter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPPCmBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthResolutionBundle"/>
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPPCm"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPPI">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthResolution"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#resolutionPerUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;inch"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>     
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPPIBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthResolutionBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPPI"/>
+    </owl:Class>
+        
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightResolution">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#resolutionPerUnit"/>
+                <owl:onClass rdf:resource="&dArceoUnit;Length"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    	<rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#resolutionPerUnit"/>
+                        <owl:hasValue rdf:resource="&dArceoUnit;centimeter"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#resolutionPerUnit"/>
+                        <owl:hasValue rdf:resource="&dArceoUnit;inch"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightResolutionBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightResolution"/>
+    </owl:Class>        
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPPCm">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightResolution"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#resolutionPerUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;centimeter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPPCmBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightResolutionBundle"/>  
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPPCm"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPPI">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightResolution"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#resolutionPerUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;inch"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+        
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPPIBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightResolutionBundle"/>      
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPPI"/>
+    </owl:Class>
+           
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Resolution">
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#widthResolution"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthResolution"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#heightResolution"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightResolution"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+	
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#widthResolution">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Resolution"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthResolution"/>
+    </owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#heightResolution">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Resolution"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightResolution"/>
+    </owl:ObjectProperty>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ResolutionBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Resolution"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#PPCm">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Resolution"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#widthResolution"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPPCm"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#heightResolution"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPPCm"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#PPCmBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ResolutionBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#PPCm"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#PPI">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Resolution"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#widthResolution"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPPI"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#heightResolution"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPPI"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#PPIBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#ResolutionBundle"/>      
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#PPI"/>
+    </owl:Class>
+    
+    
+    
+    
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Bottom"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Height"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Left"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Right"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Top"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Width"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="&dArceoUnit;Length"/>
+    </owl:ObjectProperty>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Bottom">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:onClass rdf:resource="&dArceoUnit;Length"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Bottom"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomCm">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Bottom"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;centimeter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomCmBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomBundle"/>   
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomCm"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomIn">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Bottom"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;inch"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomInBundle">
+    	<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomBundle"/>
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomIn"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomPx">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Bottom"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;pixel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomPxBundle">
+    	<rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomBundle"/>
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomPx"/>
+    </owl:Class>
+
+	<owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Top">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:onClass rdf:resource="&dArceoUnit;Length"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Top"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopCm">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Top"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;centimeter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopCmBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopCm"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopIn">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Top"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;inch"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopInBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopIn"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopPx">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Top"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;pixel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopPxBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopPx"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Left">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:onClass rdf:resource="&dArceoUnit;Length"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Left"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftCm">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Left"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;centimeter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftCmBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftCm"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftIn">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Left"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;inch"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftInBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftIn"/>
+    </owl:Class>    
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftPx">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Left"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;pixel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftPxBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftPx"/>
+    </owl:Class> 
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Right">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:onClass rdf:resource="&dArceoUnit;Length"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Right"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightCm">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Right"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;centimeter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightCmBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightCm"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightIn">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Right"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;inch"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightInBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightIn"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightPx">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Right"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;pixel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightPxBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightPx"/>
+    </owl:Class> 
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Width">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:onClass rdf:resource="&dArceoUnit;Length"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Width"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCm">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Width"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;centimeter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCmBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCm"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthIn">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Width"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;inch"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthInBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthIn"/>
+    </owl:Class> 
+        
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPx">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Width"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;pixel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPxBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPx"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Height">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:onClass rdf:resource="&dArceoUnit;Length"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Height"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCm">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Height"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;centimeter"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCmBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCm"/>
+    </owl:Class>     
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightIn">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Height"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;inch"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+     
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightInBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightIn"/>
+    </owl:Class> 
+      
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPx">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Height"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#lengthUnit"/>
+                <owl:hasValue rdf:resource="&dArceoUnit;pixel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPxBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPx"/>
+    </owl:Class> 
+
+
+
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#left">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinates"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Left"/>
+    </owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#right">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinates"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Right"/>
+    </owl:ObjectProperty>
+
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#width">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinates"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Width"/>
+    </owl:ObjectProperty>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinates">
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#left"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Left"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#right"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Right"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#width"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Width"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinates"/>
+    </owl:Class> 
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesCm">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinates"/>
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#left"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftCm"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#right"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightCm"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#width"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCm"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesCmBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesCm"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesIn">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinates"/>
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#left"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftIn"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#right"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightIn"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#width"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthIn"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesInBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesIn"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesPx">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinates"/>
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#left"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#LeftPx"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#right"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#RightPx"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#width"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthPx"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesPxBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesPx"/>
+    </owl:Class> 
+    
+    
+
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#bottom">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinates"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Bottom"/>
+    </owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#top">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinates"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Top"/>
+    </owl:ObjectProperty>
+
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#height">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinates"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Height"/>
+    </owl:ObjectProperty>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinates">
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#bottom"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Bottom"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#top"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Top"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#height"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#Height"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+ 
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinates"/>
+    </owl:Class> 
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesCm">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinates"/>
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#bottom"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomCm"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#top"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopCm"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#height"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCm"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesCmBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesBundle"/>     
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesCm"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesIn">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinates"/>
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#bottom"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomIn"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#top"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopIn"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#height"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightIn"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesInBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesBundle"/>     
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesIn"/>
+    </owl:Class> 
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesPx">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinates"/>
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#bottom"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#BottomPx"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#top"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#TopPx"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#height"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightPx"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesPxBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesBundle"/>     
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesPx"/>
+    </owl:Class> 
+    
+    
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#widthCoordinates">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinates"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinates"/>
+    </owl:ObjectProperty>
+	
+	<owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#heightCoordinates">
+	    <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinates"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinates"/>
+    </owl:ObjectProperty>
+   
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinates">
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#widthCoordinates"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinates"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#heightCoordinates"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinates"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+            
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesBundle">
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinates"/>
+    </owl:Class> 
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesCm">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinates"/>
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#widthCoordinates"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesCm"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#heightCoordinates"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesCm"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesCmBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesBundle"/>     
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesCm"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesIn">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinates"/>
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#widthCoordinates"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesIn"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#heightCoordinates"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesIn"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesInBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesIn"/>
+    </owl:Class> 
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesPx">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinates"/>
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#widthCoordinates"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WidthCoordinatesPx"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#heightCoordinates"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#HeightCoordinatesPx"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesPxBundle">
+        <rdfs:subClassOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesBundle"/>    
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoImage.owl#WindowCoordinatesPx"/>
+    </owl:Class> 
+    
+</rdf:RDF>

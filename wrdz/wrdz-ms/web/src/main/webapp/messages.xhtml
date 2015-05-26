@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title>#{msg['messages']}</title>
+	</h:head>
+	<h:body>
+		<f:metadata>
+			<f:event type="preRenderView" listener="#{internalMessageBean.checkRights}" />
+		</f:metadata>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+
+				<h:form id="messageListForm">
+
+					<rich:dataTable id="messageList" rows="10" value="#{internalMessageBean.messages}" var="message">
+
+						<f:facet name="header">
+							<h:outputText value="#{msg['messages']}" />
+						</f:facet>
+						<rich:column>
+							<f:facet name="header">#{msg['messages.origin']}</f:facet>
+							<h:outputText value="#{message.origin}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['messages.received']}</f:facet>
+							<h:outputText value="#{message.receivedOn}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['messages.type']}</f:facet>
+							<h:outputText value="#{message.type.label}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['messages.data']}</f:facet>
+							<h:outputText value="#{message.data}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['messages.actions']}</f:facet>
+							<h:commandButton value="#{msg['messages.actions.delete']}" action="#{internalMessageBean.deleteMessage(message)}" />
+						</rich:column>
+					</rich:dataTable>
+
+					<rich:dataScroller align="left" for="messageList" />
+
+				</h:form>
+
+				<h:form id="emailListForm">
+					<rich:dataTable id="emailList" value="#{notifyEmailBean.emails}" var="email" style="margin-top: 30px;">
+						<f:facet name="header">
+							<h:outputText value="#{msg['messages.emails']}" />
+						</f:facet>
+						<rich:column>
+							<f:facet name="header">#{msg['messages.emails.address']}</f:facet>
+							<h:outputText value="#{email.address}"/>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">#{msg['messages.actions']}</f:facet>
+							<h:commandButton value="#{msg['messages.actions.delete']}" action="#{notifyEmailBean.deleteEmail(email)}"/>
+						</rich:column>
+					</rich:dataTable>
+				</h:form>
+
+				<h:form id="emailAddForm">
+					<f:ajax execute="@form" render="@form :emailListForm">
+						<p>
+							<h:outputLabel for="emailAddress" value="#{msg['messages.emails.address']}:" />
+							<h:inputText value="#{notifyEmailBean.emailAddress}" id="emailAddress" required="true">
+								<f:attribute name="requiredMessage" value="#{msg['messages.emails.noaddress']}"/>
+								<f:validator validatorId="EmailValidator" />
+							</h:inputText>
+							<h:message for="emailAddress" />
+						</p>
+						<h:commandButton value="#{msg['messages.emails.add']}" actionListener="#{notifyEmailBean.addEmail}" />
+					</f:ajax>
+				</h:form>
+
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

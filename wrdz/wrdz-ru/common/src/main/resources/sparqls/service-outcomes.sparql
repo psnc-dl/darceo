@@ -1,0 +1,13 @@
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX service:<http://www.daml.org/services/owl-s/1.2/Service.owl#>
+PREFIX profile:<http://www.daml.org/services/owl-s/1.2/Profile.owl#>
+PREFIX process:<http://www.daml.org/services/owl-s/1.2/Process.owl#>
+PREFIX dArceoUnit:<http://darceo.psnc.pl/ontologies/dArceoUnit.owl#>
+SELECT ?outcomename ?outcometype
+WHERE {
+  <%s> rdf:type service:Service;
+      service:presents ?profile.
+  ?profile profile:hasOutput ?outcomename.
+  ?outcomename process:parameterType ?outcometype.
+}
+

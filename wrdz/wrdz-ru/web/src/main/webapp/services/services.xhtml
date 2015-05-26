@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title>#{msg['services']}</title>
+	</h:head>
+	<h:body>
+		<f:metadata>
+			<f:viewParam id="public" name="public" value="#{descriptorsBean.exposed}" />
+			<f:viewParam id="local" name="local" value="#{descriptorsBean.local}" />
+		</f:metadata>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+				<h:form id="servicesList">
+					<h:panelGroup class="filterOptions" layout="block">
+						<h:outputText class="filtersLabel" value="#{msg['services.filters']}:" />
+						<h:panelGrid columns="3" cellpadding="10px">
+							<h:panelGroup>
+								<h:outputLabel for="publicSelect" class="filterLabel"
+									value="#{msg['services.public']}:" />
+								<h:selectOneMenu id="publicSelect"
+									value="#{descriptorsBean.exposed}">
+									<f:selectItem itemLabel="" itemValue="#{null}" />
+									<f:selectItem itemLabel="#{msg['yes']}" itemValue="#{true}" />
+									<f:selectItem itemLabel="#{msg['no']}" itemValue="#{false}" />
+								</h:selectOneMenu>
+							</h:panelGroup>
+							<h:panelGroup>
+								<h:outputLabel for="localSelect" class="filterLabel"
+									value="#{msg['services.local']}:" />
+								<h:selectOneMenu id="localSelect"
+									value="#{descriptorsBean.local}">
+									<f:selectItem itemLabel="" itemValue="#{null}" />
+									<f:selectItem itemLabel="#{msg['yes']}" itemValue="#{true}" />
+									<f:selectItem itemLabel="#{msg['no']}" itemValue="#{false}" />
+								</h:selectOneMenu>
+							</h:panelGroup>
+							<h:commandButton value="#{msg['services.filter']}" class="filterButton"
+								action="#{descriptorsBean.getFilteringResultAddress()}" />
+						</h:panelGrid>
+					</h:panelGroup>
+					<h:link id="add" outcome="service.xhtml" value="#{msg['services.add']}"
+						class="actionLink" rendered="#{sessionBean.isAdmin()}"/>
+					<rich:dataTable id="services" rowKeyVar="index" var="descriptor"
+						value="#{descriptorsBean.descriptors}" captionClass="list-caption"
+						columnClasses="list-column list-column-odd, list-column list-column-even"
+						footerClass="list-footer" headerClass="list-header"
+						rowClasses="list-row list-row-even, list-row list-row-odd"
+						styleClass="list-background"
+						rendered="#{!descriptorsBean.descriptors.isEmpty()}">
+						<f:facet name="header">
+							<rich:columnGroup>
+								<rich:column rowspan="2">
+									<h:outputText value="#{msg['services.table.number']}" />
+								</rich:column>
+								<rich:column colspan="2">
+									<h:outputText value="#{msg['services.table.semantic']}" />
+								</rich:column>
+								<rich:column colspan="5">
+									<h:outputText value="#{msg['services.table.services']}" />
+								</rich:column>
+								<rich:column rowspan="2">
+									<h:outputText value="#{msg['services.table.public']}" />
+								</rich:column>
+								<rich:column rowspan="2">
+									<h:outputText value="#{msg['services.table.action']}" />
+								</rich:column>
+								<rich:column breakRowBefore="true">
+									<h:outputText value="#{msg['services.table.location']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['services.table.type']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['services.table.name']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['services.table.location']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['services.table.description']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['services.table.type']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['services.table.technical']}" />
+								</rich:column>
+							</rich:columnGroup>
+						</f:facet>
+						<rich:column id="noCol" rowHeader="true">
+							<h:outputText id="no" value="#{index+1}" />
+						</rich:column>
+						<rich:column id="semDescLocCol">
+							<h:outputLink id="sem-desc" value="#{descriptor.locationUrl}">
+								<h:outputText value="#{descriptor.locationUrl}" />
+							</h:outputLink>
+						</rich:column>
+						<rich:column id="semDescTypeCol">
+							<h:outputText
+								value="#{descriptor.type.name} #{descriptor.type.version}" />
+						</rich:column>
+						<rich:column colspan="5">
+							<rich:collapsibleSubTableToggler for="sbtbl" />
+							<h:outputFormat value="#{msg['services.table.describes']}">
+								<f:param value="#{descriptor.describedServices.size()}"/>
+							</h:outputFormat>
+						</rich:column>
+						<rich:column id="publicCol">
+							<h:selectBooleanCheckbox id="exposed"
+								value="#{descriptor.exposed}" disabled="true" />
+						</rich:column>
+						<rich:column id="actionCol">
+							<h:link id="modify" outcome="service.xhtml"
+								includeViewParams="true" value="#{msg['services.table.action.modify']}" class="actionLink"
+								disabled="#{!descriptor.local}" rendered="#{sessionBean.isAdmin()}">
+								<f:param name="id" value="#{descriptor.id}" />
+							</h:link>
+							<h:commandLink id="delete" value="#{msg['services.table.action.delete']}" class="actionLink"
+								disabled="#{!descriptor.local}" rendered="#{sessionBean.isAdmin()}">
+								<rich:componentControl target="delete-popup" operation="show" />
+							</h:commandLink>
+							<rich:popupPanel id="delete-popup" modal="false" autosized="true"
+								resizeable="false">
+								<f:facet name="header">
+									<h:outputText value="#{msg['confirm']}" />
+								</f:facet>
+								<f:facet name="controls">
+									<h:outputLink value="#"
+										onclick="#{rich:component('delete-popup')}.hide(); return false;">X</h:outputLink>
+								</f:facet>
+								<h:outputText
+									value="#{msg['services.table.action.delete.confirm']}" />
+								<p>
+									<h:commandButton value="#{msg['yes']}"
+										action="#{descriptorsBean.deleteEntity(descriptor.id)}"
+										onclick="#{rich:component('delete-popup')}.hide()" />
+									<h:commandButton value="#{msg['no']}"
+										onclick="#{rich:component('delete-popup')}.hide()" />
+								</p>
+							</rich:popupPanel>
+
+						</rich:column>
+						<rich:collapsibleSubTable expanded="#{false}"
+							value="#{descriptor.describedServices}" var="service" id="sbtbl"
+							expandMode="client">
+							<rich:column colspan="3" style="visibility:hidden;" />
+							<rich:column id="nameCol">
+								<h:outputText id="name" value="#{service.name}" />
+							</rich:column>
+							<rich:column id="locCol">
+								<h:outputLink id="location" value="#{service.locationUrl}">
+									<h:outputText value="#{service.locationUrl}" />
+								</h:outputLink>
+							</rich:column>
+							<rich:column id="descCol">
+								<h:outputText id="description" value="#{service.description}" />
+							</rich:column>
+							<rich:column id="typeCol">
+								<h:outputText id="type" value="#{service.type}">
+									<f:converter converterId="serviceTypeConverter" />
+								</h:outputText>
+							</rich:column>
+							<rich:column id="techDescCol">
+								<h:outputText rendered="#{service.technicalDescriptor != null}"
+									value="#{service.technicalDescriptor.type.name} #{service.technicalDescriptor.type.version} at " />
+								<h:outputLink id="tech-desc"
+									rendered="#{service.technicalDescriptor != null}"
+									value="#{service.technicalDescriptor.locationUrl}">
+									<h:outputText
+										value="#{service.technicalDescriptor.locationUrl}" />
+								</h:outputLink>
+							</rich:column>
+						</rich:collapsibleSubTable>
+						<f:facet name="footer">
+							<rich:columnGroup>
+								<rich:column rowspan="2">
+									<h:outputText value="#{msg['services.table.number']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['services.table.location']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['services.table.type']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['services.table.name']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['services.table.location']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['services.table.description']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['services.table.type']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['services.table.technical']}" />
+								</rich:column>
+								<rich:column rowspan="2">
+									<h:outputText value="#{msg['services.table.public']}" />
+								</rich:column>
+								<rich:column rowspan="2">
+									<h:outputText value="#{msg['services.table.action']}" />
+								</rich:column>
+								<rich:column colspan="2" breakRowBefore="true">
+									<h:outputText value="#{msg['services.table.semantic']}" />
+								</rich:column>
+								<rich:column colspan="5">
+									<h:outputText value="#{msg['services.table.services']}" />
+								</rich:column>
+							</rich:columnGroup>
+						</f:facet>
+					</rich:dataTable>
+					<h:messages id="messages" for="services" />
+					<h:outputText styleClass="no-found"
+						value="#{msg['services.table.empty']}"
+						rendered="#{descriptorsBean.descriptors.isEmpty()}" />
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

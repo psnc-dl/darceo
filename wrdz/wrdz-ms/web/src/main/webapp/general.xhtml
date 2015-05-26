@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title>#{info.general}</title>
+	</h:head>
+	<h:body>
+		<f:metadata>
+			<f:event type="preRenderView" listener="#{generalBean.checkRights}" />
+		</f:metadata>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+
+				<h:form id="form">
+					<h:panelGrid columns="2" columnClasses="cols,cols">
+						<rich:panelMenu style="width:200px" itemMode="ajax" itemLeftIcon="disc" itemChangeListener="#{generalBean.switchView}" selectedChild="#{generalBean.current}">
+							<ui:repeat value="#{generalBean.items}" var="item">
+								<rich:panelMenuItem label="#{msg['general.'.concat(item.name())]}" name="#{item.name()}" />
+							</ui:repeat>
+						</rich:panelMenu>
+						<a4j:outputPanel ajaxRendered="true">
+
+							<rich:panel rendered="#{generalBean.current == 'BASIC'}">
+								<rich:dataTable value="#{generalBasicStatisticsBean.statisticsList}" var="stat" style="width: 400px;">
+									<rich:column style="width: 230px;">
+										<f:facet name="header">#{msg['basic.description']}</f:facet>
+										#{stat}:
+									</rich:column>
+									<rich:column style="text-align: right;">
+										<f:facet name="header">#{msg['basic.value']}</f:facet>
+										<h:outputText value="#{generalBasicStatisticsBean.statistics[stat]}">
+											<f:convertNumber maxFractionDigits="2"/>
+										</h:outputText>
+									</rich:column>
+								</rich:dataTable>
+								<h:outputText value="#{generalBasicStatisticsBean.computedOn}" rendered="#{generalBasicStatisticsBean.computedOn != null}" class="computedOn">
+									<f:convertDateTime dateStyle="short" type="both" pattern="yyyy-MM-dd HH:mm" />
+								</h:outputText>
+							</rich:panel>
+
+							<rich:panel rendered="#{generalBean.current == 'METADATA'}">
+								<rich:dataTable value="#{generalMetadataFormatBean.objectFormats}" var="format" style="width: 400px;">
+									<rich:column style="width: 230px;">
+										<f:facet name="header">#{msg['metadata.format']}</f:facet>
+										#{format}
+									</rich:column>
+									<rich:column style="text-align: right;">
+										<f:facet name="header">#{msg['metadata.objects']}</f:facet>
+										<h:outputText value="#{generalMetadataFormatBean.objectCounts[format]}" />
+									</rich:column>
+								</rich:dataTable>
+
+								<rich:dataTable value="#{generalMetadataFormatBean.dataFileFormats}" var="format" style="width: 400px;">
+									<rich:column style="width: 230px;">
+										<f:facet name="header">#{msg['metadata.format']}</f:facet>
+										#{format}
+									</rich:column>
+									<rich:column style="text-align: right;">
+										<f:facet name="header">#{msg['metadata.datafiles']}</f:facet>
+										<h:outputText value="#{generalMetadataFormatBean.dataFileCounts[format]}" />
+									</rich:column>
+								</rich:dataTable>
+								
+								<h:outputText value="#{generalMetadataFormatBean.computedOn}" rendered="#{generalMetadataFormatBean.computedOn != null}" class="computedOn">
+									<f:convertDateTime dateStyle="short" type="both" pattern="yyyy-MM-dd HH:mm" />
+								</h:outputText>
+							</rich:panel>
+
+							<rich:panel rendered="#{generalBean.current == 'DATAFILE'}">
+								<rich:dataTable value="#{generalDataFileFormatBean.statistics}" var="stat" style="width: 700px;">
+									<rich:column>
+										<f:facet name="header">#{msg['data.puid']}</f:facet>
+										<h:outputText value="#{stat.formatPuid}" />
+									</rich:column>
+									<rich:column style="width: 350px;">
+										<f:facet name="header">#{msg['data.format']}</f:facet>
+										<ui:repeat value="#{generalDataFileFormatBean.formats[stat.formatPuid].names}" var="name" varStatus="status">
+											#{name}<h:outputText rendered="#{!status.last}" value=", "/>
+										</ui:repeat>
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">#{msg['data.version']}</f:facet>
+										<h:outputText value="#{generalDataFileFormatBean.formats[stat.formatPuid].version}" />
+									</rich:column>
+									<rich:column style="text-align: right;">
+										<f:facet name="header">#{msg['data.objects']}</f:facet>
+										<h:outputText value="#{stat.objects}" />
+									</rich:column>
+									<rich:column style="text-align: right;">
+										<f:facet name="header">#{msg['data.files']}</f:facet>
+										<h:outputText value="#{stat.dataFiles}" />
+									</rich:column>
+									<rich:column style="text-align: right;">
+										<f:facet name="header">#{msg['data.size']}</f:facet>
+										<h:outputText value="#{stat.dataSize}" />
+									</rich:column>
+								</rich:dataTable>
+								
+								<h:outputText value="#{generalDataFileFormatBean.computedOn}" rendered="#{generalDataFileFormatBean.computedOn != null}" class="computedOn">
+									<f:convertDateTime dateStyle="short" type="both" pattern="yyyy-MM-dd HH:mm" />
+								</h:outputText>
+							</rich:panel>
+
+							<rich:panel rendered="#{generalBean.current == 'SERVICES'}">
+								<rich:dataTable value="#{dataManipulationServiceBean.services}" var="service">
+									<rich:column>
+										<f:facet name="header">#{msg['service.name']}</f:facet>
+										<h:outputText value="#{service.name}" />
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">#{msg['service.location']}</f:facet>
+										<h:outputLink value="#{service.locationUrl}">
+											<h:outputText value="#{service.locationUrl}" />
+										</h:outputLink>
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">#{msg['service.description']}</f:facet>
+										<h:outputText value="#{service.description}" />
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">#{msg['service.type']}</f:facet>
+										<h:outputText value="#{service.type.description}" />
+									</rich:column>
+								</rich:dataTable>
+							</rich:panel>
+
+							<rich:panel rendered="#{generalBean.current == 'MDZ_CONFIG'}">
+								<rich:dataTable value="#{mdzConfigurationBean.summaryKeys}" var="key" style="width: 600px;">
+									<rich:column style="width: 330px;">
+										<f:facet name="header">#{msg['mdz.label']}</f:facet>
+										#{key}:
+									</rich:column>
+									<rich:column>
+										<f:facet name="header">#{msg['mdz.value']}</f:facet>
+										<h:outputText value="#{mdzConfigurationBean.summary[key]}" />
+									</rich:column>
+								</rich:dataTable>
+							</rich:panel>
+
+						</a4j:outputPanel>
+					</h:panelGrid>
+				</h:form>
+
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>

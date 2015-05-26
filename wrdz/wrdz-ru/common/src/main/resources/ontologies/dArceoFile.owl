@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY udfrs "http://www.udfr.org/onto#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY dArceoUnit "http://darceo.psnc.pl/ontologies/dArceoUnit.owl#" >    
+]>
+
+
+<rdf:RDF xmlns="http://darceo.psnc.pl/ontologies/dArceoFile.owl#"
+     xml:base="http://darceo.psnc.pl/ontologies/dArceoFile.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:udfrs="http://www.udfr.org/onto#"
+     xmlns:dArceoUnit="http://darceo.psnc.pl/ontologies/dArceoUnit.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://darceo.psnc.pl/ontologies/dArceoFile.owl">
+        <owl:imports rdf:resource="http://www.udfr.org/onto/onto.rdf"/>
+        <owl:imports rdf:resource="http://darceo.psnc.pl/ontologies/dArceoUnit.owl"/>
+    </owl:Ontology>
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoFile.owl#fileFormat">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoFile.owl#File"/>
+                    <rdf:Description rdf:about="http://darceo.psnc.pl/ontologies/dArceoFile.owl#FileBundle"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="&udfrs;FileFormat"/>
+    </owl:ObjectProperty>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoFile.owl#File">
+    	<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoFile.owl#fileFormat"/>
+                <owl:onClass rdf:resource="&udfrs;FileFormat"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoFile.owl#FileBundle">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoFile.owl#fileFormat"/>
+                <owl:onClass rdf:resource="&udfrs;FileFormat"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <dArceoUnit:typeOfBundle rdf:resource="http://darceo.psnc.pl/ontologies/dArceoFile.owl#File"/>
+    </owl:Class>
+    		
+</rdf:RDF>

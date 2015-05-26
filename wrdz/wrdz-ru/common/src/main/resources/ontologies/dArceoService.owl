@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY udfrs "http://www.udfr.org/onto#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY dArceoFile "http://darceo.psnc.pl/ontologies/dArceoFile.owl#" >
+    <!ENTITY service "http://www.daml.org/services/owl-s/1.2/Service.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://darceo.psnc.pl/ontologies/dArceoService.owl#"
+     xml:base="http://darceo.psnc.pl/ontologies/dArceoService.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:udfrs="http://www.udfr.org/onto#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:service="http://www.daml.org/services/owl-s/1.2/Service.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:dArceoFile="http://darceo.psnc.pl/ontologies/dArceoFile.owl#">
+    <owl:Ontology rdf:about="http://darceo.psnc.pl/ontologies/dArceoService.owl">
+        <owl:imports rdf:resource="http://darceo.psnc.pl/ontologies/dArceoFile.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl"/>
+    </owl:Ontology>
+    
+
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoService.owl#fileIn">
+        <rdfs:range rdf:resource="&udfrs;FileFormat"/>
+        <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#FileTransformation"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoService.owl#fileOut">
+        <rdfs:range rdf:resource="&udfrs;FileFormat"/>
+        <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#FileTransformation"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoService.owl#hasFileTransformation">
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#FileTransformation"/>
+        <rdfs:domain rdf:resource="&service;Service"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoService.owl#performedBy">
+        <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#FileTransformation"/>
+        <owl:inverseOf rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#hasFileTransformation"/>
+        <rdfs:range rdf:resource="&service;Service"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoService.owl#previousTransformation">
+        <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#FileTransformation"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#FileTransformation"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#previousTransformation"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#FileTransformation"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://darceo.psnc.pl/ontologies/dArceoService.owl#subsequentTransformation">
+        <rdfs:domain rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#FileTransformation"/>
+        <rdfs:range rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#FileTransformation"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#subsequentTransformation"/>
+                <owl:onClass rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#FileTransformation"/>
+                <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+    <owl:Class rdf:about="http://darceo.psnc.pl/ontologies/dArceoService.owl#FileTransformation">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#fileIn"/>
+                <owl:onClass rdf:resource="&udfrs;FileFormat"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://darceo.psnc.pl/ontologies/dArceoService.owl#fileOut"/>
+                <owl:onClass rdf:resource="&udfrs;FileFormat"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+</rdf:RDF>
+

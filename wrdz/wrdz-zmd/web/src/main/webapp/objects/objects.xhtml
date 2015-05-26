@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+	<h:head>
+		<title>#{msg['objects']}</title>
+	</h:head>
+	<h:body>
+		<ui:composition template="/templates/layout.xhtml">
+			<ui:define name="content">
+
+				<h:outputScript library="js" name="download.js"/>
+				<h:outputScript>
+					downloadMsgWait = "#{msg['objects.download.wait']}";
+					downloadMsgReady = "#{msg['objects.download.ready']}";
+					downloadMsgError = "#{msg['objects.download.error']}";
+					context = "/zmd-ui"
+				</h:outputScript>
+
+				<div id="downloadFrame" style="display: none;"></div>
+
+				<rich:popupPanel id="downloadPopup" modal="true" autosized="true">
+					<f:facet name="controls">
+						<h:outputLink value="#"	onclick="hideDownloadPopup(); return false;">X</h:outputLink>
+					</f:facet>
+					<div id="downloadInfo" style="text-align: center; width: 200px;"></div>
+				</rich:popupPanel>
+
+				<h:form id="objectsList">
+					<h:link id="add" outcome="new.xhtml" value="#{msg['objects.create']}" class="actionLink" rendered="#{objectsBean.hasCreatePermission()}" />
+					<rich:dataTable id="objects" rowKeyVar="index" var="object"
+						value="#{objectsBean.model}" captionClass="list-caption"
+						columnClasses="list-column list-column-odd, list-column list-column-even"
+						footerClass="list-footer" headerClass="list-header"
+						rowClasses="list-row list-row-even, list-row list-row-odd"
+						styleClass="list-background"
+						rows="10">
+						<f:facet name="header">
+							<rich:columnGroup>
+								<rich:column/>
+								<rich:column>
+									<h:outputText value="#{msg['objects.table.identifier']}" />
+									<h:inputText value="#{objectsBean.identifierFilter}">
+										<a4j:ajax event="keyup" render="objects">
+											<a4j:attachQueue requestDelay="500"/>
+										</a4j:ajax>
+									</h:inputText>
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['objects.table.name']}" />
+									<h:inputText value="#{objectsBean.nameFilter}">
+										<a4j:ajax event="keyup" render="objects">
+											<a4j:attachQueue requestDelay="500"/>
+										</a4j:ajax>
+									</h:inputText>
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['objects.table.date']}" />
+								</rich:column>
+								<rich:column>
+									<h:outputText value="#{msg['objects.table.action']}" />
+								</rich:column>
+							</rich:columnGroup>
+						</f:facet>
+						<rich:column>
+							<rich:collapsibleSubTableToggler for="sbtbl" />
+						</rich:column>
+						<rich:column>
+							#{object.defaultIdentifier.identifier}
+						</rich:column>
+						<rich:column>
+							#{object.name}
+						</rich:column>
+						<rich:column/>
+						<rich:column>
+							<h:link value="#{msg['objects.table.action.permissions']}" outcome="object.xhtml" class="actionLink" rendered="#{objectsBean.hasPermission(object.id, 'GRANT')}">
+								<f:param name="id" value="#{object.id}" />
+							</h:link>
+							<h:link value="#{msg['objects.table.action.version']}" class="actionLink" outcome="new.xhtml" rendered="#{objectsBean.hasPermission(object.id, 'UPDATE')}">
+								<f:param name="id" value="#{object.defaultIdentifier.identifier}"/>
+							</h:link>
+							<h:commandLink value="#{msg['objects.table.action.delete']}" class="actionLink" rendered="#{objectsBean.hasPermission(object.id, 'DELETE')}">
+								<rich:componentControl target="deleteObjectPopup" operation="show" />
+							</h:commandLink>
+							<h:link value="#{msg['objects.table.action.download']}" class="actionLink" rendered="#{objectsBean.hasPermission(object.id, 'READ')}" onclick="downloadArchive('#{object.defaultIdentifier.identifier}', ''); return false" />
+							<rich:popupPanel id="deleteObjectPopup" modal="true" autosized="true" resizeable="false">
+								<f:facet name="header"><h:outputText value="#{msg['confirm']}" /></f:facet>
+								<h:outputText value="#{msg['objects.table.action.delete.object.confirm']}" />
+								<p>
+									<h:commandButton value="#{msg['yes']}" action="#{objectsBean.deleteObject(object.defaultIdentifier.identifier)}" onclick="#{rich:component('deleteObjectPopup')}.hide()" />
+									<h:commandButton value="#{msg['no']}" onclick="#{rich:component('deleteObjectPopup')}.hide()" type="button" />
+								</p>
+							</rich:popupPanel>
+						</rich:column>
+						<rich:collapsibleSubTable expanded="#{objectsBean.expanded[object.defaultIdentifier.identifier]}"
+							value="#{objectsBean.getVersions(object.defaultIdentifier.identifier)}" var="version" id="sbtbl" expandMode="ajax" render="objects">
+							<rich:column colspan="3">
+								#{msg['objects.table.version']} #{version.version}
+							</rich:column>
+							<rich:column>
+								<h:outputText value="#{version.createdOn}">
+									<f:convertDateTime dateStyle="short" type="both"
+										pattern="yyyy-MM-dd HH:mm" />
+								</h:outputText>
+							</rich:column>
+							<rich:column>
+								<h:commandLink value="#{msg['objects.table.action.delete']}" class="actionLink" rendered="#{objectsBean.hasPermission(object.id, 'DELETE')}">
+									<rich:componentControl target="deleteVersionPopup" operation="show" />
+								</h:commandLink>
+								<h:link value="#{msg['objects.table.action.download']}" class="actionLink" rendered="#{objectsBean.hasPermission(object.id, 'READ')}"  onclick="downloadArchive('#{object.defaultIdentifier.identifier}', #{version.version}); return false" />
+								<rich:popupPanel id="deleteVersionPopup" modal="true" autosized="true" resizeable="false">
+									<f:facet name="header"><h:outputText value="#{msg['confirm']}" /></f:facet>
+									<h:outputText value="#{msg['objects.table.action.delete.version.confirm']}" />
+									<p>
+										<h:commandButton value="#{msg['yes']}" action="#{objectsBean.deleteVersion(object.defaultIdentifier.identifier, version.version)}" onclick="#{rich:component('deleteVersionPopup')}.hide()" />
+										<h:commandButton value="#{msg['no']}" onclick="#{rich:component('deleteVersionPopup')}.hide()" type="button" />
+									</p>
+								</rich:popupPanel>
+							</rich:column>
+						</rich:collapsibleSubTable>
+						<f:facet name="footer">
+							<rich:dataScroller id="scroller" />
+						</f:facet>
+					</rich:dataTable>
+				</h:form>
+				
+				<h:form>
+					<rich:popupPanel id="statusPopup" modal="true" autosized="true" resizeable="false" show="#{objectsBean.deletionInProgress or objectsBean.deletionStatus != null}">				
+						<h:panelGroup id="statusMessage">
+							<h:outputText rendered="#{objectsBean.deletionInProgress}" value="#{msg['objects.delete.wait']}"/>
+							<h:outputText rendered="#{objectsBean.deletionStatus == 200}" value="#{msg['objects.delete.success']}"/>
+							<h:outputText rendered="#{objectsBean.deletionStatus == 403}" value="#{msg['objects.delete.unauthorized']}"/>
+							<h:outputText rendered="#{objectsBean.deletionStatus == 404}" value="#{msg['objects.delete.notfound']}"/>
+							<h:outputText rendered="#{objectsBean.deletionStatus == 500}" value="#{msg['objects.delete.error']}"/>
+							<p>
+								<h:commandButton value="#{msg['close']}" rendered="#{objectsBean.deletionStatus == 403 or objectsBean.deletionStatus == 404 or objectsBean.deletionStatus == 500}">
+									<rich:componentControl target="statusPopup" operation="hide" />
+								</h:commandButton>
+								<h:button outcome="/objects/objects.xhtml" value="#{msg['ok']}" rendered="#{objectsBean.deletionStatus == 200}"/>
+							</p>
+						</h:panelGroup>
+					</rich:popupPanel>
+				</h:form>
+				
+				<h:form>
+					<a4j:poll id="poll" interval="3000" enabled="#{objectsBean.deletionInProgress}" render="poll,statusMessage" action="#{objectsBean.checkDeletionStatus}"/>
+				</h:form>
+			</ui:define>
+		</ui:composition>
+	</h:body>
+</f:view>
+</html>
