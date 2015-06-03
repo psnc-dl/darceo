@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<name>DSA</name>
 	<organization>
@@ -8,7 +7,7 @@
 	</organization>
 	<groupId>pl.psnc.synat</groupId>
 	<artifactId>dsa</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<licenses>
 		<license>
@@ -47,7 +46,7 @@
 		<slf4j.version>1.6.1</slf4j.version>
 		<commons-io.version>2.0.1</commons-io.version>
 		<jsch.version>0.1.51</jsch.version>
-		<dsa.version>1.0.0-SNAPSHOT</dsa.version>
+		<dsa.version>1.0.1-SNAPSHOT</dsa.version>
 	</properties>
 	<repositories>
 		<repository>

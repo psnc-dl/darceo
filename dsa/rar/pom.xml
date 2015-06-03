@@ -3,12 +3,12 @@
 	<name>DSA-RAR</name>
 	<groupId>pl.psnc.synat</groupId>
 	<artifactId>dsa-rar</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>rar</packaging>
 	<parent>
 		<groupId>pl.psnc.synat</groupId>
 		<artifactId>dsa</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 	<properties>
 		<scope.fs>provided</scope.fs>
