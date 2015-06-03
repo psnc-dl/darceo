@@ -8,17 +8,18 @@
 	</organization>
 	<groupId>pl.psnc.synat</groupId>
 	<artifactId>dsa</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<licenses>
 		<license>
-			<name> GNU General Public License, Version 3.0</name>
+			<name>GNU General Public License, Version 3.0</name>
 			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
 		</license>
-	</licenses>		
+	</licenses>
 	<scm>
-		<connection>scm:svn:https://svn.man.poznan.pl/svnroot/synat/A11/software/dsa/trunk/</connection>
-		<url>https://svn.man.poznan.pl/svnroot/synat/A11/software/dsa/trunk/</url>
+		<connection>scm:git:git@github.com:psnc-dl/darceo.git/dsa</connection>
+		<developerConnection>scm:git:git@github.com:psnc-dl/darceo.git/dsa</developerConnection>
+		<url>http://github.com/psnc-dl/darceo/tree/master/dsa</url>
 	</scm>
 	<distributionManagement>
 		<repository>
@@ -46,7 +47,7 @@
 		<slf4j.version>1.6.1</slf4j.version>
 		<commons-io.version>2.0.1</commons-io.version>
 		<jsch.version>0.1.51</jsch.version>
-		<dsa.version>0.0.4-SNAPSHOT</dsa.version>
+		<dsa.version>1.0.0-SNAPSHOT</dsa.version>
 	</properties>
 	<repositories>
 		<repository>

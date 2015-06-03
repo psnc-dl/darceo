@@ -3,12 +3,12 @@
 	<name>DSA-FS</name>
 	<groupId>pl.psnc.synat</groupId>
 	<artifactId>dsa-fs</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<parent>
 		<groupId>pl.psnc.synat</groupId>
 		<artifactId>dsa</artifactId>
-		<version>0.0.4-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<dependencies>
 		<dependency>

@@ -1,0 +1,7 @@
+/.settings/
+/.project
+/.classpath
+/.checkstyle
+/bin/
+/config.properties
+/jpa.properties
