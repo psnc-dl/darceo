@@ -1,13 +1,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>pl.psnc.synat.wrdz</groupId>
-	<artifactId>user-realm</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
-	<packaging>bundle</packaging>
-	<name>dArceo OSGi user realm module</name>
+	<name>USER-REALM</name>
+	<organization>
+		<name>Poznan Supercomputing and Networking Center</name>
+		<url>http://www.psnc.pl/</url>
+	</organization>
+	<groupId>pl.psnc.synat</groupId>
+	<artifactId>wrdz-realm</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>bundle</packaging>	
+	<licenses>
+		<license>
+			<name>GNU General Public License, Version 3.0</name>
+			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+		</license>
+	</licenses>
 	<scm>
-		<connection>scm:svn:https://svn.man.poznan.pl/svnroot/synat/A11/software/wrdz-realm/trunk/</connection>
-		<url>https://svn.man.poznan.pl/svnroot/synat/A11/software/wrdz-realm/trunk/</url>
+		<connection>scm:git:https://github.com/psnc-dl/darceo.git</connection>
+		<developerConnection>scm:git:git@github.com:psnc-dl/darceo.git</developerConnection>
+		<url>http://github.com/psnc-dl/darceo/tree/master/wrdz-realm</url>
 	</scm>
 	<distributionManagement>
 		<repository>
