@@ -3,12 +3,12 @@
 	<name>SRA-RAR</name>
 	<groupId>pl.psnc.synat</groupId>
 	<artifactId>sra-rar</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>rar</packaging>
 	<parent>
 		<groupId>pl.psnc.synat</groupId>
 		<artifactId>sra</artifactId>
-		<version>0.0.4-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<properties>
 		<scope.owlim-lite>provided</scope.owlim-lite>

@@ -3,12 +3,12 @@
 	<name>SRA-OWLIM-LITE</name>
 	<groupId>pl.psnc.synat</groupId>
 	<artifactId>sra-owlim-lite</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<parent>
 		<groupId>pl.psnc.synat</groupId>
 		<artifactId>sra</artifactId>
-		<version>0.0.4-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<dependencies>
 		<dependency>

@@ -7,17 +7,18 @@
 	</organization>
 	<groupId>pl.psnc.synat</groupId>
 	<artifactId>sra</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<licenses>
 		<license>
-			<name> GNU General Public License, Version 3.0</name>
+			<name>GNU General Public License, Version 3.0</name>
 			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
 		</license>
 	</licenses>	
 	<scm>
-		<connection>scm:svn:https://svn.man.poznan.pl/svnroot/synat/A11/software/sra/trunk/</connection>
-		<url>https://svn.man.poznan.pl/svnroot/synat/A11/software/sra/trunk/</url>
+		<connection>scm:git:https://github.com/psnc-dl/darceo.git</connection>
+		<developerConnection>scm:git:git@github.com:psnc-dl/darceo.git</developerConnection>
+		<url>http://github.com/psnc-dl/darceo/tree/master/sra</url>
 	</scm>
 	<distributionManagement>
 		<repository>
@@ -44,7 +45,7 @@
 		<slf4j.version>1.6.1</slf4j.version>
 		<owlim-lite.version>5.2</owlim-lite.version>
 		<sesame.version>2.6.8</sesame.version>
-		<sra.version>0.0.4-SNAPSHOT</sra.version>
+		<sra.version>1.0.0-SNAPSHOT</sra.version>
 	</properties>
 	<repositories>
 		<repository>
