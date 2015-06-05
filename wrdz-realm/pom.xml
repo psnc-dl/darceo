@@ -7,7 +7,7 @@
 	</organization>
 	<groupId>pl.psnc.synat</groupId>
 	<artifactId>wrdz-realm</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>bundle</packaging>	
 	<licenses>
 		<license>
