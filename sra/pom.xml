@@ -7,7 +7,7 @@
 	</organization>
 	<groupId>pl.psnc.synat</groupId>
 	<artifactId>sra</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<licenses>
 		<license>
@@ -45,7 +45,7 @@
 		<slf4j.version>1.6.1</slf4j.version>
 		<owlim-lite.version>5.2</owlim-lite.version>
 		<sesame.version>2.6.8</sesame.version>
-		<sra.version>1.0.0-SNAPSHOT</sra.version>
+		<sra.version>1.0.1-SNAPSHOT</sra.version>
 	</properties>
 	<repositories>
 		<repository>
