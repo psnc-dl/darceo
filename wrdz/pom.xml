@@ -63,8 +63,8 @@
 		<devicemap-data.version>1.0.2</devicemap-data.version>
 		<org.richfaces.bom.version>4.3.2.Final</org.richfaces.bom.version>
 		<owlapi.version>3.4.2</owlapi.version>
-		<dsa.version>1.0.0-SNAPSHOT</dsa.version>
-		<sra.version>1.0.0-SNAPSHOT</sra.version>
+		<dsa.version>1.0.0</dsa.version>
+		<sra.version>1.0.0</sra.version>
 		<wrdz.version>1.0.0-SNAPSHOT</wrdz.version>
 		<!-- default values -->
 		<ejb.address.mdz />
