@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<name>RMI-FITS</name>
 	<organization>
@@ -8,7 +7,7 @@
 	</organization>
 	<groupId>pl.psnc.synat</groupId>
 	<artifactId>rmi-fits</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<licenses>
 		<license>
@@ -39,7 +38,7 @@
 		<ots.version>1.0.12</ots.version>
 		<junit.version>4.8.2</junit.version>
 		<slf4j.version>1.6.1</slf4j.version>
-		<wrdz.version>1.0.0</wrdz.version>
+		<wrdz.version>1.0.1-SNAPSHOT</wrdz.version>
 	</properties>
 	<build>
 		<pluginManagement>
