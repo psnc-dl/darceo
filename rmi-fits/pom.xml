@@ -39,7 +39,7 @@
 		<ots.version>1.0.12</ots.version>
 		<junit.version>4.8.2</junit.version>
 		<slf4j.version>1.6.1</slf4j.version>
-		<wrdz.version>1.0.0-SNAPSHOT</wrdz.version>
+		<wrdz.version>1.0.0</wrdz.version>
 	</properties>
 	<build>
 		<pluginManagement>
