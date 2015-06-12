@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright 2015 Poznań Supercomputing and Networking Center
  *
  * Licensed under the GNU General Public License, Version 3.0 (the "License");
@@ -99,7 +99,8 @@ public class FitsRmi {
 
         Handler fileHandler = null;
         try {
-            fileHandler = new FileHandler("logs/stdout.log", 10000000, 3, true);
+        	String fitsHome = System.getenv("FITS_HOME");
+            fileHandler = new FileHandler(fitsHome + "/logs/stdout.log", 10000000, 3, true);
         } catch (Exception e) {
             stdout.println("Error creating a log file for the standard output.");
             stdout.println(e.toString());

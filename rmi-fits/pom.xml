@@ -8,17 +8,18 @@
 	</organization>
 	<groupId>pl.psnc.synat</groupId>
 	<artifactId>rmi-fits</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<licenses>
 		<license>
-			<name> GNU General Public License, Version 3.0</name>
+			<name>GNU General Public License, Version 3.0</name>
 			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
 		</license>
 	</licenses>		
 	<scm>
-		<connection>scm:svn:https://svn.man.poznan.pl/svnroot/synat/A11/software/rmi-fits/trunk/</connection>
-		<url>https://svn.man.poznan.pl/svnroot/synat/A11/software/rmi-fits/trunk/</url>
+		<connection>scm:git:https://github.com/psnc-dl/darceo.git</connection>
+		<developerConnection>scm:git:git@github.com:psnc-dl/darceo.git</developerConnection>
+		<url>http://github.com/psnc-dl/darceo/tree/master/rmi-fits</url>
 	</scm>
 	<distributionManagement>
 		<repository>
@@ -38,7 +39,7 @@
 		<ots.version>1.0.12</ots.version>
 		<junit.version>4.8.2</junit.version>
 		<slf4j.version>1.6.1</slf4j.version>
-		<wrdz.version>0.0.12-SNAPSHOT</wrdz.version>
+		<wrdz.version>1.0.0-SNAPSHOT</wrdz.version>
 	</properties>
 	<build>
 		<pluginManagement>

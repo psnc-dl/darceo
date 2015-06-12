@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ms-wrdz-config>
-	<statistics>
-		<calculation-schedule>
-			<hour>1</hour>
-			<minute>25</minute>
-		</calculation-schedule>
-	</statistics>
-</ms-wrdz-config>

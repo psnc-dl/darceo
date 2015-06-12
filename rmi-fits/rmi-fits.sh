@@ -36,6 +36,6 @@ for i in "$JCPATH"/*.jar; do
 	APPCLASSPATH="$APPCLASSPATH":"$i"
 done
 
-cmd="java -Xmx1024m -classpath \"$APPCLASSPATH:$FITS_HOME/xml/nlnz\" pl.psnc.synat.fits.rmi.FitsRmi $args &"
+cmd="java -Xmx1024m -classpath \"$APPCLASSPATH:${FITS_HOME}/xml/nlnz\" pl.psnc.synat.fits.rmi.FitsRmi $args &"
 
 eval "exec $cmd"

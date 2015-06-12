@@ -28,13 +28,13 @@ dArceo is composed of a set of network services forming an extensible framework 
 
 ### Requirements & Installation
 
-* Java SE Development Kit 6 with Java Cryptography Extension Unlimited Strength Jurisdiction Policy Files
+* Java SE Development Kit 7 with Java Cryptography Extension Unlimited Strength Jurisdiction Policy Files
 * Glassfish Application Server 3.1.2
 * PostgreSQL Server 9.0.3
 * FFmpeg 2.6.1
 * [FITS 0.8.3 with VideoMD extraction support](http://github.com/opf-labs/fits/tree/ffmpeg-videomd-aes)
 * OWLIM-lite 5.2.5
 
-Install the above mentioned software and run the following [script](http://github.com/psnc-dl/darceo/blob/master/wrdz/wrdz-ear/src/main/install/darceo-install/darceo-install.sh). You may adjust variables in the [CSV file](http://github.com/psnc-dl/darceo/blob/master/wrdz/wrdz-ear/src/main/install/darceo-install/vars.csv).
+Install the above mentioned software ([instruction](http://github.com/psnc-dl/darceo/blob/master/wrdz/wrdz-ear/src/main/install/darceo-install/README.txt)) and run the following [script](http://github.com/psnc-dl/darceo/blob/master/wrdz/wrdz-ear/src/main/install/darceo-install/darceo-install.sh). You may adjust variables in the [CSV file](http://github.com/psnc-dl/darceo/blob/master/wrdz/wrdz-ear/src/main/install/darceo-install/vars.csv).
 
 Setting dArceo up on a different operating system than Linux is also possible. However, manual configuration of Glassfish, PostgreSQL, FITS and OWLIM-lite is necessary (according to steps performed by the bash script). You may also deploy each module on a separate Glassfish instance. 
