@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright 2015 Poznań Supercomputing and Networking Center
  *
  * Licensed under the GNU General Public License, Version 3.0 (the "License");
@@ -35,6 +35,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import pl.psnc.synat.wrdz.zmd.object.ObjectChecker;
 import pl.psnc.synat.wrdz.zmkd.config.ZdtConfiguration;
 import pl.psnc.synat.wrdz.zmkd.ddr.ClientCapabilities;
@@ -53,6 +56,9 @@ import com.sun.jersey.api.view.Viewable;
 @Path("/")
 @ManagedBean
 public class DeliveryService {
+	
+    /** Logger. */
+    private static final Logger logger = LoggerFactory.getLogger(DeliveryService.class);
 
     /** Path to the jsp that handles plugin and javascript detection. */
     private static final String DETECT_PATH = "/WEB-INF/jsp/detect.jsp";
@@ -122,7 +128,9 @@ public class DeliveryService {
             return Response.ok(new Viewable(DETECT_PATH, params)).build();
         }
 
+        logger.debug("user agent: " + userAgent);
         DeviceInfo info = ddrHelper.getInfo(userAgent);
+        logger.debug("info: " + info.toString());
 
         ClientCapabilities capabilities = new ClientCapabilities(config, info, js, plugins);
 

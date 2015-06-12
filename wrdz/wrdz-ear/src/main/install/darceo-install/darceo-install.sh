@@ -11,24 +11,20 @@ fi
 printf "%s \n\n" "---CHECKING REQUIREMENTS---"
 CONTINUE=true
 BAD_VERSION=false
-printf "Checking Java (JAVA_HOME variable)...   "
-if [ "x$JAVA_HOME" = "x" ]; then
-	printf "NOT FOUND \n"
-	CONTINUE=false
-else
-	printf "OK \n"
-	JAVA_VERSION=`java -version 2>&1`
-	echo $JAVA_VERSION
-        if [[ ! "${JAVA_VERSION}" =~ "1.7" ]]; then
-		BAD_VERSION=true
-  		echo "Bad version! JDK 7 is necessary.";
-  	else 
-  		JCE=`java -jar ${DARCEO_INSTALL_HOME}/lib/jce/unlimitedjce.jar`
-  		if [[ ! "${JCE}" =~ "TRUE" ]]; then
-  			BAD_VERSION=true
-  			echo "JDK without JCE Unlimited Strength.";
-  		fi
-	fi
+printf "Checking Java...   "
+JAVA_VERSION=`java -version 2>&1`
+echo $JAVA_VERSION
+if [[ ! "${JAVA_VERSION}" =~ "1.7" ]]; then
+	BAD_VERSION=true
+	echo "Bad version! JDK 7 is necessary.";
+else 
+	JCE=`java -jar ${DARCEO_INSTALL_HOME}/lib/jce/unlimitedjce.jar`
+	if [[ ! "${JCE}" =~ "TRUE" ]]; then
+  		BAD_VERSION=true
+  		echo "JDK without JCE Unlimited Strength.";
+	else 
+  		printf "OK \n"
+  	fi
 fi
 
 printf "Checking Glassfish (GLASSFISH_HOME variable)...   "
@@ -36,11 +32,12 @@ if [ "x$GLASSFISH_HOME" = "x" ]; then
 	printf "NOT FOUND \n"
 	CONTINUE=false
 else
-	printf "OK \n"
 	GLASSFISH_VERSION=`${GLASSFISH_HOME}/bin/asadmin --user --passwordfile version 2>&1`
-        if [[ "${GLASSFISH_VERSION}" =~ "3.2.1" ]]; then
+	if [[ "${GLASSFISH_VERSION}" =~ "3.2.1" ]]; then
 		BAD_VERSION=true
   		echo "Bad version! Glassfish 3.2.1 is necessary.";
+	else 
+  		printf "OK \n"
 	fi
 fi
 
@@ -57,11 +54,12 @@ if [ "x$OWLIM_HOME" = "x" ] && [ "x$OWLIM_DATA" = "x" ]; then
 	printf "NOT FOUND \n"
 	CONTINUE=false
 else
-	printf "OK \n"
 	OWLIM_VERSION=`ls ${OWLIM_HOME}/lib/`
-        if [[ ! "${OWLIM_VERSION}" =~ "5.2" ]]; then
+	if [[ ! "${OWLIM_VERSION}" =~ "5.2" ]]; then
 		BAD_VERSION=true
   		echo "Bad version! OWLIM (v. 5.2.x) is necessary.";
+	else 
+  		printf "OK \n"
 	fi
 fi
 
@@ -100,9 +98,18 @@ then
 fi
 
 PGSQLSERVER=`${DPKG_CMD} | grep postgresql-server 2>&1`
-PGSQLCLIENT=`${DPKG_CMD} | grep postgresql- 2>&1`
+if [ "x$PGSQLSERVER" = "x" ]; then
+	PGSQLSERVER=`${DPKG_CMD} | grep postgresql 2>&1`
+fi
+PGSQLCLIENT=`${DPKG_CMD} | grep postgresql-client 2>&1`
+if [ "x$PGSQLCLIENT" = "x" ]; then
+	PGSQLCLIENT=`${DPKG_CMD} | grep postgresql 2>&1`
+fi
 WGETTOOL=`${DPKG_CMD} | grep "wget"`
-PYTHONLANG=`${DPKG_CMD} | grep python-2.7`
+PYTHONLANG=`${DPKG_CMD} | grep python2.7`
+if [ "x$PYTHONLANG" = "x" ]; then
+	PYTHONLANG=`${DPKG_CMD} | grep python-2.7`
+fi
 
 printf "Checking postgresql ...   "
 if [ "x$PGSQLSERVER" = "x" ]; then
@@ -156,26 +163,26 @@ fi
 #------------------------------------------------------------------------------------------------------------
 source ./readVariables.sh vars.csv "#repositories"
 echo "Github location: ${GITHUB_LOC}"
-SQL_FILES="wrdz/trunk/wrdz-common/entity/src/main/config/common-SQL-CREATE-ALL.sql
-wrdz/trunk/wrdz-zmd/entity/src/main/config/zmd-SQL-CREATE-ALL.sql
-wrdz/trunk/wrdz-ru/entity/src/main/config/ru-SQL-CREATE-ALL.sql
-wrdz/trunk/wrdz-mdz/entity/src/main/config/mdz-SQL-CREATE-ALL.sql
-wrdz/trunk/wrdz-ms/entity/src/main/config/ms-SQL-CREATE-ALL.sql
-wrdz/trunk/wrdz-zmkd/entity/src/main/config/zmkd-SQL-CREATE-ALL.sql
-wrdz/trunk/wrdz-zu/entity/src/main/config/zu-SQL-CREATE-ALL.sql
-dsa/trunk/sftp/src/main/config/dsa-sftp-SQL-CREATE-ALL.sql"
+SQL_FILES="wrdz/wrdz-common/entity/src/main/config/common-SQL-CREATE-ALL.sql
+wrdz/wrdz-zmd/entity/src/main/config/zmd-SQL-CREATE-ALL.sql
+wrdz/wrdz-ru/entity/src/main/config/ru-SQL-CREATE-ALL.sql
+wrdz/wrdz-mdz/entity/src/main/config/mdz-SQL-CREATE-ALL.sql
+wrdz/wrdz-ms/entity/src/main/config/ms-SQL-CREATE-ALL.sql
+wrdz/wrdz-zmkd/entity/src/main/config/zmkd-SQL-CREATE-ALL.sql
+wrdz/wrdz-zu/entity/src/main/config/zu-SQL-CREATE-ALL.sql
+dsa/sftp/src/main/config/dsa-sftp-SQL-CREATE-ALL.sql"
 
 
-WRDZ_CONFS="wrdz/trunk/wrdz-ear/src/main/config/log4j.xml.template
-wrdz/trunk/wrdz-ear/src/main/config/wrdz-config.xml.template
-wrdz/trunk/wrdz-ear/src/main/config/zmd-wrdz-config.xml.template
-wrdz/trunk/wrdz-ear/src/main/config/mdz-wrdz-config.xml.template
-wrdz/trunk/wrdz-ear/src/main/config/zmkd-wrdz-config.xml.template
-wrdz/trunk/wrdz-ear/src/main/config/zdt-wrdz-config.xml.template
-wrdz/trunk/wrdz-ear/src/main/config/ms-wrdz-config.xml.template
-wrdz/trunk/wrdz-ear/src/main/config/zu-wrdz-config.xml.template"
+WRDZ_CONFS="wrdz/wrdz-ear/src/main/config/log4j.xml.template
+wrdz/wrdz-ear/src/main/config/wrdz-config.xml.template
+wrdz/wrdz-ear/src/main/config/zmd-wrdz-config.xml.template
+wrdz/wrdz-ear/src/main/config/mdz-wrdz-config.xml.template
+wrdz/wrdz-ear/src/main/config/zmkd-wrdz-config.xml.template
+wrdz/wrdz-ear/src/main/config/zdt-wrdz-config.xml.template
+wrdz/wrdz-ear/src/main/config/ms-wrdz-config.xml.template
+wrdz/wrdz-ear/src/main/config/zu-wrdz-config.xml.template"
 
-WRDZ_NAMESPACES="wrdz/trunk/wrdz-ear/src/main/config/wrdz-namespaces.xml"
+WRDZ_NAMESPACES="wrdz/wrdz-ear/src/main/config/wrdz-namespaces.xml"
 
 #full path to the 'glassfish-wrdz-config.password' file
 export PASSWORDFILE=${DARCEO_INSTALL_HOME}/lib/glassfish/glassfish-wrdz-config.password
@@ -274,7 +281,7 @@ echo "Downloading sql files..."
 SQL_LOC_FILES=""
 for file in $SQL_FILES
 do
-        filename=$(basename "/${file}")
+	filename=$(basename "/${file}")
 	echo "get "${GITHUB_LOC}/${file}" ..." 
 	wget ${GITHUB_LOC}/${file}
 	SQL_LOC_FILES=`printf "%s \n" "${SQL_LOC_FILES}${filename}"`
@@ -420,13 +427,14 @@ if $USE_DSA_SFTP; then
 	set -e
         source ./readVariables.sh vars.csv "#dsasftp"
 	echo ${DSA_PUBLICKEY}
+	DSA_SFTP_FILENAME=${DSA_SFTP_NAME}-${DSA_SFTP_VERSION}.rar
 	DSA_SFTP_LOC=${REPO_LOC}/${DSA_SFTP_NAMESPC}/${DSA_SFTP_NAME}/${DSA_SFTP_VERSION}/${DSA_SFTP_FILENAME}
 	wget ${DSA_SFTP_LOC}
 	set +e
 	JDBC_DATABASE="jdbc:postgresql://"${PG_HOST}":"${PG_PORT}"/"${PG_DARCEO_DBNAME}
 	cd ${DARCEO_INSTALL_HOME}/lib/dsa/
-	java -jar ${DARCEO_INSTALL_HOME}/lib/dsa/kmdCredential.jar USERS ${DSA_KEYUSER} ${DSA_PRIVATEKEYFILE} ${DSA_PUBLICKEYFILE} ${JDBC_DATABASE} ${PG_DARCEO_USER} ${PG_DARCEO_PASS}
-	DSA_PUBLICKEY=`cat $DSA_PUBKEYFILEPOOL`
+	java -jar ${DARCEO_INSTALL_HOME}/lib/dsa/kmdCredential.jar USERS ${DSA_USER} ${DSA_USER_PRIVATEKEYFILE} ${DSA_USER_PUBLICKEYFILE} ${JDBC_DATABASE} ${PG_DARCEO_USER} ${PG_DARCEO_PASS}
+	DSA_PUBLICKEY=`cat $DSA_PUBLICKEYFILE`
 	cd ${DARCEO_INSTALL_HOME}
 	asadmin --user ${ADMIN} --passwordfile ${PASSWORDFILE} deploy --name dsa ${DSA_SFTP_FILENAME}
 	asadmin --user ${ADMIN} --passwordfile ${PASSWORDFILE} create-connector-connection-pool --connectiondefinition pl.psnc.synat.dsa.DataStorageConnectionFactory --raname dsa --property host=${DSA_HOST}:port=${DSA_PORT}:publicKeyType=${DSA_PUBLICKEYTYPE}:publicKey="'"${DSA_PUBLICKEY}"'" --lazyconnectionenlistment=true dsa-pool
@@ -435,6 +443,7 @@ if $USE_DSA_SFTP; then
 else
 	set -e
 	source ./readVariables.sh vars.csv "#dsafs"
+	DSA_FS_FILENAME=${DSA_FS_NAME}-${DSA_FS_VERSION}.rar
 	DSA_FS_LOC=${REPO_LOC}/${DSA_FS_NAMESPC}/${DSA_FS_NAME}/${DSA_FS_VERSION}/${DSA_FS_FILENAME}
 	wget ${DSA_FS_LOC}
 	set +e
@@ -447,20 +456,20 @@ echo "done."
 
 #sra
 echo "Configure owlim lite..."
-OWLIM_NAMESPACE="wrdz/trunk/wrdz-ru/common/src/main/owlim-config"
+OWLIM_CONFIG_DIR="wrdz/wrdz-ru/common/src/main/owlim-config"
 OWLIM_DST=${OWLIM_HOME}/sesame_owlim/openrdf-console/bin
 set -e
-wget ${GITHUB_LOC}/${OWLIM_NAMESPACE}/owl2-rl-reduced-darceo.pie
+wget ${GITHUB_LOC}/${OWLIM_CONFIG_DIR}/owl2-rl-reduced-darceo.pie
 set +e
 cp owl2-rl-reduced-darceo.pie ${DARCEO_INSTALL_HOME}/lib/owlim/
 rm owl2-rl-reduced-darceo.pie
 set -e
-wget ${GITHUB_LOC}/${OWLIM_NAMESPACE}/darceo-owlim-lite.ttl
+wget ${GITHUB_LOC}/${OWLIM_CONFIG_DIR}/darceo-owlim-lite.ttl
 set +e
 cp darceo-owlim-lite.ttl ${DARCEO_INSTALL_HOME}/lib/owlim/
 rm darceo-owlim-lite.ttl
 set -e
-wget ${GITHUB_LOC}/${OWLIM_NAMESPACE}/darceo-working-owlim-lite.ttl
+wget ${GITHUB_LOC}/${OWLIM_CONFIG_DIR}/darceo-working-owlim-lite.ttl
 set +e
 cp darceo-working-owlim-lite.ttl ${DARCEO_INSTALL_HOME}/lib/owlim/
 rm darceo-working-owlim-lite.ttl
@@ -599,29 +608,27 @@ cp ${filename} ${GLASSFISH_HOME}/domains/${DOMAIN}/config/
 rm ${filename}
 echo "done."
 
-echo "Copy oddr..."
-cp -ar lib/glassfish/oddr ${GLASSFISH_HOME}/domains/${DOMAIN}/config/
-echo "done."
-
 #fits
 echo "Run fits..."
 source ./readVariables.sh vars.csv "#fits"
-FITS_LOC=${REPO_LOC}/${FITS_NAMESPC}/${FITS_VERSION}/${FITS_NAME}
+RMI_FITS_FILENAME=${RMI_FITS_NAME}-${RMI_FITS_VERSION}.jar
+RMI_FITS_LOC=${REPO_LOC}/${RMI_FITS_NAMESPC}/${RMI_FITS_NAME}/${RMI_FITS_VERSION}/${RMI_FITS_FILENAME}
 set -e
-wget ${FITS_LOC}
+wget ${RMI_FITS_LOC}
 set +e
-mv ${FITS_NAME} ${FITS_HOME}/lib
-DARCEO_COMMON_LOC=${REPO_LOC}/${DARCEO_COMMON_NAMESPC}/${DARCEO_COMMON_NAME}-${DARCEO_COMMON_VERSION}.jar
+mv ${RMI_FITS_FILENAME} ${FITS_HOME}/lib
+WRDZ_COMMON_FILENAME=${WRDZ_COMMON_NAME}-${WRDZ_COMMON_VERSION}.jar
+WRDZ_COMMON_LOC=${REPO_LOC}/${WRDZ_COMMON_NAMESPC}/${WRDZ_COMMON_NAME}/${WRDZ_COMMON_VERSION}/${WRDZ_COMMON_FILENAME}
 set -e
-wget ${DARCEO_COMMON_LOC}
+wget ${WRDZ_COMMON_LOC}
 set +e
-mv ${DARCEO_COMMON_NAME}-${DARCEO_COMMON_VERSION}.jar ${FITS_HOME}/lib
+mv ${WRDZ_COMMON_FILENAME} ${FITS_HOME}/lib
 set -e 
-wget ${GITHUB_LOC}/rmi-fits/trunk/rmi-fits.sh
+wget ${GITHUB_LOC}/rmi-fits/rmi-fits.sh
 set +e
 mv rmi-fits.sh ${FITS_HOME}
-rm rmi-fits.sh
 chmod +x ${FITS_HOME}/rmi-fits.sh
+mkdir ${FITS_HOME}/logs
 ${FITS_HOME}/rmi-fits.sh start
 echo "done."
 
@@ -632,17 +639,17 @@ echo "done."
 set -e
 source ./readVariables.sh vars.csv "#wrdzear"
 set +e
-DARCEO_EAR_FILENAME="${DARCEO_EAR_NAME}-${DARCEO_EAR_VERSION}.ear"
-DARCEO_EAR_LOC=${REPO_LOC}/${DARCEO_EAR_NAMESPC}/${DARCEO_EAR_NAME}/${DARCEO_EAR_VERSION}/${DARCEO_EAR_FILENAME}
+WRDZ_EAR_FILENAME="${WRDZ_EAR_NAME}-${WRDZ_EAR_VERSION}.ear"
+WRDZ_EAR_LOC=${REPO_LOC}/${WRDZ_EAR_NAMESPC}/${WRDZ_EAR_NAME}/${WRDZ_EAR_VERSION}/${WRDZ_EAR_FILENAME}
 echo "Download dArceo ear..."
 set -e
-wget ${DARCEO_EAR_LOC}
+wget ${WRDZ_EAR_LOC}
 set +e
 echo "done."
 
 echo "Deploy dArceo ear... "
-asadmin --user ${ADMIN} --passwordfile ${PASSWORDFILE} deploy --name wrdz ${DARCEO_EAR_FILENAME}
-rm ${DARCEO_EAR_FILENAME}
+asadmin --user ${ADMIN} --passwordfile ${PASSWORDFILE} deploy --name wrdz ${WRDZ_EAR_FILENAME}
+rm ${WRDZ_EAR_FILENAME}
 echo "done."
 
 echo "Enable secure admin console..."

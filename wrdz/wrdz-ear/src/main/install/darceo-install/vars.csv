@@ -1,5 +1,5 @@
 #repositories
-GITHUB_LOC	github repository location	TODO
+GITHUB_LOC	github repository location	http://github.com/psnc-dl/darceo/raw/master
 REPO_LOC	artifacts repository	https://maven.man.poznan.pl/repository/synat-a11-releases-public
 
 #postgres
@@ -19,39 +19,37 @@ DSA_FS_NAME	name of dsa (artifact id)	dsa-fs-rar
 DSA_FS_ROOTS	path to zmd-store	/home/darceo/archive
 DSA_FS_REDUNDANCY	set redundancy	1
 DSA_FS_NAMESPC	namespace for dsa-fs project (location in repository - group id)	pl/psnc/synat
-DSA_FS_VERSION	version number of dsa-fs	0.0.3
-DSA_FS_FILENAME	filename of dsa-fs rar	dsa-fs-rar-0.0.3.rar
+DSA_FS_VERSION	version number of dsa-fs	1.0.0
 
 #dsasftp
 DSA_SFTP_NAME	name of dsa sftp (artifact id)	dsa-sftp-rar
 DSA_HOST	dsa host name	an1-pz1.storage.pionier.net.pl
 DSA_PORT	dsa port	22
 DSA_PUBLICKEYTYPE	dsa public key type	ssh-rsa
-DSA_KEYUSER	user name (private key owner)	michalk
-DSA_PUBLICKEYFILE	dsa public key file name (located in DARCEO_INSTALL/lib/dsa/)	userpubkey-putty.pem
-DSA_PRIVATEKEYFILE	dsa public key file name (located in DARCEO_INSTALL/lib/dsa/)	userkey.pem
+DSA_PUBLICKEYFILE	dsa public key for pool file name (located in DARCEO_INSTALL/lib/dsa/)	dsasftp.key
+DSA_USER	user name (private key owner)	michalk
+DSA_USER_PUBLICKEYFILE	dsa public key file name (located in DARCEO_INSTALL/lib/dsa/)	userpubkey.pem
+DSA_USER_PRIVATEKEYFILE	dsa public key file name (located in DARCEO_INSTALL/lib/dsa/)	userkey.pem
 DSA_SFTP_NAMESPC	namespace for dsa-sftp project (location in repository - group id)	pl/psnc/synat
-DSA_SFTP_VERSION	version number of dsa-sftp	0.0.3
-DSA_SFTP_FILENAME	filename of dsa-sftp rar	dsa-sftp-rar-0.0.3.rar
-DSA_PUBKEYFILEPOOL	dsa public key for pool file name (located in DARCEO_INSTALL/lib/dsa/)	dsasftp.key
+DSA_SFTP_VERSION	version number of dsa-sftp	1.0.0
 
 #sra
-SRA_OWLIM_NAME	name of sra-owlim (artifact id)	sra-owlim-rar
+SRA_OWLIM_NAME	name of sra-owlim (artifact id)	sra-owlim-lite-rar
 SRA_NAMESPC	namespace for sra project (location in repository - group id)	pl/psnc/synat
-SRA_VERSION	version of sra	0.0.3
+SRA_VERSION	version of sra	1.0.0
 
 #wrdzear
-DARCEO_EAR_NAME	name of dArceo ear file (artifact id)	wrdz-ear
-DARCEO_EAR_NAMESPC	namespace for dArceo project (location in repository - group id)	pl/psnc/synat
-DARCEO_EAR_VERSION	version of dArceo	0.0.10
+WRDZ_EAR_NAME	name of dArceo ear file (artifact id)	wrdz-ear
+WRDZ_EAR_NAMESPC	namespace for dArceo project (location in repository - group id)	pl/psnc/synat
+WRDZ_EAR_VERSION	version of dArceo	1.0.0
 
 #fits
-FITS_NAME	fits name	rmi-fits.jar
-FITS_NAMESPC	fits namespace (location in repository)	pl/psnc/synat/rmi-fits
-FITS_VERSION	fits version	0.0.1
-DARCEO_COMMON_JAR	dArceo common jar (artifact id)	wrdz-common-common
-DARCEO_COMMON_NAMESPC	namespace for dArceo common jar (location in repository - group id)	pl/psnc/synat
-DARCEO_COMMON_VERSION	version of dArceo	0.0.10
+RMI_FITS_NAME	rmi-fits name	rmi-fits
+RMI_FITS_NAMESPC	rmi-fits namespace (location in repository)	pl/psnc/synat
+RMI_FITS_VERSION	rmi-fits version	1.0.0
+WRDZ_COMMON_NAME	dArceo common jar (artifact id)	wrdz-common-common
+WRDZ_COMMON_NAMESPC	namespace for dArceo common jar (location in repository - group id)	pl/psnc/synat
+WRDZ_COMMON_VERSION	version of dArceo	1.0.0
 
 #glassfish
 DOMAIN	glassfish wrdz domain name	wrdz-domain
@@ -70,14 +68,14 @@ MAIL_FROM_NAME	sender name	dArceo
 PG_WRDZ_METASTORELOC	tablespace for metadatastore	/var/lib/postgresql/9.3/main/pg_tblspc
 
 #realm
-REALM_NAME	realm jar file name	user-realm
-REALM_NAMESPC	realm namespace (location in repository)	pl/psnc/synat/wrdz
-REALM_VERSION	realm version number	0.0.3
+REALM_NAME	realm jar file name	wrdz-realm
+REALM_NAMESPC	realm namespace (location in repository)	pl/psnc/synat
+REALM_VERSION	realm version number	1.0.0
 
 #wrdzconf	wrdz-config.xml.template
 WRDZ_CONF_LOCALE	wrdz locale node	pl	locale
 WRDZ_CONF_ASYNCH_CACHE_HOME	wrdz asynch cache	/home/darceo/arp-cache	async/cache-home
-WRDZ_CONF_ASYNCH_CLEAN_PERIOD	wrdz asynch cleaning period	77	async/cleaning-period
+WRDZ_CONF_ASYNCH_CLEAN_PERIOD	wrdz asynch cleaning period	7	async/cleaning-period
 WRDZ_CONF_HTTPS_VERIFY_HOSTNAME	wrdz https verify host name	false	https/verify-hostname
 WRDZ_CONF_MODULES_PASS	password of dArceo modules	passmod	https/modules-password
 WRDZ_CONF_PROFILER	wrdz profiler enabled	false	profiler/enabled

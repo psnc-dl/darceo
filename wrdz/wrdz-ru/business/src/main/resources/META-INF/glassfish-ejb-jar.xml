@@ -8,7 +8,7 @@ DTD GlassFish Application Server 3.1 EJB 3.1//EN"
 			<ejb-name>RemoteRegistryManagerBean</ejb-name>
 			<ejb-ref>
 				<ejb-ref-name>SystemUserManager</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-zu-business-0_0_12-SNAPSHOT/SystemUserManagerBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-zu-business-1.0.0-SNAPSHOT/SystemUserManagerBean</jndi-name>
 			</ejb-ref>
 		</ejb>
 	</enterprise-beans>

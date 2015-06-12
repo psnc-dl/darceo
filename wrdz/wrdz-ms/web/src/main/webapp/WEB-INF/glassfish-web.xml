@@ -4,19 +4,19 @@
 
 	<ejb-ref>
 		<ejb-ref-name>MdzConfigurationBrowser</ejb-ref-name>
-		<jndi-name>java:global/wrdz/wrdz-mdz-business-0.0.12-SNAPSHOT/MdzConfigurationBrowserBean</jndi-name>
+		<jndi-name>java:global/wrdz/wrdz-mdz-business-1.0.0-SNAPSHOT/MdzConfigurationBrowserBean</jndi-name>
 	</ejb-ref>
 	<ejb-ref>
 		<ejb-ref-name>UserBrowser</ejb-ref-name>
-		<jndi-name>java:global/wrdz/wrdz-zu-business-0.0.12-SNAPSHOT/UserBrowserBean</jndi-name>
+		<jndi-name>java:global/wrdz/wrdz-zu-business-1.0.0-SNAPSHOT/UserBrowserBean</jndi-name>
 	</ejb-ref>
 	<ejb-ref>
 		<ejb-ref-name>DataFileFormatBrowser</ejb-ref-name>
-		<jndi-name>java:global/wrdz/wrdz-zmd-business-0.0.12-SNAPSHOT/DataFileFormatBrowserBean</jndi-name>
+		<jndi-name>java:global/wrdz/wrdz-zmd-business-1.0.0-SNAPSHOT/DataFileFormatBrowserBean</jndi-name>
 	</ejb-ref>
 	<ejb-ref>
 		<ejb-ref-name>DataManipulationServiceBrowser</ejb-ref-name>
-		<jndi-name>java:global/wrdz/wrdz-ru-business-0.0.12-SNAPSHOT/DataManipulationServiceBrowserBean</jndi-name>
+		<jndi-name>java:global/wrdz/wrdz-ru-business-1.0.0-SNAPSHOT/DataManipulationServiceBrowserBean</jndi-name>
 	</ejb-ref>
 
 </glassfish-web-app>

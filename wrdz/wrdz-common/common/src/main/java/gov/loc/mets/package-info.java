@@ -1,4 +1,4 @@
-﻿/**
+/**
 package-info.java that enforces the 'mets' prefix in the METS metadata XML. 
  */
 

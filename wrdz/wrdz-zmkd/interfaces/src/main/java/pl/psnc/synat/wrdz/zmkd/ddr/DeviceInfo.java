@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright 2015 Poznań Supercomputing and Networking Center
  *
  * Licensed under the GNU General Public License, Version 3.0 (the "License");
@@ -257,5 +257,20 @@ public class DeviceInfo {
             return this;
         }
 
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("DeviceInfo ");
+        builder.append("[vendor=").append(vendor);
+        builder.append(", model=").append(model);
+        builder.append(", displayWidth=").append(displayWidth);
+        builder.append(", displayHeight=").append(displayHeight);
+        builder.append(", displayColorDepth=").append(displayColorDepth);
+        builder.append(", cookieSupport=").append(cookieSupport);
+        builder.append(", ajaxSupport=").append(ajaxSupport);
+        builder.append(", imageFormatSupport=").append(imageFormatSupport);
+        builder.append("]");
+        return builder.toString();
     }
 }

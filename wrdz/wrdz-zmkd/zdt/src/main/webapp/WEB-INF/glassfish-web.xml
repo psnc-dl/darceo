@@ -4,7 +4,7 @@
 
 	<ejb-ref>
 		<ejb-ref-name>ObjectChecker</ejb-ref-name>
-		<jndi-name>java:global/wrdz/wrdz-zmd-business-0.0.12-SNAPSHOT/ObjectCheckerBean</jndi-name>
+		<jndi-name>java:global/wrdz/wrdz-zmd-business-1.0.0-SNAPSHOT/ObjectCheckerBean</jndi-name>
 	</ejb-ref>
 
 </glassfish-web-app>

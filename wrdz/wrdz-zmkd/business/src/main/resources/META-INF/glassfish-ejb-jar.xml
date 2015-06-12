@@ -8,60 +8,60 @@ DTD GlassFish Application Server 3.1 EJB 3.1//EN"
 			<ejb-name>DeliveryPlanManagerBean</ejb-name>
 			<ejb-ref>
 				<ejb-ref-name>ServiceComposer</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-ru-business-0_0_12-SNAPSHOT/ServiceComposerBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-ru-business-1.0.0-SNAPSHOT/ServiceComposerBean</jndi-name>
 			</ejb-ref>
 			<ejb-ref>
 				<ejb-ref-name>DataFileFormatBrowser</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-zmd-business-0_0_12-SNAPSHOT/DataFileFormatBrowserBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-zmd-business-1.0.0-SNAPSHOT/DataFileFormatBrowserBean</jndi-name>
 			</ejb-ref>
 		</ejb>
 		<ejb>
 			<ejb-name>MigrationPlanManagerBean</ejb-name>
 			<ejb-ref>
 				<ejb-ref-name>ServiceComposer</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-ru-business-0_0_12-SNAPSHOT/ServiceComposerBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-ru-business-1.0.0-SNAPSHOT/ServiceComposerBean</jndi-name>
 			</ejb-ref>
 			<ejb-ref>
 				<ejb-ref-name>IdentifierBrowser</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-zmd-business-0_0_12-SNAPSHOT/IdentifierBrowserBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-zmd-business-1.0.0-SNAPSHOT/IdentifierBrowserBean</jndi-name>
 			</ejb-ref>
 			<ejb-ref>
 				<ejb-ref-name>ObjectChecker</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-zmd-business-0_0_12-SNAPSHOT/ObjectCheckerBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-zmd-business-1.0.0-SNAPSHOT/ObjectCheckerBean</jndi-name>
 			</ejb-ref>
 			<ejb-ref>
 				<ejb-ref-name>UserBrowser</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-zu-business-0_0_12-SNAPSHOT/UserBrowserBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-zu-business-1.0.0-SNAPSHOT/UserBrowserBean</jndi-name>
 			</ejb-ref>
 			<ejb-ref>
 				<ejb-ref-name>ObjectPermissionManager</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-zu-business-0_0_12-SNAPSHOT/ObjectPermissionManagerBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-zu-business-1.0.0-SNAPSHOT/ObjectPermissionManagerBean</jndi-name>
 			</ejb-ref>
 		</ejb>
 		<ejb>
 			<ejb-name>MigrationPlanProcessorBean</ejb-name>
 			<ejb-ref>
 				<ejb-ref-name>IdentifierBrowser</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-zmd-business-0_0_12-SNAPSHOT/IdentifierBrowserBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-zmd-business-1.0.0-SNAPSHOT/IdentifierBrowserBean</jndi-name>
 			</ejb-ref>
 			<ejb-ref>
 				<ejb-ref-name>UserBrowser</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-zu-business-0_0_12-SNAPSHOT/UserBrowserBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-zu-business-1.0.0-SNAPSHOT/UserBrowserBean</jndi-name>
 			</ejb-ref>
 			<ejb-ref>
 				<ejb-ref-name>ObjectPermissionManager</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-zu-business-0_0_12-SNAPSHOT/ObjectPermissionManagerBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-zu-business-1.0.0-SNAPSHOT/ObjectPermissionManagerBean</jndi-name>
 			</ejb-ref>
 		</ejb>
 		<ejb>
 			<ejb-name>PlanExecutionParserBean</ejb-name>
 			<ejb-ref>
 				<ejb-ref-name>TechnicalDescriptorBrowser</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-ru-business-0_0_12-SNAPSHOT/TechnicalDescriptorBrowserBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-ru-business-1.0.0-SNAPSHOT/TechnicalDescriptorBrowserBean</jndi-name>
 			</ejb-ref>
 			<ejb-ref>
 				<ejb-ref-name>ServiceGrounder</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-ru-business-0_0_12-SNAPSHOT/ServiceGrounderBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-ru-business-1.0.0-SNAPSHOT/ServiceGrounderBean</jndi-name>
 			</ejb-ref>
 		</ejb>
 		<ejb>

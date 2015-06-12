@@ -4,7 +4,7 @@
 
 	<ejb-ref>
 		<ejb-ref-name>ObjectPermissionManager</ejb-ref-name>
-		<jndi-name>java:global/wrdz/wrdz-zu-business-0.0.12-SNAPSHOT/ObjectPermissionManagerBean</jndi-name>
+		<jndi-name>java:global/wrdz/wrdz-zu-business-1.0.0-SNAPSHOT/ObjectPermissionManagerBean</jndi-name>
 	</ejb-ref>
 
 </glassfish-web-app>

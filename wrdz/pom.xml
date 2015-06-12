@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<name>WRDZ</name>
 	<organization>
@@ -7,17 +8,18 @@
 	</organization>
 	<groupId>pl.psnc.synat</groupId>
 	<artifactId>wrdz</artifactId>
-	<version>0.0.12-SNAPSHOT</version>
-	<packaging>pom</packaging>	
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<licenses>
 		<license>
-			<name> GNU General Public License, Version 3.0</name>
+			<name>GNU General Public License, Version 3.0</name>
 			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
 		</license>
 	</licenses>
 	<scm>
-		<connection>scm:svn:https://svn.man.poznan.pl/svnroot/synat/A11/software/wrdz/trunk/</connection>
-		<url>https://svn.man.poznan.pl/svnroot/synat/A11/software/wrdz/trunk/</url>
+		<connection>scm:git:https://github.com/psnc-dl/darceo.git</connection>
+		<developerConnection>scm:git:git@github.com:psnc-dl/darceo.git</developerConnection>
+		<url>http://github.com/psnc-dl/darceo/tree/master/wrdz</url>
 	</scm>
 	<distributionManagement>
 		<repository>
@@ -57,12 +59,13 @@
 		<httpclient.version>4.2.2</httpclient.version>
 		<httpmime.version>4.2.2</httpmime.version>
 		<javaxmail.version>1.4.4</javaxmail.version>
-		<devicemap-simpleddr.version>1.0.0</devicemap-simpleddr.version>
+		<devicemap-simpleddr.version>1.1.0-SNAPSHOT</devicemap-simpleddr.version>
+		<devicemap-data.version>1.0.2</devicemap-data.version>
 		<org.richfaces.bom.version>4.3.2.Final</org.richfaces.bom.version>
 		<owlapi.version>3.4.2</owlapi.version>
-		<dsa.version>0.0.3</dsa.version>
-		<sra.version>0.0.3</sra.version>
-		<wrdz.version>0.0.12-SNAPSHOT</wrdz.version>
+		<dsa.version>1.0.0-SNAPSHOT</dsa.version>
+		<sra.version>1.0.0-SNAPSHOT</sra.version>
+		<wrdz.version>1.0.0-SNAPSHOT</wrdz.version>
 		<!-- default values -->
 		<ejb.address.mdz />
 		<ejb.address.ru />
@@ -145,15 +148,16 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.9</version>
 					<configuration>
-						<argLine>-Djava.endorsed.dirs=${settings.localRepository}/org/glassfish/main/javaee-api/javax.annotation/${glassfish.version}/ -Xms512m -Xmx1536m -XX:PermSize=128m -XX:MaxPermSize=256m</argLine>
+						<argLine>-Djava.endorsed.dirs=${settings.localRepository}/org/glassfish/main/javaee-api/javax.annotation/${glassfish.version}/
+							-Xms512m -Xmx1536m -XX:PermSize=128m -XX:MaxPermSize=256m</argLine>
 					</configuration>
 					<dependencies>
-                    <dependency>
-                        <groupId>org.glassfish.main.javaee-api</groupId>
-                        <artifactId>javax.annotation</artifactId>
-                        <version>${glassfish.version}</version>
-                    </dependency>
-                </dependencies>
+						<dependency>
+							<groupId>org.glassfish.main.javaee-api</groupId>
+							<artifactId>javax.annotation</artifactId>
+							<version>${glassfish.version}</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 				<plugin>
 					<groupId>org.jvnet.jaxb2.maven2</groupId>
@@ -319,6 +323,11 @@
 				<groupId>org.apache.devicemap</groupId>
 				<artifactId>devicemap-simpleddr</artifactId>
 				<version>${devicemap-simpleddr.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.devicemap</groupId>
+				<artifactId>devicemap-data</artifactId>
+				<version>${devicemap-data.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.richfaces</groupId>

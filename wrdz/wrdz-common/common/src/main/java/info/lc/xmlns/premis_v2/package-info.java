@@ -1,4 +1,4 @@
-﻿/**
+/**
 package-info.java that enforces the 'premis' prefix in the PREMIS metadata XML. 
  */
 

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright 2015 Poznań Supercomputing and Networking Center
  *
  * Licensed under the GNU General Public License, Version 3.0 (the "License");
@@ -15,6 +15,7 @@
  */
 package pl.psnc.synat.wrdz.zmkd.ddr;
 
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Properties;
@@ -25,8 +26,8 @@ import javax.ejb.Lock;
 import javax.ejb.LockType;
 import javax.ejb.Singleton;
 
-import org.apache.devicemap.simpleddr.ODDRService;
-import org.apache.devicemap.simpleddr.ODDRVocabularyService;
+import org.apache.devicemap.simpleddr.DDRService;
+import org.apache.devicemap.simpleddr.VocabularyService;
 import org.apache.devicemap.simpleddr.model.ODDRHTTPEvidence;
 import org.w3c.ddr.simple.Evidence;
 import org.w3c.ddr.simple.PropertyRef;
@@ -81,21 +82,41 @@ public class DDRHelperBean implements DDRHelper {
 
         try {
             Properties properties = new Properties();
+            
+            ClassLoader cl = DDRHelperBean.class.getClassLoader();
+            		
+            InputStream deviceBuilderStream = cl.getResourceAsStream("devicedata/BuilderDataSource.xml");
+            properties.put(DDRService.ODDR_UA_DEVICE_BUILDER_STREAM_PROP, deviceBuilderStream);
+            
+            InputStream deviceDatasourceStream = cl.getResourceAsStream("devicedata/DeviceDataSource.xml");
+            properties.put(DDRService.ODDR_UA_DEVICE_DATASOURCE_STREAM_PROP, deviceDatasourceStream);
+            
+            InputStream[] deviceBuilderPatchStreams = new InputStream[1];
+            deviceBuilderPatchStreams[0] = cl.getResourceAsStream("devicedata/BuilderDataSourcePatch.xml");
+            properties.put(DDRService.ODDR_UA_DEVICE_BUILDER_PATCH_STREAMS_PROP, deviceBuilderPatchStreams);
+            
+            InputStream[] deviceDatasourcePatchStreams = new InputStream[1];
+            deviceDatasourcePatchStreams[0] = cl.getResourceAsStream("devicedata/DeviceDataSourcePatch.xml");
+       		properties.put(DDRService.ODDR_UA_DEVICE_DATASOURCE_PATCH_STREAMS_PROP, deviceDatasourcePatchStreams);
+            
+            InputStream browserDatasourceStream = cl.getResourceAsStream("devicedata/BrowserDataSource.xml");
+            properties.put(DDRService.ODDR_UA_BROWSER_DATASOURCE_STREAM_PROP, browserDatasourceStream);
+            
+            InputStream operatingSystemDatasourceStream = cl.getResourceAsStream("devicedata/OperatingSystemDataSource.xml");
+            properties.put(DDRService.ODDR_UA_OPERATINGSYSTEM_DATASOURCE_STREAM_PROP, operatingSystemDatasourceStream);
+            
+            InputStream coreVocabularyStream = cl.getResourceAsStream("devicedata/coreVocabulary.xml");
+            properties.put(VocabularyService.DDR_CORE_VOCABULARY_STREAM_PROP, coreVocabularyStream);
+            
+            InputStream[] oddrVocabularyStreams = new InputStream[1];
+            oddrVocabularyStreams[0] = cl.getResourceAsStream("devicedata/oddrVocabulary.xml");
+            properties.put(VocabularyService.ODDR_VOCABULARY_STREAM_PROP, oddrVocabularyStreams);
+            
+            properties.put(DDRService.ODDR_VOCABULARY_IRI, "http://www.openddr.org/oddr-vocabulary");
+            properties.put(DDRService.ODDR_THRESHOLD_PROP, 95);
 
-            properties.put(ODDRService.ODDR_UA_DEVICE_BUILDER_PATH_PROP, "oddr/BuilderDataSource.xml");
-            properties.put(ODDRService.ODDR_UA_DEVICE_DATASOURCE_PATH_PROP, "oddr/DeviceDataSource.xml");
-            properties.put(ODDRService.ODDR_UA_DEVICE_BUILDER_PATCH_PATHS_PROP, "oddr/BuilderDataSourcePatch.xml");
-            properties.put(ODDRService.ODDR_UA_DEVICE_DATASOURCE_PATCH_PATHS_PROP, "oddr/DeviceDataSourcePatch.xml");
-            properties.put(ODDRService.ODDR_UA_BROWSER_DATASOURCE_PATH_PROP, "oddr/BrowserDataSource.xml");
-            properties.put(ODDRService.ODDR_UA_OPERATINGSYSTEM_DATASOURCE_PATH_PROP,
-                "oddr/OperatingSystemDataSource.xml");
-            properties.put(ODDRVocabularyService.DDR_CORE_VOCABULARY_PATH_PROP, "oddr/coreVocabulary.xml");
-            properties.put(ODDRVocabularyService.ODDR_VOCABULARY_PATH_PROP, "oddr/oddrVocabulary.xml");
-            properties.put(ODDRService.ODDR_VOCABULARY_IRI, "http://www.openddr.org/oddr-vocabulary");
-            properties.put(ODDRService.ODDR_THRESHOLD_PROP, 95);
-
-            identificationService = ServiceFactory.newService("org.apache.devicemap.simpleddr.ODDRService",
-                properties.getProperty(ODDRService.ODDR_VOCABULARY_IRI), properties);
+            identificationService = ServiceFactory.newService("org.apache.devicemap.simpleddr.DDRService",
+                properties.getProperty(DDRService.ODDR_VOCABULARY_IRI), properties);
 
             vendorRef = identificationService.newPropertyRef("vendor");
             modelRef = identificationService.newPropertyRef("model");

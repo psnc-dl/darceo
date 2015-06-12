@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright 2015 Poznań Supercomputing and Networking Center
  *
  * Licensed under the GNU General Public License, Version 3.0 (the "License");

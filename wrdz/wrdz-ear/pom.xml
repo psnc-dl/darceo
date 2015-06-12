@@ -1,14 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<name>WRDZ-EAR</name>
-	<groupId>pl.psnc.synat</groupId>
 	<artifactId>wrdz-ear</artifactId>
-	<version>0.0.12-SNAPSHOT</version>
 	<packaging>ear</packaging>
 	<parent>
 		<groupId>pl.psnc.synat</groupId>
 		<artifactId>wrdz</artifactId>
-		<version>0.0.12-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<properties>
 		<glassfish.domain>${project.parent.artifactId}-domain</glassfish.domain>
@@ -26,12 +24,10 @@
 		<exclude.zu>false</exclude.zu>
 	</properties>
 	<dependencies>
-
 		<dependency>
 			<groupId>pl.psnc.synat</groupId>
 			<artifactId>wrdz-persistence</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>pl.psnc.synat</groupId>
 			<artifactId>wrdz-common-business</artifactId>
@@ -42,7 +38,6 @@
 			<artifactId>wrdz-common-dao</artifactId>
 			<type>ejb</type>
 		</dependency>
-
 		<dependency>
 			<groupId>pl.psnc.synat</groupId>
 			<artifactId>wrdz-mdz-business</artifactId>
@@ -55,7 +50,6 @@
 			<scope>${scope.mdz}</scope>
 			<type>ejb</type>
 		</dependency>
-
 		<dependency>
 			<groupId>pl.psnc.synat</groupId>
 			<artifactId>wrdz-ms-business</artifactId>
@@ -74,8 +68,6 @@
 			<scope>${scope.ms}</scope>
 			<type>war</type>
 		</dependency>
-
-
 		<dependency>
 			<groupId>pl.psnc.synat</groupId>
 			<artifactId>wrdz-ru-business</artifactId>
@@ -100,7 +92,6 @@
 			<scope>${scope.ru}</scope>
 			<type>war</type>
 		</dependency>
-
 		<dependency>
 			<groupId>pl.psnc.synat</groupId>
 			<artifactId>wrdz-zmd-business</artifactId>
@@ -131,7 +122,6 @@
 			<scope>${scope.zmd}</scope>
 			<type>war</type>
 		</dependency>
-
 		<dependency>
 			<groupId>pl.psnc.synat</groupId>
 			<artifactId>wrdz-zmkd-business</artifactId>
@@ -156,7 +146,6 @@
 			<scope>${scope.zmkd}</scope>
 			<type>war</type>
 		</dependency>
-
 		<dependency>
 			<groupId>pl.psnc.synat</groupId>
 			<artifactId>wrdz-zu-dao</artifactId>
@@ -175,7 +164,6 @@
 			<scope>${scope.zu}</scope>
 			<type>war</type>
 		</dependency>	
-
 		<dependency>
 			<groupId>org.richfaces.ui</groupId>
 			<artifactId>richfaces-components-ui</artifactId>
@@ -192,7 +180,6 @@
 			<groupId>pl.psnc.synat</groupId>
 			<artifactId>wrdz-common-web</artifactId>
 		</dependency>
-
 	</dependencies>
 	<build>
 		<plugins>

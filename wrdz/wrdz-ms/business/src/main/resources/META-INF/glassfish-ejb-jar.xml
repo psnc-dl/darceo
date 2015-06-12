@@ -8,11 +8,11 @@ DTD GlassFish Application Server 3.1 EJB 3.1//EN"
 			<ejb-name>StatisticsCalculator</ejb-name>
 			<ejb-ref>
 				<ejb-ref-name>StatisticsBrowser</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-zmd-business-0_0_12-SNAPSHOT/StatisticsBrowserBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-zmd-business-1.0.0-SNAPSHOT/StatisticsBrowserBean</jndi-name>
 			</ejb-ref>
 			<ejb-ref>
 				<ejb-ref-name>UserBrowser</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-zu-business-0_0_12-SNAPSHOT/UserBrowserBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-zu-business-1.0.0-SNAPSHOT/UserBrowserBean</jndi-name>
 			</ejb-ref>
 		</ejb>
 		<ejb>
@@ -20,7 +20,7 @@ DTD GlassFish Application Server 3.1 EJB 3.1//EN"
 			<jndi-name>queue/info/zu-certificate</jndi-name>
 			<ejb-ref>
 				<ejb-ref-name>UserBrowser</ejb-ref-name>
-				<jndi-name>java:global/wrdz/wrdz-zu-business-0_0_12-SNAPSHOT/UserBrowserBean</jndi-name>
+				<jndi-name>java:global/wrdz/wrdz-zu-business-1.0.0-SNAPSHOT/UserBrowserBean</jndi-name>
 			</ejb-ref>
 			<mdb-connection-factory>
 				<jndi-name>jms/info</jndi-name>
